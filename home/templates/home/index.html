@@ -1,0 +1,184 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,
+        shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Graduation Plan Optimizer</title>
+
+		<!-- jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+       <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<!-- Google Font-->
+<link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+
+
+<script>
+
+$(document).ready(function(){
+  // Add scrollspy to <body>
+  $('body').scrollspy({target: ".navbar", offset: 60});
+
+  // Add smooth scrolling on all links inside the navbar
+  $("#myNavbar a").on('click', function(event) {
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    }  // End if
+  });
+});
+
+//Slide in code
+
+$(window).scroll(function() {
+  $(".slideanim").each(function(){
+    var pos = $(this).offset().top;
+
+    var winTop = $(window).scrollTop();
+    if (pos < winTop + 700) {
+      $(this).addClass("slide");
+    }
+  });
+});
+
+//Location Button Code
+$(document).ready(function(){
+    $("#Button").click(function(){
+        location.href="#map";
+    });
+});
+
+
+
+
+</script>
+
+
+
+</script>
+
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+	</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+	<nav class="navbar navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#Home">Home Page</a></li>
+		<li><a href="#Major">Choose Major</a></li>
+		<li><a href="#Add">Add Class</a></li>
+        <li><a href="#Name">Enter Name</a></li>
+		 <li><a href="#classes">ShowClasses</a></li>
+
+
+		 <div id="nav-options" class="btn-group pull-right">
+  <button type="button" class="btn btn-default dropdown-toggle thumbnail" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <img src="{% static 'img/CSUNLOGO.png' %}">
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Profile</a></li>
+    <li><a href="#">Setting</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Logout</a></li>
+  </ul>
+</div>
+     <form id="search" role="search">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search...">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      </div>
+        </form>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+		<div class="container-fluid" id="Home">
+		<div class="row"><br><br>
+
+		 <div class="col-md-12" id="Title-div">
+		 <div id="center">
+
+		  <h1 class="center-text" >Graduation Plan Optimizer</h1>
+	   <h2 class="center-text" >Start Planning your Classes for this Semester!</h2>
+	   <hr>
+	   </div>
+
+		</div>
+		</div>
+		<section id="classes">
+		<div class="row">
+	<div class="col-md-12 text-center" id="Classes-Div"><h1>These are your classes</h1></div>
+	</div>
+		<div class="row">
+
+		<div class="col-md-4 text-center"id="Class"><h2>Class 1</h2> </div>
+		<div class="col-md-4 text-center"id="Class"><h2>Class 2</h2> </div>
+		<div class="col-md-4 text-center"id="Class"><h2>Class 3</h2> </div>
+
+
+		</div>
+		<div class="row">
+
+		<div class="col-md-4 text-center"id="Class"><h2>Class 4</h2> </div>
+		<div class="col-md-4 text-center"id="Class"><h2>Class 5</h2> </div>
+		<div class="col-md-4 text-center"id="Class"><h2>Class 6</h2> </div>
+
+
+		</div>
+
+
+		<div class="row">
+
+		<div class="col-md-4 text-center"id="Class"><h2>Class 7</h2> </div>
+		<div class="col-md-4 text-center"id="Class"><h2>Class 8</h2> </div>
+		<div class="col-md-4 text-center"id="Class"><h2>Class 9</h2> </div>
+
+
+		</div>
+   	<div class="row">
+	<div class="col-md-12 text-center" id="Soon"><h1>More Coming Soon</h1></div>
+	</div>
+   </section>
+    </body>
+    </html>
