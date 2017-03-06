@@ -26,6 +26,8 @@ var/
 gradplanprojectenv/
 .installed.cfg
 *.egg
+gradplanprojectenv/
+
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
