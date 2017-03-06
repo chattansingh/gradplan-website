@@ -23,6 +23,7 @@ parts/
 sdist/
 var/
 *.egg-info/
+gradplanprojectenv/
 .installed.cfg
 *.egg
 
@@ -59,18 +60,14 @@ local_settings.py
 # described in https://git-scm.com/docs/gitignore
 
 *.egg-info
-*.pot
 *.py[co]
-.tox/
 __pycache__
 MANIFEST
-dist/
 docs/_build/
 docs/locale/
 node_modules/
 tests/coverage_html/
 tests/.coverage
-build/
 tests/report/
 
 ##End Django##
@@ -83,8 +80,6 @@ instance/
 .scrapy
 
 # Sphinx documentation
-docs/_build/
-
 # PyBuilder
 target/
 
@@ -133,13 +128,10 @@ Thumbs.db
 
 ##########WINDOWS#########
 # Windows thumbnail cache files
-Thumbs.db
 ehthumbs.db
 ehthumbs_vista.db
 
 # Folder config file
-Desktop.ini
-
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
@@ -218,3 +210,4 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+.idea/
