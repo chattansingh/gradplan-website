@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
 ]
-INSTALLED_APPS = ['django_cassandra_engine'] + INSTALLED_APPS
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -76,16 +76,8 @@ WSGI_APPLICATION = 'gradplanproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django_cassandra_engine', #.db.backends.sqlite3',
-        'NAME': 'studentplans', #os.path.join(BASE_DIR, 'db.sqlite3'),
-        'TEST_NAME': 'studentplans_db',
-        'HOST': '192.241.216.190',
-        'OPTIONS': {
-            'kspace': {
-                'strategy_class': 'SimpleStrategy',
-                'replication_factor': 1
-            }
-        }
+        'ENGINE': 'db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
