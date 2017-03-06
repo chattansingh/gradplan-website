@@ -18,10 +18,15 @@ from django.contrib import admin
 
 from django.views.generic import RedirectView
 
+from django.contrib.auth import views as auth_views
+
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^home/', include('home.urls')),
     url(r'^', RedirectView.as_view(url='/home/')),
+    url(r'^login/', auth_views.login, name='login'),
+
 ]
 
