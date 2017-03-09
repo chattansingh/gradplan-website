@@ -1,0 +1,8 @@
+{% block content %}
+
+Logged out!
+{#    has to have index because that is the page for home #}
+    <a href="{% url 'index' %}">Home</a>
+    <a href="{% url "login" %}">Login</a>
+
+{% endblock %}

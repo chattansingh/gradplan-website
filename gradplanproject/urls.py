@@ -24,9 +24,9 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^home/', include('home.urls')),
-    url(r'^', RedirectView.as_view(url='/home/')),
+    url(r'^home/', include('home.urls'), name='home'),
     url(r'^login/', auth_views.login, name='login'),
-
+    url(r'^home/logout/', auth_views.logout, name='logout'),
+    url(r'^', RedirectView.as_view(url='/home/')),
 ]
 
