@@ -25,7 +25,7 @@ SECRET_KEY = '!au@710_co2k#_0vmrik5es@(xex#x506iscn-=t#c_+8%d05l'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.241.215.167']
+ALLOWED_HOSTS = ['192.241.215.167', '127.0.0.1']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +55,7 @@ ROOT_URLCONF = 'gradplanproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,7 +76,7 @@ WSGI_APPLICATION = 'gradplanproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
@@ -118,4 +119,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+
+#Logged in user redriect
+LOGIN_REDIRECT_URL = '/'
+#Log in url
+LOGIN_URL = '/accounts/login/'
+#Auto Login once registered
+REGISTRATION_AUTO_LOGIN = True

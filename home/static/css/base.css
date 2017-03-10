@@ -1,0 +1,236 @@
+
+html, body 
+{ overflow-x: hidden; }
+
+#Max-Width
+{
+width:100%;
+}
+
+
+#nav-options {
+  margin: 0.5em;
+  color:black;
+}
+
+#nav-options button.thumbnail {
+  margin: 0;
+  padding: 0;
+}
+
+#nav-options img {
+  max-height: 2.3em;
+  border-radius: 0.3em;
+}
+
+
+
+#shadow
+{
+
+text-shadow: 0px 0px 3px #000, -1px -1px #000, 1px 1px #000;
+}
+
+div#Title-div h1,
+div#Title-div h2 {
+  color: #FFF;
+}
+
+div#Title-div h2 {
+  font-size: 1.5rem;
+}
+
+div#Title-div hr {
+  width: 10%;
+}
+
+
+
+
+
+
+
+
+div#Cover-div
+{
+filter:opacity(100%);
+height:100vh;
+padding:5px;
+}
+
+.CoverDiv
+{
+color:#235F3F;
+
+}
+
+div#Classes-Div
+{
+height:200px;
+background-color:#D22030;
+width:max;
+}
+
+div#Soon
+{
+height:500px;
+background-color:#D22030;
+
+}
+
+div#Class
+{
+height:200px;
+background-color:white;
+border-style:solid;
+border-color:black;
+
+
+}
+
+div#Class h2
+{
+
+color:black;
+}
+div#Title-div
+{
+
+background-size:cover;
+
+height:800px;
+	
+background-color:#D22030;
+}
+
+div#Title-div h1,div#Title-div h2
+{
+font-family: 'Fjalla One', sans-serif;
+
+}
+div#Title-div h2 {
+  font-size: 1.5rem;
+}
+
+div#Title-div hr {
+  width: 10%;
+}
+
+nav form#search {
+  float: right;
+  padding: 0.5em;
+}
+
+nav form#search .glyphicon-search {
+    z-index: 99;
+    position: absolute;
+    right: 0.7em;
+    top: 50%;
+    margin-top: -0.44em;
+}
+
+nav form#search .input-group .form-control {
+    border-radius: 0.25em;
+}
+
+
+#center
+{
+
+position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+h2
+{
+text-indent:50px;
+}
+
+
+h1,h2,h3,a,p,h4,h5
+{
+font-family: 'Fjalla One', sans-serif;
+color:white;
+
+}
+
+
+
+
+.navbar {
+font-family: 'Fjalla One', sans-serif;
+}
+
+.navbar {
+
+    margin-bottom: 0;
+    background-color:#D22030;
+    z-index: 9999;
+    border: 0;
+	font-weight:bold;
+    font-size:15px !important;
+    line-height: 1.42857143 !important;
+    border-radius: 0;
+}
+.icon-bar
+{
+  background:black !important; /*Whatever colour you want for icon lines*/
+}
+.navbar-toggle
+{
+  background:white !important; /*Whatever colour you want for background */
+}
+
+.navbar li a, .navbar .navbar-brand {
+    color:white !important;
+}
+
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color:#D22030 !important;
+    background-color:white !important;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color:black !important;
+}
+
+.slideanim {visibility:hidden;}
+.slide {
+    /* The name of the animation */
+    animation-name: slide;
+    -webkit-animation-name: slide; 
+    /* The duration of the animation */
+    animation-duration: 1s; 
+    -webkit-animation-duration: 1s;
+    /* Make the element visible */
+    visibility: visible; 
+}
+
+/* Go from 0% to 100% opacity (see-through) and specify the percentage from when to slide in the element along the Y-axis */
+@keyframes slide {
+    0% {
+        opacity: 0;
+        transform: translateY(70%);
+    } 
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
+    } 
+}
+@-webkit-keyframes slide {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(70%);
+    } 
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0%);
+    }
+}
+
+
+
