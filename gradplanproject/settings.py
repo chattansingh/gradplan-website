@@ -124,3 +124,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 #Logged in user redriect
 LOGIN_REDIRECT_URL = '/'
+#Log in url
+LOGIN_URL = '/accounts/login/'
+#Auto Login once registered
+REGISTRATION_AUTO_LOGIN = True
