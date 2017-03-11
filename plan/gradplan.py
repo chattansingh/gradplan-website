@@ -46,6 +46,7 @@ def getroadmap(url):
   mappage = getpage(link['link'])
   tables = mappage.find_all('table', {'summary': True})
   bp = [] #beer pong! (jk it's base plan)
+  first = 0
 
   for i in tables:
     c = i.find_all('td')
@@ -71,15 +72,16 @@ def getroadmap(url):
           link = classurl + dept.lower() + '-' + n
           print link
 
-        if link != '':
+        if link != '' and first == 0:
           classes = getclasses(link)
 
         c ={'name': name, 
           'classes': classes}
 
         sem.append(c) 
-
+    if first == 0:
+      first = 1
     bp.append(sem)
   return bp
 
-#a = getroadmap('http://catalog.csun.edu/academics/comp/programs/bs-computer-science/')
+a = getroadmap('http://catalog.csun.edu/academics/comp/programs/bs-computer-science/')
