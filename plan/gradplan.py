@@ -9,6 +9,8 @@ import urllib2 as ul
 import requests
 from bs4 import BeautifulSoup
 
+classurl = 'http://curriculum.ptg.csun.edu/classes/'
+
 # 403 is returned if we don't inlcude this shit
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 
@@ -16,6 +18,11 @@ def getpage(url):
   page = requests.get(url, headers=headers)
   data = BeautifulSoup(page.text, 'lxml')
   return data
+
+def getclasses(url):
+  data = getpage(url)
+  data = json.loads(data.find('p').contents[0])
+  return data['classes']
 
 #TODO: get prereqs for each class. handle unknown classes (i.e. ge classes, electives, etc)
 
@@ -39,14 +46,40 @@ def getroadmap(url):
   mappage = getpage(link['link'])
   tables = mappage.find_all('table', {'summary': True})
   bp = [] #beer pong! (jk it's base plan)
+
   for i in tables:
     c = i.find_all('td')
     sem = []
+
     for j in c:
       cl = j.find('a')
+
       if cl != None:
-        sem.append({'name': cl.contents[0], 'link': cl['href']}) 
+        t = cl.contents[0].split(' ') #cl['title'].split('.')
+        dept = t[0]
+        num = t[1]
+        name = dept + ' ' + num
+        print name
+        link = ''
+        classes = []
+
+        if dept != 'GE' and dept != 'Title':
+          n = num
+          if '/L' in num:
+            n = num[:len(num)-2]
+
+          link = classurl + dept.lower() + '-' + n
+          print link
+
+        if link != '':
+          classes = getclasses(link)
+
+        c ={'name': name, 
+          'classes': classes}
+
+        sem.append(c) 
+
     bp.append(sem)
   return bp
 
-#print getroadmap('http://catalog.csun.edu/academics/comp/programs/bs-computer-science/')
+#a = getroadmap('http://catalog.csun.edu/academics/comp/programs/bs-computer-science/')
