@@ -116,7 +116,7 @@ $(document).ready(function(){
     <img src="{% static 'img/CSUNLOGO.png' %}">
   </button>
   <ul class="dropdown-menu">
-    <li><a href="#">Profile</a></li>
+    <li><a href="{% url "user_profile" %}">Profile</a></li>
     <li><a href="#">Setting</a></li>
     <li role="separator" class="divider"></li>
     <li><a href="{% url "login" %}">Login</a><li>
