@@ -28,6 +28,8 @@ urlpatterns = [
     url(r'^login/', auth_views.login, name='login'),
     url(r'^home/logout/', auth_views.logout, name='logout'),
     url(r'^accounts/', include('registration.backends.simple.urls'), name='accounts'),
+    url(r'^profile/', include('accounts.urls'), name='profile'),
     url(r'^$', RedirectView.as_view(url='/home/')),
+
 ]
 
