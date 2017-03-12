@@ -114,5 +114,5 @@ def getroadmap(url, schedule):
     bp.append(sem)
   return bp
 
-a = getroadmap('http://catalog.csun.edu/academics/comp/programs/bs-computer-science/', {})
-print a
+# a = getroadmap('http://catalog.csun.edu/academics/comp/programs/bs-computer-science/', {})
+# print a
