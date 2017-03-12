@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.contrib.auth.decorators import login_required
@@ -46,7 +46,14 @@ def suggest_major(request):
             #this is a list of the choices
             #choices are 1, 2, 3, 4 1 = Science, 2 = Math..and so on.
             choices = form.cleaned_data['subject_interests']
+            # url = plan_suggestion(choices)
+            url = 'http://catalog.csun.edu/academics/comp/programs/bs-computer-science/' #erase me
+            current_user.graduation_plan = url
+            current_user.save()
+
             result = result + choices[0]
+
+            return redirect('/roadmap')
         else:
 
             template = 'accounts/save_error.html'
