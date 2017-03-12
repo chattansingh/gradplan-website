@@ -37,9 +37,42 @@ def getroadmaplinks(url):
       maplinks.append({'major': i['title'][20:], 'link': i['href']})
   return maplinks
 
+def timeconvert(t):
+  hour = t[:2]
+  minutes = t[2:4]
+  setting = 'AM'
+  if hour == '12':
+    setting = 'PM'
+  if int(hour) > 12:
+    setting = 'PM'
+    hour = str(int(hour) - 12)
+  return hour + ':' + minutes + ' ' + setting
+
+def compatible(c, s):
+  return True
+
+def filter(cl):
+  meetings = cl['meetings'][0]
+  start = timeconvert(meetings[u'start_time'])
+  end = timeconvert(meetings['end_time'])
+  result = {'course_id': cl['course_id'], 'start_time': start, 'end_time': end, 'days': meetings['days'], 'location': meetings['location']}
+  return result
+
+def suggested(data, schedule):
+  s = {'course_id': [], 'start_time': [], 'end_time': [], 'days': [], 'location': []}
+  for c in data:
+    temp = filter(c)
+    if compatible(temp, schedule):
+      s['start_time'].append(temp['start_time'])
+      s['end_time'].append(temp['end_time'])
+      s['course_id'].append(temp['course_id'])
+      s['location'].append(temp['location'])
+      s['days'].append(temp['days'])
+  return s
+
 #this shit returns an array of arrays. Each array contains a class dictionary with the keys name and link
 #basically, it returns the roadmap for the selected major
-def getroadmap(url):
+def getroadmap(url, schedule):
   #we eventually need to prompt user what degree they want (i.e. Accounting has more than 1 roadmap)
   links = getroadmaplinks(url)
   link = links[0]
@@ -50,7 +83,7 @@ def getroadmap(url):
 
   for i in tables:
     c = i.find_all('td')
-    sem = []
+    sem = {'classes': []}
 
     for j in c:
       cl = j.find('a')
@@ -61,7 +94,7 @@ def getroadmap(url):
         num = t[1]
         name = dept + ' ' + num
         link = ''
-        classes = []
+        classes = {'name': name}
 
         if dept != 'GE' and dept != 'Title':
           n = num
@@ -72,15 +105,14 @@ def getroadmap(url):
 
         if link != '' and first == 0:
           classes = getclasses(link)
+          classes = suggested(classes, schedule)
+          classes['name'] = name
 
-        c ={'name': name, 
-          'classes': classes}
-
-        sem.append(c) 
+        sem['classes'].append(classes) 
     if first == 0:
       first = 1
     bp.append(sem)
   return bp
 
-#a = getroadmap('http://catalog.csun.edu/academics/comp/programs/bs-computer-science/')
-#print a
+a = getroadmap('http://catalog.csun.edu/academics/comp/programs/bs-computer-science/', {})
+print a
