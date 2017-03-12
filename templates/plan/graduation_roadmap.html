@@ -3,11 +3,12 @@
     <ul>
         {% for item in test_list %}
             <div class="semester">
-            <li>Semester {{ item.semester }}</li>
+{#            <li>Semester {{ item.semester }}</li>#}
             <div class="classes-list">
                 <ul>Classes
-                    {% for class in item.classes %}
-                        <li>{{ class }}</li>
+                    {% for c in item.classes %}
+                        <li><p>Name: {{ c.name }}, Class ID{{ c.course_id }}, start time: {{ c.start_time }}
+                        end time {{ c.end_time }}, location {{ c.location }}</p></li>
                     {% endfor %}
                 </ul>
             </div>
