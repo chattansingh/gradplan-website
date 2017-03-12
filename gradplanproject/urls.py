@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^home/logout/', auth_views.logout, name='logout'),
     url(r'^accounts/', include('registration.backends.simple.urls'), name='accounts'),
     url(r'^profile/', include('accounts.urls'), name='profile'),
+    url(r'^roadmap/', include('plan.urls'), name='road_map'),
     url(r'^$', RedirectView.as_view(url='/home/')),
 
 ]
