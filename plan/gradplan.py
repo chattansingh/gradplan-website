@@ -24,7 +24,7 @@ def getclasses(url):
   data = json.loads(data.find('p').contents[0])
   return data['classes']
 
-#TODO: get prereqs for each class. handle unknown classes (i.e. ge classes, electives, etc)
+#TODO: get prereqs for each class
 
 #this gets the list of roadmap links for the selected major.
 # the road map is later used to construct a plan for the student
@@ -60,7 +60,6 @@ def getroadmap(url):
         dept = t[0]
         num = t[1]
         name = dept + ' ' + num
-        print name
         link = ''
         classes = []
 
@@ -70,7 +69,6 @@ def getroadmap(url):
             n = num[:len(num)-2]
 
           link = classurl + dept.lower() + '-' + n
-          print link
 
         if link != '' and first == 0:
           classes = getclasses(link)
@@ -84,4 +82,4 @@ def getroadmap(url):
     bp.append(sem)
   return bp
 
-a = getroadmap('http://catalog.csun.edu/academics/comp/programs/bs-computer-science/')
+#a = getroadmap('http://catalog.csun.edu/academics/comp/programs/bs-computer-science/')
