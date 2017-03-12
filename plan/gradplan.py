@@ -83,3 +83,4 @@ def getroadmap(url):
   return bp
 
 #a = getroadmap('http://catalog.csun.edu/academics/comp/programs/bs-computer-science/')
+#print a
