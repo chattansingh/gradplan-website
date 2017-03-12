@@ -14,7 +14,7 @@ class SubjectInterests(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     current_major = models.TextField(max_length=500, blank=True)
-    graduation_plan = models.CharField(max_length=30, blank=True)
+    graduation_plan = models.CharField(max_length=100, blank=True)
     subject_interests = models.ManyToManyField(SubjectInterests, blank=True)
 
 @receiver(post_save, sender=User)
