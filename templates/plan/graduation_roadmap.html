@@ -1,21 +1,47 @@
 {% block roadmap %}
-<div class="road-map-div">
-    <ul>
-        {% for item in test_list %}
-            <div class="semester">
-{#            <li>Semester {{ item.semester }}</li>#}
-            <div class="classes-list">
-                <ul>Classes
-                    {% for c in item.classes %}
-                        <li><p>Name: {{ c.name }}, Class ID{{ c.course_id }}, start time: {{ c.start_time }}
-                        end time {{ c.end_time }}, location {{ c.location }}</p></li>
-                    {% endfor %}
-                </ul>
+    <div class="road-map-div">
+        <ul>
+            {% for item in road_map %}
+                <div class="semester">
+                {#            <li>Semester {{ item.semester }}</li>#}
+                <div class="classes-list">
+                    <ul>Classes
+                        {% for c in item.classes %}
+                            <ul><p>Name: {{ c.name }}
+                                {#                            COURSE ID#}
+                                <li>Class ID:
+                                    {% for id in c.course_id %}
+                                        {{ id }}
+                                    {% endfor %}
+                                </li>
+                                {#START TIMES#}
+                                <li>start time:
+                                    {% for s in c.start_time %}
+                                        {{ s }}
+
+                                    {% endfor %}
+                                </li>
+                                {#end times#}
+                                <li>end time
+                                    {% for end in c.end_time %}
+                                        {{ end }}
+                                    {% endfor %}
+                                </li>
+                                {#                            location of class#}
+                                <li>location
+                                    {% for loc in c.location %}
+                                        {{ loc }}
+                                    {% endfor %}
+                                </li>
+                                </p>
+                            </ul>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% empty %}
+                <li>Sorry, you do not have a road map. Go create one!</li>
+            {% endfor %}
             </div>
-        {% empty %}
-            <li>Sorry, you do not have a road map. Go create one!</li>
-        {% endfor %}
-        </div>
-    </ul>
-</div>
+        </ul>
+    </div>
 {% endblock roadmap %}
