@@ -13,5 +13,6 @@ def grad_road_map(request):
     # url = 'http://catalog.csun.edu/academics/comp/programs/bs-computer-science/'
     road_map = getroadmap( url, {})
     context = {'road_map': road_map}
-    template = 'plan/graduation_roadmap.html'
+    # template = 'plan/graduation_roadmap.html'
+    template = 'plan/Plans.html'
     return render(request, template, context)

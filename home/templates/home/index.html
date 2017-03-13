@@ -1,6 +1,5 @@
 {% load staticfiles %}
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -29,6 +28,9 @@
 
 
 <script>
+
+
+
 
 $(document).ready(function(){
   // Add scrollspy to <body>
@@ -70,12 +72,6 @@ $(window).scroll(function() {
   });
 });
 
-//Location Button Code
-$(document).ready(function(){
-    $("#Button").click(function(){
-        location.href="#map";
-    });
-});
 
 
 
@@ -84,13 +80,29 @@ $(document).ready(function(){
 
 
 
+
+
+
+
+
+
+
 </script>
 
-<link rel="stylesheet" href="{% static 'css/base.css' %}">
+<link rel="stylesheet" href= "{% static 'css/base.css' %}">
+
+
+
+
 
 	</head>
 
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
+
+
+
+
+
 
 	<nav class="navbar navbar-fixed-top">
   <div class="container">
@@ -104,84 +116,133 @@ $(document).ready(function(){
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#Home">Home Page</a></li>
-		<li><a href="#Major">Choose Major</a></li>
-		<li><a href="#Add">Add Class</a></li>
-        <li><a href="#Name">Enter Name</a></li>
-		 <li><a href="#classes">ShowClasses</a></li>
+        <li><a href="/home">Home Page</a></li>
+		<li><a href="/profile/suggest">Select Major</a></li>
+		<li><a href="/roadmap" id="Plan">Plan</a></li>
 
 
-		 <div id="nav-options" class="btn-group pull-right">
-  <button type="button" class="btn btn-default dropdown-toggle thumbnail" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <img src="{% static 'img/CSUNLOGO.png' %}">
-  </button>
-  <ul class="dropdown-menu">
-    <li><a href="{% url "user_profile" %}">Profile</a></li>
-    <li><a href="#">Setting</a></li>
-    <li role="separator" class="divider"></li>
-    <li><a href="{% url "login" %}">Login</a><li>
-    <li><a href="{% url "logout" %}">Logout</a></li>
 
-  </ul>
-</div>
-     <form id="search" role="search">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search...">
-        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-      </div>
-        </form>
+
+
+
       </ul>
     </div>
   </div>
 </nav>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <section id="Home">
 		<div class="container-fluid" id="Home">
 		<div class="row"><br><br>
 
 		 <div class="col-md-12" id="Title-div">
 		 <div id="center">
-
+		 <div id="titles">
 		  <h1 class="center-text" >Graduation Plan Optimizer</h1>
-            <h2 class="center-text" >welcome {{request.user.username}}</h2>
+		  </div>
+		  <div id="titles">
 	   <h2 class="center-text" >Start Planning your Classes for this Semester!</h2>
-	   <hr>
 	   </div>
+	   <hr>
+	   <div id="center-button">
+{#        wrapped them in hyper links#}
+
+	   <a href="/login"><button type="button" class="btn btn-danger " data-toggle="modal">Login</button></a>
+        <a href="/accounts/register"><button type="button" class="btn btn-primary " id="SignUp">SignUp</button></a> </div>
 
 		</div>
 		</div>
-		<section id="classes">
-		<div class="row">
-	<div class="col-md-12 text-center" id="Classes-Div"><h1>These are your classes</h1></div>
+		</div>
+		</div>
+	</section>
+
+	<!-- Modal Sections for the Login -->
+
+	<div class="modal fade" id="loginModal" role="dialog">
+	<div class="modal-dialog">
+	<div class="modal-content">
+
+	<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+	<h4 class="modal-title">GradPlan Login</h4>
+
 	</div>
-		<div class="row">
-
-		<div class="col-md-4 text-center"id="Class"><h2>Class 1</h2> </div>
-		<div class="col-md-4 text-center"id="Class"><h2>Class 2</h2> </div>
-		<div class="col-md-4 text-center"id="Class"><h2>Class 3</h2> </div>
-
-
-		</div>
-		<div class="row">
-
-		<div class="col-md-4 text-center"id="Class"><h2>Class 4</h2> </div>
-		<div class="col-md-4 text-center"id="Class"><h2>Class 5</h2> </div>
-		<div class="col-md-4 text-center"id="Class"><h2>Class 6</h2> </div>
+	<div class="modal-body">
+	<div id="content-container" class="container p-none">
+        <div class="lgn-container col-lg-6">
+            <form id="login-form" method="post"
+                  action="{% url 'login' %}">
 
 
-		</div>
+
+                        <label for="id_username">Username</label>
+                        <input id="id_username" name="username"
+                                   type="text" class="form-control">
+
+                        <label for="id_password">Password</label>
+                        <input id="id_password" name="password"
+                                   type="password" class="form-control">
 
 
-		<div class="row">
+                    <p class=" label label-danger">
+                        Your username and password didn't match.
+                        Please try again.
+                    </p>
 
-		<div class="col-md-4 text-center"id="Class"><h2>Class 7</h2> </div>
-		<div class="col-md-4 text-center"id="Class"><h2>Class 8</h2> </div>
-		<div class="col-md-4 text-center"id="Class"><h2>Class 9</h2> </div>
+                 <br>
 
-
-		</div>
-   	<div class="row">
-	<div class="col-md-12 text-center" id="Soon"><h1>More Coming Soon</h1></div>
+                <input type="submit" value="Login"
+                       class="btn btn-danger pull-right " />
+                <input type="hidden" name="next" value="{{ next }}" />
+            </form>
+        </div>
+    </div>
 	</div>
-   </section>
+	<div class="modal-footer">
+
+	</div>
+	</div>
+	</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </body>
     </html>

@@ -1,12 +1,16 @@
+{#{% load static %}#}
+
 {% block roadmap %}
+{#    <link rel="stylesheet" href= "{% static 'css/base.css' %}">#}
     <div class="road-map-div">
         <ul>
             {% for item in road_map %}
-                <div class="semester">
+                <div class="semester{{ forloop.counter }}">
                 {#  Tthis fills out the html with all of the clases that should be returned by the get roadmap#}
-                <div class="classes-list">
-                    <ul>Classes
-                        {% for c in item.classes %}
+                {% for c in item.classes %}
+{#                    forloop.counter will count for the loop that it is in in order to style#}
+                    <div class="classes-list" id="class{{ forloop.counter }}">
+                        <ul>Classes
                             <ul><p>Name: {{ c.name }}
                                 {#                            COURSE ID#}
                                 <li>Class ID:
