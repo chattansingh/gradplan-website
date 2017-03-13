@@ -119,117 +119,75 @@ $(window).scroll(function() {
 	<div class="col-md-6">
       <div id="section1" >
 	  
-        <h2>Spring {{ forloop.counter }}</h2>
-		{% for item in road_map %}
-            {% for c in item.classes %}
-        <div id="class{{ forloop.counter }}">
-            <h2>{{ c.name }}</h2>
-            <li>Class ID:
-                                    {% for id in c.course_id %}
-                                        {{ id }}
-                                    {% endfor %}
-                                </li>
-                                {#                            Days of class#}
-                                <li>
-                                    Days:
-                                    {% for day in c.days %}
-                                        {{ day }}
-                                    {% endfor %}
-                                </li>
-                                {#START TIMES#}
-                                <li>start time:
-                                    {% for s in c.start_time %}
-                                        {{ s }}
-
-                                    {% endfor %}
-                                </li>
-                                {#end times#}
-                                <li>end time
-                                    {% for end in c.end_time %}
-                                        {{ end }}
-                                    {% endfor %}
-                                </li>
-                                {#                            location of class#}
-                                <li>location
-                                    {% for loc in c.location %}
-                                        {{ loc }}
-                                    {% endfor %}
-
-    </div>
-		{% endfor %}
-    {% endfor %}
+        <h2>Spring 2017</h2>
+		{% for c in year1.1.classes %}
+        <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>
+        {% endfor %}
       </div>
 	  </div>
-{#	  <div class="col-md-6">#}
-{#      <div id="section2"> #}
-{#        <h2>Fall 2017</h2>#}
-{#        <div id="class1"><h2>Class1</h2></div>#}
-{#		<div id="class2"><h2>Class2</h2></div>#}
-{#		<div id="class3"><h2>Class3</h2></div>#}
-{#		<div id="class4"><h2>Class4</h2></div>#}
-{#      </div>  #}
-{#      </div>#}
-{#       </div>#}
-{#       <div class="row" id="Year2">#}
-{#       <div class="col-md-6">	   #}
-{#      <div id="section3">#}
-{#        <h2>Spring 2018</h2>#}
-{#        <div id="class1"><h2>Class1</h2></div>#}
-{#		<div id="class2"><h2>Class2</h2></div>#}
-{#		<div id="class3"><h2>Class3</h2></div>#}
-{#		<div id="class4"><h2>Class4</h2></div>#}
-{#      </div>#}
-{#	  </div>#}
-{#	  <div class="col-md-6">#}
-{#      <div id="section4">#}
-{#        <h2>Fall 2018</h2>#}
-{#        <div id="class1"><h2>Class1</h2></div>#}
-{#		<div id="class2"><h2>Class2</h2></div>#}
-{#		<div id="class3"><h2>Class3</h2></div>#}
-{#		<div id="class4"><h2>Class4</h2></div>#}
-{#      </div>   #}
-{#    </div>#}
-{#  </div>#}
-{#  <div class="row"  id="Year3">#}
-{#       <div class="col-md-6">	   #}
-{#      <div id="section3">#}
-{#        <h2>Spring 2019</h2>#}
-{#        <div id="class1"><h2>Class1</h2></div>#}
-{#		<div id="class2"><h2>Class2</h2></div>#}
-{#		<div id="class3"><h2>Class3</h2></div>#}
-{#		<div id="class4"><h2>Class4</h2></div>#}
-{#      </div>#}
-{#	  </div>#}
-{#	  <div class="col-md-6">#}
-{#      <div id="section4">#}
-{#        <h2>Fall 2019</h2>#}
-{#        <div id="class1"><h2>Class1</h2></div>#}
-{#		<div id="class2"><h2>Class2</h2></div>#}
-{#		<div id="class3"><h2>Class3</h2></div>#}
-{#		<div id="class4"><h2>Class4</h2></div>#}
-{#      </div>   #}
-{#    </div>#}
-{#  </div>#}
-{#  <div class="row" id="Year4">#}
-{#       <div class="col-md-6">	   #}
-{#      <div id="section3">#}
-{#        <h2>Spring 2020</h2>#}
-{#        <div id="class1"><h2>Class1</h2></div>#}
-{#		<div id="class2"><h2>Class2</h2></div>#}
-{#		<div id="class3"><h2>Class3</h2></div>#}
-{#		<div id="class4"><h2>Class4</h2></div>#}
-{#      </div>#}
-{#	  </div>#}
-{#	  <div class="col-md-6">#}
-{#      <div id="section4">#}
-{#        <h2>Fall 2020</h2>#}
-{#        <div id="class1"><h2>Class1</h2></div>#}
-{#		<div id="class2"><h2>Class2</h2></div>#}
-{#		<div id="class3"><h2>Class3</h2></div>#}
-{#		<div id="class4"><h2>Class4</h2></div>#}
-{#      </div>   #}
-{#    </div>#}
-{#  </div>#}
+	  <div class="col-md-6">
+      <div id="section2">
+        <h2>Fall 2017</h2>
+        {% for c in year1.0.classes %}
+        <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>
+        {% endfor %}
+      </div>
+      </div>
+       </div>
+       <div class="row" id="Year2">
+       <div class="col-md-6">
+      <div id="section3">
+        <h2>Spring 2018</h2>
+        {% for c in year2.1.classes %}
+        <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>
+        {% endfor %}
+      </div>
+	  </div>
+	  <div class="col-md-6">
+      <div id="section4">
+        <h2>Fall 2018</h2>
+        {% for c in year2.0.classes %}
+        <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="row"  id="Year3">
+       <div class="col-md-6">
+      <div id="section3">
+        <h2>Spring 2019</h2>
+        {% for c in year3.1.classes %}
+        <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>
+        {% endfor %}
+      </div>
+	  </div>
+	  <div class="col-md-6">
+      <div id="section4">
+        <h2>Fall 2019</h2>
+        {% for c in year3.0.classes %}
+        <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="row" id="Year4">
+       <div class="col-md-6">
+      <div id="section3">
+        <h2>Spring 2020</h2>
+        {% for c in year4.1.classes %}
+        <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>
+        {% endfor %}
+      </div>
+	  </div>
+	  <div class="col-md-6">
+      <div id="section4">
+        <h2>Fall 2020</h2>
+        {% for c in year4.0.classes %}
+        <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
 </div>
 	</Section>
 
