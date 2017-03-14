@@ -115,4 +115,5 @@ def getroadmap(url, schedule):
   return bp
 
 # a = getroadmap('http://catalog.csun.edu/academics/comp/programs/bs-computer-science/', {})
+#a = getroadmap('http://catalog.csun.edu/academics/ece/programs/bs-electrical-engineering/', {})
 # print a
