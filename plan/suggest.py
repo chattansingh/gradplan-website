@@ -1,13 +1,13 @@
 
 
 def suggest_plan(choices):
-  science = 0
-  math = 1
-  humanities = 2
-  behavioral = 3
-  business = 4
-  art = 5
-  health = 6
+  science = 1
+  math = 2
+  humanities = 3
+  behavioral = 4
+  business = 5
+  art = 6
+  health = 7
   choice = ['http://catalog.csun.edu/academics/phys/programs/bs-physics-i/physics/',
     'http://catalog.csun.edu/academics/math/programs/bs-mathematics-i/mathematics/',
     'http://catalog.csun.edu/academics/jour/programs/ba-journalism/',
@@ -27,7 +27,7 @@ def suggest_plan(choices):
     else:
       return choice[choices[0]]
 
-print suggest_plan([1])
-print suggest_plan([0,1])
-print suggest_plan([1,4,6])
-print suggest_plan([3,4,5])
+# print suggest_plan([1])
+# print suggest_plan([0,1])
+# print suggest_plan([1,4,6])
+# print suggest_plan([3,4,5])

@@ -6,6 +6,7 @@ from django.db import transaction
 from django.shortcuts import render
 from forms import InterestsForm, SuggestMajor
 from models import Profile
+from plan.suggest import suggest_plan
 
 
 # Create your views here.
@@ -46,12 +47,15 @@ def suggest_major(request):
             #this is a list of the choices
             #choices are 1, 2, 3, 4 1 = Science, 2 = Math..and so on.
             choices = form.cleaned_data['subject_interests']
-            # url = plan_suggestion(choices)
-            url = 'http://catalog.csun.edu/academics/comp/programs/bs-computer-science/' #erase me
+            choice = []
+            for item in choices:
+                choice.append(int(item))
+            url = suggest_plan(choice)
+            # url = 'http://catalog.csun.edu/academics/comp/programs/bs-computer-science/' #erase me
             current_user.graduation_plan = url
             current_user.save()
 
-            result = result + choices[0]
+            # result = result + choices[0]
 
             return redirect('/roadmap')
         else:
