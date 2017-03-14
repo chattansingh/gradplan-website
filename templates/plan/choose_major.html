@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" />
   </head>
   <body>
-  <h1>{{request.user.username}}'s Profile</h1>
     <div class="container">
       <div class="row">
-        <form action="{% url 'user_profile' %}" method="post">
-            {% csrf_token %}
+        <form action="{% url 'choose_a_major' %}" method="post">
             {{ form.as_p }}
             <input type="submit" value="Save" class="btn-save">
         </form>
-          <h3>{{ result }}</h3>
       </div>
         <p>Go Back <a href="{% url 'index' %}">Home</a></p>
         <p><a href="{% url 'logout' %}">Logout</a></p>
+        <p><a href="{% url 'login' %}">Login</a></p>
     </div>
   </body>
 </html>

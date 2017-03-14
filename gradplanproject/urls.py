@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.views.generic import RedirectView
 
 from django.contrib.auth import views as auth_views
+from plan.views import choose_a_major
 
 
 
@@ -30,6 +31,7 @@ urlpatterns = [
     url(r'^accounts/', include('registration.backends.simple.urls'), name='accounts'),
     url(r'^profile/', include('accounts.urls'), name='profile'),
     url(r'^roadmap/', include('plan.urls'), name='road_map'),
+    url(r'^choosemajor', choose_a_major, name='choose_a_major'),
     url(r'^$', RedirectView.as_view(url='/home/')),
 
 ]
