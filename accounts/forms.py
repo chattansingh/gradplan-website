@@ -7,15 +7,15 @@ from crispy_forms.bootstrap import (PrependedText, PrependedAppendedText, FormAc
 
 class InterestsForm(forms.ModelForm):
     #to store the user data
-    # SUBJECT_INTERESTS = (
-    #     (1, 'Science'),
-    #     (2, 'Math'),
-    #     (3, 'History'),
-    #     (4, 'Biology'),
-    #     (5, 'Psychology'),
-    # )
-    # subject_interests = forms.MultipleChoiceField(choices=SUBJECT_INTERESTS
-    #                                               ,widget=forms.CheckboxSelectMultiple, required=False)
+    SUBJECT_INTERESTS = (
+        (1, 'Science'),
+        (2, 'Math'),
+        (3, 'History'),
+        (4, 'Biology'),
+        (5, 'Psychology'),
+    )
+    subject_interests = forms.MultipleChoiceField(choices=SUBJECT_INTERESTS
+                                                  ,widget=forms.CheckboxSelectMultiple, required=False)
 
     # has_current_major_checkbox = forms.BooleanField(required=False)
     # current major

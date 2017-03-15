@@ -222,6 +222,14 @@ def getroadmap(url, schedule):
     bp.append(sem)
   return bp
 
+
+def get_major_url(major):
+  if major == 'Computer Science':
+    return 'http://catalog.csun.edu/academics/comp/programs/bs-computer-science/'
+  elif major == 'Math (General)':
+    return'http://catalog.csun.edu/academics/math/programs/ba-mathematics-i/general/'
+  else:
+    return 'http://catalog.csun.edu/academics/ece/programs/bs-electrical-engineering/'
 #uncomment lines below to see example output for CS
 #e = { 'days': ['Tu','Th'], 'times':[['09:00 AM'], ['09:00 AM']], 'taken':['MATH 150A']}
 # e = {'days':[], 'times':[], 'taken': []}

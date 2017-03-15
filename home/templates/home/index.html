@@ -119,6 +119,8 @@ $(window).scroll(function() {
         <li><a href="/home">Home Page</a></li>
 		<li><a href="/choosemajor">Select Major</a></li>
 		<li><a href="/roadmap" id="Plan">Plan</a></li>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/home/logout">Logout</a></li>
 
 
 
@@ -155,7 +157,13 @@ $(window).scroll(function() {
 		  <h1 class="center-text" >Graduation Plan Optimizer</h1>
 		  </div>
 		  <div id="titles">
+        {% if user_auth  %}
+        <h2 class='center-text'>Welcome {{ user }}.</h2>
+        {% endif %}
 	   <h2 class="center-text" >Start Planning your Classes for this Semester!</h2>
+    {% if has_major %}
+        <h2 class='center-text'>Your current major is {{ major }}</h2>
+    {% endif %}
 	   </div>
 	   <hr>
 	   <div id="center-button">

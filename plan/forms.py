@@ -4,9 +4,7 @@ from plan.gradplan import getroadmap
 
 
 class ChooseMajorForm(forms.Form):
-    comp_sci = 'http://catalog.csun.edu/academics/comp/programs/bs-computer-science/'
-    math = 'http://catalog.csun.edu/academics/math/programs/ba-mathematics-i/general/'
-    electrical = 'http://catalog.csun.edu/academics/ece/programs/bs-electrical-engineering/'
+
     # art = 'http://catalog.csun.edu/academics/art/programs/ba-art/'
     # accounting = 'http://catalog.csun.edu/academics/acctis/programs/bs-accountancy/'
     # african_studies ='http://catalog.csun.edu/academics/afric/programs/minor-african-studies/'
@@ -18,9 +16,9 @@ class ChooseMajorForm(forms.Form):
     # nursing = 'http://catalog.csun.edu/academics/nurs/programs/bsn-nursing-ii/accelerated/'
 
     MAJORS = (
-        (comp_sci, 'Computer Science'),
-        (electrical, 'Electrical Engineering'),
-        (math, 'Math (General)'),
+        ('Computer Science', 'Computer Science'),
+        ('Electrical Engineering', 'Electrical Engineering'),
+        ('Math (General)', 'Math (General)'),
         # (art, 'Art'),
         # (accounting, 'Accounting'),
         # (african_studies, 'African Studies'),

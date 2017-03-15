@@ -1,13 +1,56 @@
-{% block title %}Login{% endblock %}
+<!--{% block title %}Login{% endblock %}
 
-{% block content %}
+{% block content %}-->
+
+<!DOCTYPE html> 
+    <html lang="en"> 
+    <head> 
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1,
+        shrink-to-fit=no"> 
+        <meta http-equiv="x-ua-compatible" content="ie=edge"> 
+        <title>Login</title> 
+
+		
+		
+			<!-- jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+       <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href= "css/registration.css">  
+
+<!-- Google Font-->
+<link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+     </head>
+	 
+	 <div class="container">
+	 <div class="jumbotron csunStyle">
+	 
+	 <h1>GradPlan Login</h1>
+	 
+	 </div>
+	 </div>
+	 
+	 <section id="login">
+	 <div class="container">
+	 <div class="row">
+	 <div class="col-md-3 offset-md-4">
+	 
     <div id="content-container" class="container p-none">
         <div class="lgn-container col-lg-8">
             <form id="login-form" method="post"
                   action=".">
-                {% csrf_token %}
+               {% csrf_token %}
                 <table class="table">
                     <tr>
+					    
                         <td><label for="id_username">Username</label></td>
                         <td><input id="id_username" name="username"
                                    type="text" class="form-control"></td>
@@ -18,12 +61,12 @@
                                    type="password" class="form-control"></td>
                     </tr>
                 </table>
-                {% if form.errors %}
+               <!-- {% if form.errors %}-->
                     <p class=" label label-danger">
                         Your username and password didn't match.
                         Please try again.
                     </p>
-                {% endif %}
+              <!--  {% endif %}-->
 
                 <input type="submit" value="Login"
                        class="btn btn-primary pull-right" />
@@ -31,8 +74,12 @@
             </form>
         <p>New User?
         <a href="{% url 'registration_register' %}">Register here.</a></p>
-{#        registration_register is the URL that redriect for the accounts/register#}
+<!--{#        registration_register is the URL that redriect for the accounts/register#}-->
         <p>Go Back <a href="{% url 'index' %}">Home</a></p>
         </div>
     </div>
-{% endblock content %}
+<!--{% endblock content %}-->
+</div>
+</div>
+</div>
+</section>
