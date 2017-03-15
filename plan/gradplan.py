@@ -85,16 +85,20 @@ def inrange(cl, s):
   c1 = cl[0]
   c1 = cl[1]
   c2 = '    '
-  if len(cl[0]) > 1:
+  if len(cl[0]) > 2:
     c2 = cl[0]
     c2 = c2[1]
   s1 = s[0][0][:2]
   s2 = s[0][0][2:]
 
-  if c1 == 'Tu':
+  if c1 == 'T':
     c1 = 'Tu'
+  if c1 == 'M':
+    c1 = 'Mo'
   if c2 == 'R':
     c2 = 'Th'
+  if c2 == 'W':
+    c2 = 'We'
 
   if c1 in s[0]:
     day = s[0].index(c1)
