@@ -56,6 +56,10 @@ def splittime(t):
   return [h, m, setting]
 
 def check(t1, t2):
+  print t1[0] + '==' + t2[0]
+  print t1[0] == t2[0]
+  print t1[2] + '==' + t2[2]
+  print t1[2] == t2[2]
   if t1[0] == t2[0] and t1[2] == t2[2]:
     return True
   else:
@@ -67,6 +71,9 @@ def checktime(cl, day):
     start = splittime(cl[1])
     end = splittime(cl[2])
     busy = splittime(t)
+    print cl[1] + '-' + cl[2] + ' ' + t
+    print check(start, busy)
+    print check(end, busy)
     if check(start, busy) or check(end, busy):
       result = True
 
@@ -214,6 +221,6 @@ def getroadmap(url, schedule):
   return bp
 
 #uncomment lines below to see example output for CS
-#e = { 'days': ['Tu','Th'], 'times':[['9:00 AM'], ['9:00 AM']], 'taken':['MATH 150A']}
+#e = { 'days': ['Tu','Th'], 'times':[['09:00 AM'], ['09:00 AM']], 'taken':['MATH 150A']}
 #a = getroadmap('http://catalog.csun.edu/academics/comp/programs/bs-computer-science/', e)
 #print a
