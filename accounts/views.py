@@ -48,6 +48,7 @@ def suggest_major(request):
             #choices are 1, 2, 3, 4 1 = Science, 2 = Math..and so on.
             choices = form.cleaned_data['subject_interests']
             choice = []
+            #problem was it was coming in unicode, have to change results to int
             for item in choices:
                 choice.append(int(item))
             url = suggest_plan(choice)
