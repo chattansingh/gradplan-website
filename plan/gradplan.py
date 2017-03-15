@@ -80,6 +80,8 @@ def checktime(cl, day):
   return result
 
 def inrange(cl, s):
+  if s[0] == []:
+    return False
   c1 = cl[0]
   c1 = cl[1]
   c2 = '    '
@@ -222,5 +224,6 @@ def getroadmap(url, schedule):
 
 #uncomment lines below to see example output for CS
 #e = { 'days': ['Tu','Th'], 'times':[['09:00 AM'], ['09:00 AM']], 'taken':['MATH 150A']}
-#a = getroadmap('http://catalog.csun.edu/academics/comp/programs/bs-computer-science/', e)
-#print a
+e = {'days':[], 'times':[], 'taken': []}
+a = getroadmap('http://catalog.csun.edu/academics/comp/programs/bs-computer-science/', e)
+print a
