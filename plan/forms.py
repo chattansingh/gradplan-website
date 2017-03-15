@@ -62,8 +62,8 @@ class ClassFilter(forms.ModelForm):
     # url = Profile.graduation_plan.
     user_objects = Profile.objects.get(id=1)
     url = user_objects.graduation_plan
-
-    graduation_plan = getroadmap(url, {})
+    empty_filter = {'days':[], 'times': [], 'taken': []}
+    graduation_plan = getroadmap(url, empty_filter)
     CLASS_LIST = []
 
     for sem in graduation_plan:
