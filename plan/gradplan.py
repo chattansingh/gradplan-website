@@ -3,6 +3,8 @@
 #http://curriculum.ptg.csun.edu
 #http://catalog.csun.edu/programs/major
 
+#TODO: find a way to get prereqs for class. Make a better compatibility function
+
 import re
 import json
 import urllib2 as ul
@@ -24,7 +26,6 @@ def getclasses(url):
   data = json.loads(data.find('p').contents[0])
   return data['classes']
 
-#TODO: get prereqs for each class
 
 #this gets the list of roadmap links for the selected major.
 # the road map is later used to construct a plan for the student
@@ -48,8 +49,69 @@ def timeconvert(t):
     hour = str(int(hour) - 12)
   return hour + ':' + minutes + ' ' + setting
 
+def splittime(t):
+  h = t[:2]
+  m = t[2:4]
+  setting = t[5:]
+  return [h, m, setting]
+
+def check(t1, t2):
+  print t1[0] + '==' + t2[0]
+  print t1[0] == t2[0]
+  print t1[2] + '==' + t2[2]
+  print t1[2] == t2[2]
+  if t1[0] == t2[0] and t1[2] == t2[2]:
+    return True
+  else:
+    return False
+
+def checktime(cl, day):
+  result = False
+  for t in day:
+    start = splittime(cl[1])
+    end = splittime(cl[2])
+    busy = splittime(t)
+    print cl[1] + '-' + cl[2] + ' ' + t
+    print check(start, busy)
+    print check(end, busy)
+    if check(start, busy) or check(end, busy):
+      result = True
+
+  return result
+
+def inrange(cl, s):
+  c1 = cl[0]
+  c1 = cl[1]
+  c2 = '    '
+  if len(cl[0]) > 1:
+    c2 = cl[0]
+    c2 = c2[1]
+  s1 = s[0][0][:2]
+  s2 = s[0][0][2:]
+
+  if c1 == 'Tu':
+    c1 = 'Tu'
+  if c2 == 'R':
+    c2 = 'Th'
+
+  if c1 in s[0]:
+    day = s[0].index(c1)
+    busy = s[1][day]
+    return checktime(cl, busy)
+  elif c2 in s[0]:
+    day = s[0].index(c2)
+    busy = s[1][day]
+    return checktime(cl, busy)
+  else:
+    return False
+
+#this function is supposed to determine compatability of a class
+#i.e. has the user taken this class and is it in their schedule range?
 def compatible(c, s):
-  return True
+  if inrange([c['days'], c['start_time'], c['end_time']], [s['days'], s['times']]):
+    return False
+  else:
+    return True
 
 def filter(cl):
   meetings = cl['meetings'][0]
@@ -70,8 +132,23 @@ def suggested(data, schedule):
       s['days'].append(temp['days'])
   return s
 
-#this shit returns an array of arrays. Each array contains a class dictionary with the keys name and link
-#basically, it returns the roadmap for the selected major
+"""
+the following function expects a url to the catalog majro page and
+a schedule dictionary in the following format:
+{
+  'days': ['Sun', 'M', 'T',...'Sat'],          <------------Array of Days that they are busy
+
+  'times': [                                   <------------Array of Arrays. Each array contains strings with the hour that hey are busy
+             ['9:00 AM', '10:00 AM',...],
+             ['6:00 PM', '7:00 PM', ...], 
+           ],
+  'taken': [ '152873', '168458', ...]          <------------Array of class id's
+}
+
+leave any of the fields as an empty array if there is no user input
+i.e. 'times': [] means they are free all everyday
+ONLY PASS IN DAYS AND TIMES THAT THEY ARE BUSY
+"""
 def getroadmap(url, schedule):
   #we eventually need to prompt user what degree they want (i.e. Accounting has more than 1 roadmap)
   links = getroadmaplinks(url)
@@ -93,7 +170,7 @@ def getroadmap(url, schedule):
         dept = t[0]
         num = t[1]
         name = dept + ' ' + num
-        link = ''
+        link = []
         classes = {'name': name}
 
         if dept != 'GE' and dept != 'Title':
@@ -101,19 +178,49 @@ def getroadmap(url, schedule):
           if '/L' in num:
             n = num[:len(num)-2]
 
-          link = classurl + dept.lower() + '-' + n
+          link.append( classurl + dept.lower() + '-' + n)
+          link.append( classurl + dept.lower() + '-' + n + 'L')
 
-        if link != '' and first == 0:
-          classes = getclasses(link)
+        if link != [] and first == 0:
+          classes = getclasses(link[0])
           classes = suggested(classes, schedule)
           classes['name'] = name
+        sem['classes'].append(classes)
+        """if classes['name'] in schedule['taken']:
+          sem['classes'].append({})
+        elif first == 0:
+          sem['classes'].append(classes)
+        else:
+          #check previous semester for empty classes
+          #if empty, add current class to previous semester
+          presem = bp[len(bp)-1]['classes']
+          for i in range(len(presem)):
+            if presem[i] == {}:
+              bp[len(bp)-1]['classes'][i] = classes
+              sem['classes'].append({})
+            else:
+              sem['classes'].append(classes) 
+         """
+    for i in range(len(sem['classes'])):
+      if sem['classes'][i]['name'] in schedule['taken']:
+        sem['classes'][i] = {}
 
-        sem['classes'].append(classes) 
     if first == 0:
       first = 1
+    else:
+      prevsem = bp[len(bp)-1]['classes']
+
+      for i in range(len(prevsem)):
+        if prevsem[i] == {}:
+          for j in range(len(sem['classes'])):
+            if sem['classes'][j] != {}:
+              bp[len(bp)-1]['classes'][i] = sem['classes'][j]
+              sem['classes'][j] = {} 
+              break
     bp.append(sem)
   return bp
 
-# a = getroadmap('http://catalog.csun.edu/academics/comp/programs/bs-computer-science/', {})
-#a = getroadmap('http://catalog.csun.edu/academics/ece/programs/bs-electrical-engineering/', {})
-# print a
+#uncomment lines below to see example output for CS
+#e = { 'days': ['Tu','Th'], 'times':[['09:00 AM'], ['09:00 AM']], 'taken':['MATH 150A']}
+#a = getroadmap('http://catalog.csun.edu/academics/comp/programs/bs-computer-science/', e)
+#print a
