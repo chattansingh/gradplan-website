@@ -6,7 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from testdata import road_map
 from gradplan import getroadmap
 from accounts.models import Profile
-from forms import ChooseMajorForm
+from forms import ChooseMajorForm, ChooseJobSalaries
 
 
 
@@ -96,3 +96,26 @@ def choose_a_major(request):
         template = 'plan/choose_major.html'
         form = ChooseMajorForm()
     return render(request, template, {'form': form,})
+
+# TO view salaries
+@csrf_exempt
+def view_major_job_salaries(request):
+    if request.method == 'POST':
+
+        form = ChooseJobSalaries(request.POST)
+
+        if form.is_valid():
+
+            template = 'plan/job_information.html'
+
+            major = int(form.cleaned_data['choose_major'])
+            # save their choice for later if they are authenticated
+        else:
+            template = 'accounts/save_error.html'
+            return render(request, template, {})
+    else:
+        major = 0
+        template = 'plan/job_information.html'
+        form = ChooseJobSalaries()
+
+    return render(request, template, {'form': form, 'major': major})

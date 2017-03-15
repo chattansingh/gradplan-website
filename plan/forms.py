@@ -30,3 +30,22 @@ class ChooseMajorForm(forms.Form):
         # (nursing, 'Nursing'),
     )
     choose_major = forms.ChoiceField(choices=MAJORS, required=False)
+
+
+class ChooseJobSalaries(forms.Form):
+
+    MAJORS = (
+        (1, 'Computer Science'),
+        (2, 'Electrical Engineering'),
+        (3, 'Math (General)'),
+        # (art, 'Art'),
+        # (accounting, 'Accounting'),
+        # (african_studies, 'African Studies'),
+        # (anthropology, 'Anthropology'),
+        # (biology, 'Biology'),
+        # (business_law, 'Business Law'),
+        # (california_studies, 'California Studies'),
+        # (marketing, 'Marketing'),
+        # (nursing, 'Nursing'),
+    )
+    choose_major = forms.ChoiceField(choices=MAJORS, required=False)

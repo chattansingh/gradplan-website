@@ -19,9 +19,7 @@ from django.contrib import admin
 from django.views.generic import RedirectView
 
 from django.contrib.auth import views as auth_views
-from plan.views import choose_a_major
-
-
+from plan.views import choose_a_major, view_major_job_salaries
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -32,7 +30,7 @@ urlpatterns = [
     url(r'^profile/', include('accounts.urls'), name='profile'),
     url(r'^roadmap/', include('plan.urls'), name='road_map'),
     url(r'^choosemajor/', choose_a_major, name='choose_a_major'),
+    url(r'^majorjobsalaires', view_major_job_salaries, name='view_major_job_salaries'),
     url(r'^$', RedirectView.as_view(url='/home/')),
 
 ]
-

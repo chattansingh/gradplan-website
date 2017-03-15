@@ -7,9 +7,10 @@
       <div class="row">
         <form action="{% url 'choose_a_major' %}" method="post">
             {{ form.as_p }}
-            <input type="submit" value="Save" class="btn-save">
+            <input type="submit" value="Choose" class="btn-save">
         </form>
       </div>
+        <a href="{% url 'view_major_job_salaries' %}"><h3>Check Majors Common Job Salaries</h3></a>
         <p>Go Back <a href="{% url 'index' %}">Home</a></p>
         <p><a href="{% url 'logout' %}">Logout</a></p>
         <p><a href="{% url 'login' %}">Login</a></p>
