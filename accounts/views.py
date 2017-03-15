@@ -8,6 +8,15 @@ from forms import InterestsForm, SuggestMajor
 from models import Profile
 from plan.suggest import suggest_plan
 
+#parse choice into url
+#just thought of it, I could probably jhust change this on the forms
+def get_major_url(major):
+    if major == 'Electrical Engineering':
+        return 'http://catalog.csun.edu/academics/ece/programs/bs-electrical-engineering/'
+    if major == 'Computer Science':
+        return 'http://catalog.csun.edu/academics/comp/programs/bs-computer-science/'
+    if major == 'Math':
+        return 'http://catalog.csun.edu/academics/math/programs/ba-mathematics-i/general/'
 
 # Create your views here.
 @login_required
@@ -20,6 +29,11 @@ def update_profile(request):
         if form.is_valid():
             result = 'valid save'
             template = 'accounts/profile_form.html'
+            major_choice = str(form.cleaned_data['current_major'])
+            major_choice = get_major_url(major_choice)
+
+            current_user.graduation_plan = major_choice
+            current_user.save()
             form.save()
         else:
             result = 'not valid form'

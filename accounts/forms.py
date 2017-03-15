@@ -17,23 +17,23 @@ class InterestsForm(forms.ModelForm):
     # subject_interests = forms.MultipleChoiceField(choices=SUBJECT_INTERESTS
     #                                               ,widget=forms.CheckboxSelectMultiple, required=False)
 
-    has_current_major_checkbox = forms.BooleanField(required=False)
+    # has_current_major_checkbox = forms.BooleanField(required=False)
     # current major
     MAJORS = (
         ('Computer Science', 'Computer Science'),
         ('Electrical Engineering', 'Electrical Engineering'),
-        ('History', 'History'),
-        ('Art', 'Art'),
+        ('Math', 'Math (General)'),
     )
     current_major = forms.ChoiceField(choices=MAJORS, required=False)
-    graduation_plan = forms.CharField(required=False)
+    #dont think we need, dont want to show the user
+    # graduation_plan = forms.CharField(required=False)
     # blank = True means the feild is nto required
 
     #finally figured it out at https://www.pydanny.com/core-concepts-django-modelforms.html
 
     class Meta:
         model = Profile
-        exclude = [ 'user', 'subject_interests']
+        exclude = [ 'user', 'subject_interests', 'graduation_plan']
 
 
 class SuggestMajor(forms.ModelForm):
