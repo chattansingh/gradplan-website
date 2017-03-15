@@ -132,43 +132,65 @@ def modify_gradplan(request):
         class_form = ClassFilter(request.POST, instance=current_user)
         time_form = TimeFilter(request.POST)
         if class_form.is_valid() and time_form.is_valid():
-            classes = []
-            times_and_days = []
+
+            filtered_dictionary = {'days': [], 'times': [], 'taken': []}
+
+
             class_fliter = class_form.cleaned_data['class_list']
-            for c in class_fliter:
-                classes.append(str(c))
+            filtered_dictionary['taken'] = [str(c) for c in class_fliter]
 
-            times = time_form.cleaned_data['times']
-            for t in times:
-                times_and_days.append(str(t))
+            monday = time_form.cleaned_data['monday']
+            tuesday = time_form.cleaned_data['tuesday']
+            wednesday = time_form.cleaned_data['wednesday']
+            thursday = time_form.cleaned_data['thursday']
+            friday = time_form.cleaned_data['friday']
+            saturday = time_form.cleaned_data['saturday']
 
-            filtered_dictionary = {'classes': classes, 'times_days' : times_and_days}
+            if monday:
+                filtered_dictionary['days'] = 'Mo'
+                filtered_dictionary['times'].append([str(t) for t in monday])
+            if tuesday:
+                filtered_dictionary['days'] = 'Tu'
+                filtered_dictionary['times'].append([str(t) for t in tuesday])
+            if wednesday:
+                filtered_dictionary['days'] = 'We'
+                filtered_dictionary['times'].append([str(t) for t in wednesday])
+            if thursday:
+                filtered_dictionary['days'] = 'Th'
+                filtered_dictionary['times'].append([str(t) for t in thursday])
+            if friday:
+                filtered_dictionary['days'] = 'Fr'
+                filtered_dictionary['times'].append([str(t) for t in friday])
+            if saturday:
+                filtered_dictionary['days'] = 'Sa'
+                filtered_dictionary['times'].append([str(t) for t in saturday])
+
+
+            # empty_filter = {'days': [], 'times': [], 'taken': []}
             #Do the filtering here
-            #road_map =
-            #
-            # counter = 1
-            # year1 = []
-            # year2 = []
-            # year3 = []
-            # year4 = []
-            #
-            # for semester in road_map:
-            #     if counter == 1 or counter == 2:
-            #         year1.append(semester)
-            #     elif counter == 3 or counter == 4:
-            #         year2.append(semester)
-            #     elif counter == 5 or counter == 6:
-            #         year3.append(semester)
-            #     elif counter == 7 or counter == 8:
-            #         year4.append(semester)
-            #     counter = counter + 1
-            #
-            # context = {'road_map': road_map, 'year1': year1, 'year2': year2, 'year3': year3, 'year4': year4}
-            #
-            # template = 'plan/Plans.html'
+            road_map = getroadmap(current_user.graduation_plan, filtered_dictionary)
 
-            template = 'plan/test.html'
-            return render(request, template, filtered_dictionary)
+            counter = 1
+            year1 = []
+            year2 = []
+            year3 = []
+            year4 = []
+
+            for semester in road_map:
+                if counter == 1 or counter == 2:
+                    year1.append(semester)
+                elif counter == 3 or counter == 4:
+                    year2.append(semester)
+                elif counter == 5 or counter == 6:
+                    year3.append(semester)
+                elif counter == 7 or counter == 8:
+                    year4.append(semester)
+                counter = counter + 1
+
+            context = {'road_map': road_map, 'year1': year1, 'year2': year2, 'year3': year3, 'year4': year4}
+
+            template = 'plan/Plans.html'
+            return render(request, template, context)
         else:
             template = 'accounts/save_error.html'
             return render(request, template, {})
