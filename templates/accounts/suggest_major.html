@@ -10,7 +10,7 @@
         <form action="{% url 'suggest_major' %}" method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            {{ result }}
+{#            {{ result }}#}
             <input type="submit" value="Save" class="btn-save">
         </form>
       </div>

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
@@ -12,10 +12,19 @@ from forms import ChooseMajorForm
 
 
 def grad_road_map(request):
-    current_user = Profile.objects.get(user=request.user)
-    url = current_user.graduation_plan
+    user = request.user
+    if user.is_authenticated():
+        current_user = Profile.objects.get(user=request.user)
+        url = current_user.graduation_plan
+        if (url == None or url == ''):
+            return redirect('/choosemajor')
+    else:
+        #user is anon, so redirect to the choose major
+        return redirect('/choosemajor')
     #This needs to have the dynamic url that is passed based off the users gradplan
     # url = 'http://catalog.csun.edu/academics/comp/programs/bs-computer-science/'
+
+
     road_map = getroadmap( url, {})
 
     #need to split up the road map to display it according to jesus styling
@@ -45,7 +54,7 @@ def grad_road_map(request):
 
 @csrf_exempt
 def choose_a_major(request):
-
+    user = request.user
     if request.method == 'POST':
 
         form = ChooseMajorForm(request.POST)
@@ -53,7 +62,13 @@ def choose_a_major(request):
         if form.is_valid():
 
             template = 'plan/Plans.html'
-            major_choice = form.cleaned_data['choose_major']
+            major_choice = str(form.cleaned_data['choose_major'])
+            #save their choice for later if they are authenticated
+            if user.is_authenticated():
+                current_user = Profile.objects.get(user=user)
+                current_user.graduation_plan = major_choice
+                current_user.save()
+
             road_map = getroadmap(major_choice, {})
             #maybe put this in a function? For styling
             counter = 1
