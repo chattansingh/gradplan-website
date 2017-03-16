@@ -64,7 +64,7 @@ def choose_a_major(request):
         form = ChooseMajorForm(request.POST)
 
         if form.is_valid():
-
+            major = ''
             template = 'plan/Plans.html'
             major_choice = str(form.cleaned_data['choose_major'])
             #save their choice for later if they are authenticated

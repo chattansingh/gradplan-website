@@ -5,6 +5,8 @@ from plan.gradplan import getroadmap
 
 class ChooseMajorForm(forms.Form):
 
+    #ToDo: Turns out I didnt break it, just need to change these with the gradplan function get_major_url
+
     # art = 'http://catalog.csun.edu/academics/art/programs/ba-art/'
     # accounting = 'http://catalog.csun.edu/academics/acctis/programs/bs-accountancy/'
     # african_studies ='http://catalog.csun.edu/academics/afric/programs/minor-african-studies/'
