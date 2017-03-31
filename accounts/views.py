@@ -7,7 +7,7 @@ from django.shortcuts import render
 from forms import InterestsForm, SuggestMajor
 from models import Profile
 from plan.suggest import suggest_plan
-from plan.gradplan import getroadmap
+# from plan.gradplan import getroadmap
 
 #parse choice into url
 #just thought of it, I could probably jhust change this on the forms
