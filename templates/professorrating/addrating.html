@@ -6,7 +6,8 @@
 </head>
 <body>
 <h1>{{ professor.last_name }}, {{ professor.first_name }} {{ class_name }}</h1>
-<h2>Rating: {{ professor.average_rating }}</h2>
+{#We can beautify this or even make it more accurate with float if we need to! It should show up as stars#}
+<h2>Average Rating (out of 5): {{ professor.average_rating }}</h2>
 {% if has_ratings %}
     <h3>Current ratings:</h3>
     {% for rating in class_ratings %}
@@ -17,7 +18,8 @@
 {% endif %}
 
 <h3>Leave your own experience</h3>
-<form action="." method="post">
+<form action="{% url 'rate_professor' last_name=professor.last_name first_name=professor.first_name class_name=class_name %}" method="post">
+    {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Save" class="btn-save">
 </form>

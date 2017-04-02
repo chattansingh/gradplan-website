@@ -32,7 +32,7 @@ def grad_road_map(request):
     # road_map = getroadmap( url, empty_filter)
     road_map= {}
     #need to split up the road map to display it according to jesus styling
-    formatted_gradplan = format_gradplan(road_map)
+    # formatted_gradplan = format_gradplan(road_map)
     # Separated the formatting code to gradplan
     # It returns a dictionary which you can just add to the current context
     context = {'road_map': road_map, 'major':major, 'has_major':has_major}
@@ -63,7 +63,7 @@ def choose_a_major(request):
             # road_map = getroadmap(get_major_url(major_choice), empty_filter)
             road_map = {}
             # need to split up the road map to display it according to jesus styling
-            formatted_gradplan = format_gradplan(road_map)
+            # formatted_gradplan = format_gradplan(road_map)
 
             # Separated the formatting code to gradplan
             # It returns a dictionary which you can just add to the current context
