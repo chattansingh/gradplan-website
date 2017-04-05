@@ -1,0 +1,38 @@
+/* css for most of the forms */
+
+.jumbotron
+        {
+            background-color:#d22030!important;
+        }
+
+        h1 {
+            color: white !important;
+        }
+
+p a
+{
+    float:right;
+
+}
+
+
+
+
+div#login
+{
+    float:left;
+}
+#parent
+{
+    position:relative;
+}
+
+#child
+{
+position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -10%)
+
+}

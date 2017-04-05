@@ -12,7 +12,6 @@ font-family: 'Fjalla One', sans-serif;
 width:100%;
 }
 
-
 #nav-options {
   margin: 0.5em;
   color:black;
@@ -21,6 +20,13 @@ width:100%;
 #nav-options button.thumbnail {
   margin: 0;
   padding: 0;
+}
+
+.year
+{
+
+    height:400px;
+    width:max;
 }
 
 #nav-options img {
@@ -73,7 +79,7 @@ div#Classes-Div
 {
 height:200px;
 background-color:#D22030;
-width:max;
+width:100%;
 }
 
 div#Soon
@@ -482,12 +488,35 @@ color:black;
 font-family: 'Fjalla One', sans-serif;
 }
 
+.bar-red
+{
+  background-color: #d22030;
+}
 
+.button-red
+{
+     background-color: #d22030;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
 
+.row
+{
+    padding-bottom: 20px;
+    padding-top:20px;
+}
 
-
-
-
+.button-red:hover {
+    background-color:white; /* Green */
+    color: #d22030;
+}
 
 
 

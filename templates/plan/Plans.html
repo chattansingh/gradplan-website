@@ -29,53 +29,18 @@
 <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
 
 
-<script>
 
 <script>
 
-
-
-
-
-$(document).ready(function(){
-  // Add scrollspy to <body>
-  $('body').scrollspy({target: ".nav", offset: 60});   
-
-  // Add smooth scrolling on all links inside the navbar
-  $("#myScrollspy a").on('click', function(event) {
-    // Make sure this.hash has a value before overriding default behavior
-    if (this.hash !== "") {
-      // Prevent default anchor click behavior
-      event.preventDefault();
-
-      // Store hash
-      var hash = this.hash;
-
-      // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 800, function(){
-   
-        // Add hash (#) to URL when done scrolling (default click behavior)
-        window.location.hash = hash;
-      });
-    }  // End if
-  });
-});
-
-//Slide in code
-
-$(window).scroll(function() {
-  $(".slideanim").each(function(){
-    var pos = $(this).offset().top;
-
-    var winTop = $(window).scrollTop();
-    if (pos < winTop + 700) {
-      $(this).addClass("slide");
+function openYear(yearNumber) {
+    var i;
+    var x = document.getElementsByClassName("year");
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
     }
-  });
-});
+    document.getElementById(yearNumber).style.display = "block";
+}
+
 
 
 
@@ -83,7 +48,6 @@ $(window).scroll(function() {
 
 </script>
 
-</script>
 	  
 <link rel="stylesheet" href= "{% static 'css/base.css' %}">
 	   	   
@@ -92,36 +56,58 @@ $(window).scroll(function() {
 		
 		
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="60">
-
+ <br>
 <div class="container-fluid" id="GraduationPlan">
   <h1 class="text-center">Graduation Plan </h1>
   <h3 class="text-center">Your {{ major }} Roadmap for the coming years</h3>
   <h4 class="text-center">Here are your classes!</h4>
   
 </div>
-
+  <br>
 <Section id="Classes">
-	
-	<div class="container-fluid">
-  <div class="row">
-    <nav class="col-lg-3" id="myScrollspy">
-      <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="205">
-        <li class="active"><a href="#section1">2017</a></li>
-        <li><a href="#section2">2018</a></li>
-        <li><a href="#section3">2019</a></li>
-        <li><a href="#section4">2020</a></li>
-        <li><a href="{% url 'index' %}">Home</a></li>
-        <li><a href="{% url 'login' %}">Login</a></li>
-        <li><a href="{% url 'user_profile' %}">Profile</a></li>
-      </ul>
-    </nav>
-    <div class="col-md-6" id="SemesterView">
+
+
+
+
+
+
+<div class="container-fluid">
+<div class="row">
+
+    <div class="col-md-4 col-md-offset-4" id="SemesterView">
 	<h1 class="text-center">Classes by Semester</h1>
-    <h2 class="text-center"><a href={% url 'modify_grad_plan' %}>Click here to modify the plan</a></h2>
+    <h4 class="text-center"><a href={% url 'modify_grad_plan' %}>Click here to modify the plan</a></h4>
+    </div>
+</div>
+
+
+
+<div class="row">
+ <div class="col-md-6 col-md-offset-4">
+  <!--Year Button Div--->
+<div class="bar-red">
+  <button type="button" class="button-red" onclick="openYear('FirstYear')">2017</button>
+  <button type="button" class="button-red" onclick="openYear('SecondYear')">2018</button>
+  <button type="button" class="button-red" onclick="openYear('ThirdYear')">2019</button>
+  <button type="button" class="button-red" onclick="openYear('FourthYear')">2020</button>
+ </div>
+ </div>
+</div>                                                                                                      
+<div id="FirstYear" class="year">
+
+
+
+
+
+
+
+
+
+
 	<div class="row" id="Year1">
 	<div class="col-md-6">
       <div id="section1" >
-	  
+
         <h2>Spring 2017</h2>
 		{% for c in year1.1.classes %}
         <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>
@@ -137,7 +123,14 @@ $(window).scroll(function() {
       </div>
       </div>
        </div>
-       <div class="row" id="Year2">
+
+
+</div>
+
+<div id="SecondYear" class="year" style="display:none">
+
+
+     <div class="row" id="Year2">
        <div class="col-md-6">
       <div id="section3">
         <h2>Spring 2018</h2>
@@ -155,7 +148,16 @@ $(window).scroll(function() {
       </div>
     </div>
   </div>
-  <div class="row"  id="Year3">
+
+
+
+</div>
+
+<div id="ThirdYear" class="year" style="display:none">
+
+
+
+    <div class="row"  id="Year3">
        <div class="col-md-6">
       <div id="section3">
         <h2>Spring 2019</h2>
@@ -173,7 +175,11 @@ $(window).scroll(function() {
       </div>
     </div>
   </div>
-  <div class="row" id="Year4">
+</div>
+
+<div id="FourthYear" class="year" style="display:none">
+
+    <div class="row" id="Year4">
        <div class="col-md-6">
       <div id="section3">
         <h2>Spring 2020</h2>
@@ -191,7 +197,15 @@ $(window).scroll(function() {
       </div>
     </div>
   </div>
+
 </div>
+
+</div>
+
+
+
+	
+
 	</Section>
 
 

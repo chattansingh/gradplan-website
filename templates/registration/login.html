@@ -1,4 +1,4 @@
-
+{% load static %}
 {% block title %}Login{% endblock %}
 {% block content %}
 
@@ -24,24 +24,22 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<link rel="stylesheet" href= "css/registration.css">  
+
 
 <!-- Google Font-->
 <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+<link rel="stylesheet" href= "{% static 'css/registration.css' %}">
      </head>
-	 
+	 <body>
 	 <div class="container">
-	 <div class="jumbotron csunStyle">
+	 <div class="jumbotron">
 	 
 	 <h1>GradPlan Login</h1>
 	 
 	 </div>
 	 </div>
 	 
-	 <section id="login">
-	 <div class="container">
-	 <div class="row">
-	 <div class="col-md-3 offset-md-4">
+
 	 
     <div id="content-container" class="container p-none">
         <div class="lgn-container col-lg-8">
@@ -80,6 +78,5 @@
     </div>
 <!--{% endblock content %}-->
 </div>
-</div>
-</div>
-</section>
+</body>
+</html>

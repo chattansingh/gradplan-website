@@ -103,6 +103,13 @@ height:800px;
 background-color:#D22030;
 }
 
+
+.year
+{
+    height:400px;
+    width:100%;
+}
+
 div#Title-div h1,div#Title-div h2
 {
 font-family: 'Fjalla One', sans-serif;
