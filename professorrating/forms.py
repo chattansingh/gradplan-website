@@ -1,10 +1,6 @@
 from django import forms
-from professorrating.models import Professor
 
 class ClassRatingForm(forms.Form):
-    # class Meta:
-    #     model = Professor
-    #     exclude = ['first_name', 'last_name', 'number_of_ratings']
 
     RATING_SYSTEM = [
         (1, 'Poor'),
@@ -17,12 +13,3 @@ class ClassRatingForm(forms.Form):
 
     number_rating = forms.ChoiceField(choices=RATING_SYSTEM, widget=forms.RadioSelect, required=True)
     rating = forms.CharField(widget=forms.Textarea)
-
-
-# class AddProfessorForm(forms.ModelForm):
-#
-#
-#
-#     class Meta:
-#         model = Professor
-#         fields = ['first_name', 'last_name']

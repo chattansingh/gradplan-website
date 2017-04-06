@@ -4,8 +4,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
 
-from testdata import road_map
-# from gradplan import getroadmap, get_major_url, format_gradplan, filter_gradplan
+from gradplan import getroadmap, get_major_url, format_gradplan, filter_gradplan
 from accounts.models import Profile
 from forms import ChooseMajorForm, ChooseJobSalaries, ClassFilter, TimeFilter
 
@@ -29,14 +28,13 @@ def grad_road_map(request):
     # url = 'http://catalog.csun.edu/academics/comp/programs/bs-computer-science/'
 
     empty_filter = {'days': [], 'times': [], 'taken': []}
-    # road_map = getroadmap( url, empty_filter)
-    road_map= {}
+    road_map = getroadmap( url, empty_filter)
     #need to split up the road map to display it according to jesus styling
-    # formatted_gradplan = format_gradplan(road_map)
+    formatted_gradplan = format_gradplan(road_map)
     # Separated the formatting code to gradplan
     # It returns a dictionary which you can just add to the current context
     context = {'road_map': road_map, 'major':major, 'has_major':has_major}
-    # context.update(formatted_gradplan)
+    context.update(formatted_gradplan)
 
     template = 'plan/Plans.html'
     return render(request, template, context)
@@ -60,15 +58,15 @@ def choose_a_major(request):
                 current_user.save()
 
             empty_filter = {'days': [], 'times': [], 'taken': []}
-            # road_map = getroadmap(get_major_url(major_choice), empty_filter)
-            road_map = {}
+            road_map = getroadmap(get_major_url(major_choice), empty_filter)
+            # road_map = {}
             # need to split up the road map to display it according to jesus styling
-            # formatted_gradplan = format_gradplan(road_map)
+            formatted_gradplan = format_gradplan(road_map)
 
             # Separated the formatting code to gradplan
             # It returns a dictionary which you can just add to the current context
             context = {'road_map': road_map, 'major': major}
-            # context.update(formatted_gradplan)
+            context.update(formatted_gradplan)
             return render(request, template, context)
         else:
             template = 'accounts/save_error.html'
@@ -115,10 +113,9 @@ def modify_gradplan(request):
             #Do the filtering here
             filtered_dictionary = filter_gradplan(class_form, time_form)
             #Get a revised roadmap
-            # road_map = getroadmap(current_user.graduation_plan, filtered_dictionary)
-            road_map = {}
+            road_map = getroadmap(current_user.graduation_plan, filtered_dictionary)
             # Formate the road map to display it according to jesus styling
-            # formatted_gradplan = format_gradplan(road_map)
+            formatted_gradplan = format_gradplan(road_map)
             # Separated the formatting code to gradplan
             # It returns a dictionary which you can just add to the current context
 
