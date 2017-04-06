@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ professor.last_name }}, {{ professor.first_name }}</title>
+</head>
+<body>
+<h1>{{ professor.last_name }}, {{ professor.first_name }} {{ class_name }}</h1>
+{#We can beautify this or even make it more accurate with float if we need to! It should show up as stars#}
+<h2>Average Rating (out of 5): {{ professor.average_rating }}</h2>
+{% if has_ratings %}
+    <h3>Current ratings:</h3>
+    {% for rating in class_ratings %}
+        <div>
+            <p>{{ rating.rating }}</p><br>
+        </div>
+    {% endfor %}
+{% endif %}
+
+<h3>Leave your own experience</h3>
+<form action="{% url 'rate_professor' last_name=professor.last_name first_name=professor.first_name class_name=class_name %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save" class="btn-save">
+</form>
+
+</body>
+</html>

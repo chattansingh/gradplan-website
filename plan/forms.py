@@ -5,6 +5,8 @@ from plan.gradplan import getroadmap
 
 class ChooseMajorForm(forms.Form):
 
+    #ToDo: Turns out I didnt break it, just need to change these with the gradplan function get_major_url
+
     # art = 'http://catalog.csun.edu/academics/art/programs/ba-art/'
     # accounting = 'http://catalog.csun.edu/academics/acctis/programs/bs-accountancy/'
     # african_studies ='http://catalog.csun.edu/academics/afric/programs/minor-african-studies/'
@@ -52,12 +54,7 @@ class ChooseJobSalaries(forms.Form):
 
 
 class ClassFilter(forms.ModelForm):
-    # def __init__(self, *args, **kwargs):
-    #     self.user = kwargs.pop('user', None)
-    #     super(MyForm, self).__init__(*args, **kwargs)
-
-    # fields = forms.fields_for_model(Profile)
-    # url = Profile.graduation_plan.
+    # Display all of the classes in check box
     user_objects = Profile.objects.get(id=1)
     url = user_objects.graduation_plan
     empty_filter = {'days':[], 'times': [], 'taken': []}

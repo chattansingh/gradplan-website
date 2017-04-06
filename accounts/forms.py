@@ -26,7 +26,7 @@ class InterestsForm(forms.ModelForm):
     )
     current_major = forms.ChoiceField(choices=MAJORS, required=False)
     #dont think we need, dont want to show the user
-    # graduation_plan = forms.CharField(required=False)
+    graduation_plan = forms.CharField(required=False)
     # blank = True means the feild is nto required
 
     #finally figured it out at https://www.pydanny.com/core-concepts-django-modelforms.html
@@ -54,18 +54,4 @@ class SuggestMajor(forms.ModelForm):
         model = Profile
         exclude = ['user', 'current_major', 'graduation_plan', 'major']
 
-
-    #multi Checkbox field
-    #
-    # #Crispy Form helper object
-    # #used to define the forms attributes
-    # form_helper = FormHelper()
-    # #Save button
-    # #form_helper.form_method = 'POST'
-    # form_helper.layout = Layout(
-    #     has_current_major_checkbox,
-    #     PrependedText('current_major_dropdown', 'Choose Major'),
-    #     subject_interests,
-    # )
-    # form_helper.add_input(Submit('submit','submit'))
 
