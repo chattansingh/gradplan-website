@@ -1,6 +1,6 @@
 from django import forms
 from accounts.models import Profile
-# from plan.gradplan import getroadmap
+from plan.gradplan import getroadmap
 
 
 class ChooseMajorForm(forms.Form):
@@ -54,22 +54,17 @@ class ChooseJobSalaries(forms.Form):
 
 
 class ClassFilter(forms.ModelForm):
-    # def __init__(self, *args, **kwargs):
-    #     self.user = kwargs.pop('user', None)
-    #     super(MyForm, self).__init__(*args, **kwargs)
-
-    # fields = forms.fields_for_model(Profile)
-    # url = Profile.graduation_plan.
+    # Display all of the classes in check box
     user_objects = Profile.objects.get(id=1)
     url = user_objects.graduation_plan
     empty_filter = {'days':[], 'times': [], 'taken': []}
-    # graduation_plan = getroadmap(url, empty_filter)
+    graduation_plan = getroadmap(url, empty_filter)
     CLASS_LIST = []
 
-    # for sem in graduation_plan:
-    #     for c in sem['classes']:
-    #         tup = (c['name'], c['name'])
-    #         CLASS_LIST.append(tup)
+    for sem in graduation_plan:
+        for c in sem['classes']:
+            tup = (c['name'], c['name'])
+            CLASS_LIST.append(tup)
 
     class_list = forms.MultipleChoiceField(choices=CLASS_LIST,
                                            widget=forms.CheckboxSelectMultiple,

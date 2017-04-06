@@ -49,7 +49,6 @@ def update_profile(request):
 def suggest_major(request):
     user_auth = request.user.is_authenticated()
 
-
     if request.method == 'POST':
         if user_auth:
             current_user = Profile.objects.get(user=request.user)
