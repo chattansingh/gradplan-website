@@ -33,7 +33,6 @@ urlpatterns = [
     url(r'^choosemajor/', choose_a_major, name='choose_a_major'),
     url(r'^majorjobsalaires/', view_major_job_salaries, name='view_major_job_salaries'),
     url(r'^ratings/(?P<last_name>\w+)/(?P<first_name>\w+)/(?P<class_name>\w+)', rate_professor, name='rate_professor'),
-
     url(r'^$', RedirectView.as_view(url='/home/')),
 
 ]

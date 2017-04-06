@@ -7,7 +7,7 @@ from django.shortcuts import render
 from forms import InterestsForm, SuggestMajor
 from models import Profile
 from plan.suggest import suggest_plan
-# from plan.gradplan import getroadmap
+from plan.gradplan import getroadmap, format_gradplan
 
 #parse choice into url
 #just thought of it, I could probably jhust change this on the forms
@@ -42,14 +42,12 @@ def update_profile(request):
     else:
         result =''
         template = 'accounts/profile_form.html'
-        # current_user = Profile.objects.get(request.user)
         form = InterestsForm(instance=current_user)
     return render(request, template, {'form': form, 'result': result})
 
 
 def suggest_major(request):
     user_auth = request.user.is_authenticated()
-
 
     if request.method == 'POST':
         if user_auth:
@@ -60,21 +58,16 @@ def suggest_major(request):
             if form.is_valid():
                 result = 'Profile Updated!'
                 #this needs to change to point to where we want to display their grad plan
-                template = 'accounts/suggest_major.html'
                 form.save()
                 #this is a list of the choices
                 #choices are 1, 2, 3, 4 1 = Science, 2 = Math..and so on.
                 choices = form.cleaned_data['subject_interests']
-                choice = []
                 #problem was it was coming in unicode, have to change results to int
-                for item in choices:
-                    choice.append(int(item))
+                choice = [int(item) for item in choices]
+                # Based on users choices suggest to them a road map they can follow and save it as their current major
                 url = suggest_plan(choice)
-                # url = 'http://catalog.csun.edu/academics/comp/programs/bs-computer-science/' #erase me
                 current_user.graduation_plan = url
                 current_user.save()
-
-                # result = result + choices[0]
                 return redirect('/roadmap')
             else:
                 template = 'accounts/save_error.html'
@@ -84,35 +77,21 @@ def suggest_major(request):
             form = SuggestMajor(request.POST)
             if form.is_valid():
                 choices = form.cleaned_data['subject_interests']
-                choice = []
                 # problem was it was coming in unicode, have to change results to int
-                for item in choices:
-                    choice.append(int(item))
+                choice = [int(item) for item in choices]
+                # Suggest a major based on choices but user is not logged in so cannot save
                 url = suggest_plan(choice)
                 empty_filter = {'days': [], 'times': [], 'taken': []}
                 road_map = getroadmap(url, empty_filter)
 
                 # need to split up the road map to display it according to jesus styling
-                counter = 1
-                year1 = []
-                year2 = []
-                year3 = []
-                year4 = []
-
-                for semester in road_map:
-                    if counter == 1 or counter == 2:
-                        year1.append(semester)
-                    elif counter == 3 or counter == 4:
-                        year2.append(semester)
-                    elif counter == 5 or counter == 6:
-                        year3.append(semester)
-                    elif counter == 7 or counter == 8:
-                        year4.append(semester)
-                    counter = counter + 1
+                formatted_plan = format_gradplan(road_map)
+                # user is not logged in -- ToDo: need to get the name of the major from the rodemap, will be easy when new system implemented
                 major = ''
                 has_major = False
-                context = {'road_map': road_map, 'year1': year1, 'year2': year2, 'year3': year3, 'year4': year4,
+                context = {'road_map': road_map,
                            'major': major, 'has_major': has_major}
+                context.update(formatted_plan)
                 return render(request, template, context)
             else:
                 template = 'accounts/save_error.html'
