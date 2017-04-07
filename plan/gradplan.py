@@ -49,6 +49,22 @@ def getroadmaplinks(url):
       maplinks.append({'major': i['title'][20:], 'link': i['href']})
   return maplinks
 
+"""The function below generates a basic plan (no modifications) to store
+   in a database for future reference. The plan is an array of semesters,
+   each semester has a field called "classes". Each classes field is an
+   array of individual classes. Each individual class has the fields dept,
+   number and prereqs. The plan structure looks as follows:
+   [
+     { 'classes': [
+	{ 'dept'    : "COMP",
+	  'number'  : "110",
+          'prereqs' : [ "MATH 150", "COMP 108"]
+        }
+        ]
+     }
+   ]
+"""
+
 def genplan(url):
   data = getpage(url)
   tables = data.find_all('table', {'summary': True})
@@ -64,7 +80,7 @@ def genplan(url):
       if c != None:
 	csplit = c.contents[0].split(' ')
 	dept = csplit[0]
-	num = csplit[1]
+	num = csplit[1:]
 	link = []
 	prereqs = []
 
@@ -74,9 +90,11 @@ def genplan(url):
           # check if the class has a lab associated with it
           # if so, add to separate classes to the semester (one lecture and one lab)
           if '\L' in num:
-	    n = num[:len(num)-2]
+	    n = num[0][:len(num)-2]
 	    link.append(classurl + dept.lower() + '-' + n)
 	    link.append(classurl + dept.lower() + '-' + n + 'L')
+          else:
+            link.append(classurl + dept.lower() + '-' + ' '.join(num))
 
           if len(link) > 1:
             #add lecture and lab to semester instead of just lecture
@@ -88,9 +106,11 @@ def genplan(url):
           if len(link) == 1:
 	    cl = {'dept': dept, 'number': num, 'prereqs': prereqs}
 	    sem['classes'].append(cl)
+        else:
+          cl = {'dept': dept, 'number': num, 'prereqs': []}
+          sem['classes'].append(cl)
+
     plan.append(sem)
-    print plan
-    print ''
   return plan
 	  
 
@@ -308,4 +328,3 @@ def get_major_url(major):
 # e = {'days':[], 'times':[], 'taken': []}
 # a = getroadmap('http://catalog.csun.edu/academics/comp/programs/bs-computer-science/', e)
 # print a
-getbaseplans()
