@@ -4,8 +4,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
 
-from testdata import road_map
-from gradplan import getroadmap, get_major_url
+from gradplan import getroadmap, get_major_url, format_gradplan, filter_gradplan
 from accounts.models import Profile
 from forms import ChooseMajorForm, ChooseJobSalaries, ClassFilter, TimeFilter
 
@@ -30,29 +29,13 @@ def grad_road_map(request):
 
     empty_filter = {'days': [], 'times': [], 'taken': []}
     road_map = getroadmap( url, empty_filter)
-
     #need to split up the road map to display it according to jesus styling
-    counter = 1
-    year1 = []
-    year2 = []
-    year3 = []
-    year4 = []
+    formatted_gradplan = format_gradplan(road_map)
+    # Separated the formatting code to gradplan
+    # It returns a dictionary which you can just add to the current context
+    context = {'road_map': road_map, 'major':major, 'has_major':has_major}
+    context.update(formatted_gradplan)
 
-    for semester in road_map:
-        if counter == 1 or counter == 2:
-            year1.append(semester)
-        elif counter == 3 or counter == 4:
-            year2.append(semester)
-        elif counter == 5 or counter == 6:
-            year3.append(semester)
-        elif counter == 7 or counter == 8:
-            year4.append(semester)
-        counter = counter + 1
-
-
-
-    context = {'road_map': road_map, 'year1':year1, 'year2':year2,'year3':year3, 'year4':year4, 'major':major, 'has_major':has_major}
-    # template = 'plan/graduation_roadmap.html'
     template = 'plan/Plans.html'
     return render(request, template, context)
 
@@ -64,7 +47,7 @@ def choose_a_major(request):
         form = ChooseMajorForm(request.POST)
 
         if form.is_valid():
-
+            major = ''
             template = 'plan/Plans.html'
             major_choice = str(form.cleaned_data['choose_major'])
             #save their choice for later if they are authenticated
@@ -76,25 +59,14 @@ def choose_a_major(request):
 
             empty_filter = {'days': [], 'times': [], 'taken': []}
             road_map = getroadmap(get_major_url(major_choice), empty_filter)
-            #maybe put this in a function?
-            counter = 1
-            year1 = []
-            year2 = []
-            year3 = []
-            year4 = []
+            # road_map = {}
+            # need to split up the road map to display it according to jesus styling
+            formatted_gradplan = format_gradplan(road_map)
 
-            for semester in road_map:
-                if counter == 1 or counter == 2:
-                    year1.append(semester)
-                elif counter == 3 or counter == 4:
-                    year2.append(semester)
-                elif counter == 5 or counter == 6:
-                    year3.append(semester)
-                elif counter == 7 or counter == 8:
-                    year4.append(semester)
-                counter = counter + 1
-
-            context = {'road_map': road_map, 'year1': year1, 'year2': year2, 'year3': year3, 'year4': year4, 'major': major}
+            # Separated the formatting code to gradplan
+            # It returns a dictionary which you can just add to the current context
+            context = {'road_map': road_map, 'major': major}
+            context.update(formatted_gradplan)
             return render(request, template, context)
         else:
             template = 'accounts/save_error.html'
@@ -103,7 +75,7 @@ def choose_a_major(request):
         form = ChooseMajorForm()
     return render(request, template, {'form': form,})
 
-# TO view salaries
+# To view salaries
 @csrf_exempt
 def view_major_job_salaries(request):
     if request.method == 'POST':
@@ -138,62 +110,17 @@ def modify_gradplan(request):
         time_form = TimeFilter(request.POST)
         if class_form.is_valid() and time_form.is_valid():
 
-            filtered_dictionary = {'days': [], 'times': [], 'taken': []}
-
-
-            class_fliter = class_form.cleaned_data['class_list']
-            filtered_dictionary['taken'] = [str(c) for c in class_fliter]
-
-            monday = time_form.cleaned_data['monday']
-            tuesday = time_form.cleaned_data['tuesday']
-            wednesday = time_form.cleaned_data['wednesday']
-            thursday = time_form.cleaned_data['thursday']
-            friday = time_form.cleaned_data['friday']
-            saturday = time_form.cleaned_data['saturday']
-
-            if monday:
-                filtered_dictionary['days'] = 'Mo'
-                filtered_dictionary['times'].append([str(t) for t in monday])
-            if tuesday:
-                filtered_dictionary['days'] = 'Tu'
-                filtered_dictionary['times'].append([str(t) for t in tuesday])
-            if wednesday:
-                filtered_dictionary['days'] = 'We'
-                filtered_dictionary['times'].append([str(t) for t in wednesday])
-            if thursday:
-                filtered_dictionary['days'] = 'Th'
-                filtered_dictionary['times'].append([str(t) for t in thursday])
-            if friday:
-                filtered_dictionary['days'] = 'Fr'
-                filtered_dictionary['times'].append([str(t) for t in friday])
-            if saturday:
-                filtered_dictionary['days'] = 'Sa'
-                filtered_dictionary['times'].append([str(t) for t in saturday])
-
-
-            # empty_filter = {'days': [], 'times': [], 'taken': []}
             #Do the filtering here
+            filtered_dictionary = filter_gradplan(class_form, time_form)
+            #Get a revised roadmap
             road_map = getroadmap(current_user.graduation_plan, filtered_dictionary)
+            # Formate the road map to display it according to jesus styling
+            formatted_gradplan = format_gradplan(road_map)
+            # Separated the formatting code to gradplan
+            # It returns a dictionary which you can just add to the current context
 
-            counter = 1
-            year1 = []
-            year2 = []
-            year3 = []
-            year4 = []
-
-            for semester in road_map:
-                if counter == 1 or counter == 2:
-                    year1.append(semester)
-                elif counter == 3 or counter == 4:
-                    year2.append(semester)
-                elif counter == 5 or counter == 6:
-                    year3.append(semester)
-                elif counter == 7 or counter == 8:
-                    year4.append(semester)
-                counter = counter + 1
-
-
-            context = {'road_map': road_map, 'year1': year1, 'year2': year2, 'year3': year3, 'year4': year4, 'major': major}
+            context = {'road_map': road_map, 'major': major}
+            context.update(formatted_gradplan)
 
             template = 'plan/Plans.html'
             return render(request, template, context)
