@@ -42,6 +42,7 @@ def grad_road_map(request):
 @csrf_exempt
 def choose_a_major(request):
     user = request.user
+	major = ''
     if request.method == 'POST':
 
         form = ChooseMajorForm(request.POST)
@@ -93,7 +94,7 @@ def view_major_job_salaries(request):
             template = 'accounts/save_error.html'
             return render(request, template, {})
     else:
-        major = 0
+        
         template = 'plan/job_information.html'
         form = ChooseJobSalaries()
 
