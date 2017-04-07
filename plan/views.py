@@ -47,7 +47,6 @@ def choose_a_major(request):
         form = ChooseMajorForm(request.POST)
 
         if form.is_valid():
-            major = ''
             template = 'plan/Plans.html'
             major_choice = str(form.cleaned_data['choose_major'])
             #save their choice for later if they are authenticated
@@ -56,6 +55,8 @@ def choose_a_major(request):
                 current_user.graduation_plan = get_major_url(major_choice)
                 major = str(major_choice)
                 current_user.save()
+            else:
+                major = ''
 
             empty_filter = {'days': [], 'times': [], 'taken': []}
             road_map = getroadmap(get_major_url(major_choice), empty_filter)
@@ -128,7 +129,7 @@ def modify_gradplan(request):
             template = 'accounts/save_error.html'
             return render(request, template, {})
     else:
-        # major = 0
+        major = 0
         template = 'plan/modify_plan.html'
         class_form = ClassFilter(instance=current_user)
         time_form = TimeFilter()
