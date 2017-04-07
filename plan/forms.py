@@ -54,12 +54,7 @@ class ChooseJobSalaries(forms.Form):
 
 
 class ClassFilter(forms.ModelForm):
-    # def __init__(self, *args, **kwargs):
-    #     self.user = kwargs.pop('user', None)
-    #     super(MyForm, self).__init__(*args, **kwargs)
-
-    # fields = forms.fields_for_model(Profile)
-    # url = Profile.graduation_plan.
+    # Display all of the classes in check box
     user_objects = Profile.objects.get(id=1)
     url = user_objects.graduation_plan
     empty_filter = {'days':[], 'times': [], 'taken': []}

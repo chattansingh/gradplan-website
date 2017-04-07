@@ -21,4 +21,3 @@ def index(request):
     context = {'user' : user, 'major': major, 'user_auth':user_auth, 'has_major': has_major}
     template = loader.get_template('home/index.html')
     return HttpResponse(template.render(context, request))
-    #return HttpResponse("Hello world.  You're at the home index")

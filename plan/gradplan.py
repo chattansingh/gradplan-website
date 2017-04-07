@@ -231,7 +231,7 @@ a schedule dictionary in the following format:
 
   'times': [                                   <------------Array of Arrays. Each array contains strings with the hour that hey are busy
              ['9:00 AM', '10:00 AM',...],
-             ['6:00 PM', '7:00 PM', ...], 
+             ['6:00 PM', '7:00 PM', ...],
            ],
   'taken': [ '152873', '168458', ...]          <------------Array of class id's
 }
@@ -290,7 +290,7 @@ def getroadmap(url, schedule):
               bp[len(bp)-1]['classes'][i] = classes
               sem['classes'].append({})
             else:
-              sem['classes'].append(classes) 
+              sem['classes'].append(classes)
          """
     for i in range(len(sem['classes'])):
       if sem['classes'][i]['name'] in schedule['taken']:
@@ -306,7 +306,7 @@ def getroadmap(url, schedule):
           for j in range(len(sem['classes'])):
             if sem['classes'][j] != {}:
               bp[len(bp)-1]['classes'][i] = sem['classes'][j]
-              sem['classes'][j] = {} 
+              sem['classes'][j] = {}
               break
     bp.append(sem)
   return bp
@@ -318,11 +318,70 @@ def get_major_url(major):
   elif major == 'Math (General)':
     return'http://catalog.csun.edu/academics/math/programs/ba-mathematics-i/general/'
   else:
+<<<<<<< HEAD
     return 'http://catalog.csun.edu/academics/ece/programs/bs-electrical-engineering/'"""
   m = getmajors()
   for i in m:
     if i['major'] == major:
       return i['link']
+=======
+    return 'http://catalog.csun.edu/academics/ece/programs/bs-electrical-engineering/'
+
+def format_gradplan(road_map):
+    counter = 1
+    year1 = []
+    year2 = []
+    year3 = []
+    year4 = []
+
+    for semester in road_map:
+        if counter == 1 or counter == 2:
+            year1.append(semester)
+        elif counter == 3 or counter == 4:
+            year2.append(semester)
+        elif counter == 5 or counter == 6:
+            year3.append(semester)
+        elif counter == 7 or counter == 8:
+            year4.append(semester)
+        counter = counter + 1
+
+    return {'year1':year1, 'year2':year2,'year3':year3, 'year4':year4}
+
+def filter_gradplan(class_form, time_form):
+    filtered_dictionary = {'days': [], 'times': [], 'taken': []}
+
+    class_fliter = class_form.cleaned_data['class_list']
+    filtered_dictionary['taken'] = [str(c) for c in class_fliter]
+
+    # Time and Day filter
+    monday = time_form.cleaned_data['monday']
+    tuesday = time_form.cleaned_data['tuesday']
+    wednesday = time_form.cleaned_data['wednesday']
+    thursday = time_form.cleaned_data['thursday']
+    friday = time_form.cleaned_data['friday']
+    saturday = time_form.cleaned_data['saturday']
+
+    if monday:
+        filtered_dictionary['days'] = 'Mo'
+        filtered_dictionary['times'].append([str(t) for t in monday])
+    if tuesday:
+        filtered_dictionary['days'] = 'Tu'
+        filtered_dictionary['times'].append([str(t) for t in tuesday])
+    if wednesday:
+        filtered_dictionary['days'] = 'We'
+        filtered_dictionary['times'].append([str(t) for t in wednesday])
+    if thursday:
+        filtered_dictionary['days'] = 'Th'
+        filtered_dictionary['times'].append([str(t) for t in thursday])
+    if friday:
+        filtered_dictionary['days'] = 'Fr'
+        filtered_dictionary['times'].append([str(t) for t in friday])
+    if saturday:
+        filtered_dictionary['days'] = 'Sa'
+        filtered_dictionary['times'].append([str(t) for t in saturday])
+
+    return filtered_dictionary
+
 #uncomment lines below to see example output for CS
 #e = { 'days': ['Tu','Th'], 'times':[['09:00 AM'], ['09:00 AM']], 'taken':['MATH 150A']}
 # e = {'days':[], 'times':[], 'taken': []}
