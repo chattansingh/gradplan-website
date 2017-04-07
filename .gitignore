@@ -72,6 +72,10 @@ tests/coverage_html/
 tests/.coverage
 tests/report/
 
+#Ignore wsgi.py file
+/gradplanproject/wsgi.py
+!/gradplanproject/wsgi.py
+
 ##End Django##
 
 # Flask stuff:
