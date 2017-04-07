@@ -42,7 +42,7 @@ def grad_road_map(request):
 @csrf_exempt
 def choose_a_major(request):
     user = request.user
-	major = ''
+    major = ''
     if request.method == 'POST':
 
         form = ChooseMajorForm(request.POST)
