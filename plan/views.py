@@ -105,6 +105,7 @@ def view_major_job_salaries(request):
 def modify_gradplan(request):
     current_user = Profile.objects.get(user=request.user)
     major = str(current_user.current_major)
+    grad_plan = current_user.graduation_plan
 
     if request.method == 'POST':
 
@@ -132,6 +133,6 @@ def modify_gradplan(request):
     else:
         major = 0
         template = 'plan/modify_plan.html'
-        class_form = ClassFilter(instance=current_user)
+        class_form = ClassFilter(grad_plan=grad_plan)
         time_form = TimeFilter()
         return render(request, template, {'class_form': class_form, 'time_form': time_form, 'major': major})
