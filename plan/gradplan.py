@@ -3,7 +3,7 @@
 #http://curriculum.ptg.csun.edu
 #http://catalog.csun.edu/programs/major
 
-#TODO: find a way to get prereqs for class. Make a better compatibility function
+#TODO: find a way to get prereqs for class
 
 import re
 import json
@@ -12,6 +12,7 @@ import requests
 from bs4 import BeautifulSoup
 
 classurl = 'http://curriculum.ptg.csun.edu/classes/'
+top = 'http://catalog.csun.edu/programs/major/'
 
 # 403 is returned if we don't inlcude this shit
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
@@ -26,6 +27,16 @@ def getclasses(url):
   data = json.loads(data.find('p').contents[0])
   return data['classes']
 
+def getmajors():
+  data = getpage(top)
+  m = []
+  majors = data.find_all('a', {'class': 'dept-item'})
+  for i in majors:
+    temp = {}
+    temp['major'] = i.contents[0].split('\t'*3)[0]
+    temp['link'] = i['href']
+    m.append(temp)
+  return m
 
 #this gets the list of roadmap links for the selected major.
 # the road map is later used to construct a plan for the student
@@ -37,6 +48,80 @@ def getroadmaplinks(url):
     if 'Degree Road Map for' in i['title']:
       maplinks.append({'major': i['title'][20:], 'link': i['href']})
   return maplinks
+
+"""The function below generates a basic plan (no modifications) to store
+   in a database for future reference. The plan is an array of semesters,
+   each semester has a field called "classes". Each classes field is an
+   array of individual classes. Each individual class has the fields dept,
+   number and prereqs. The plan structure looks as follows:
+   [
+     { 'classes': [
+	{ 'dept'    : "COMP",
+	  'number'  : "110",
+          'prereqs' : [ "MATH 150", "COMP 108"]
+        }
+        ]
+     }
+   ]
+"""
+
+def genplan(url):
+  data = getpage(url)
+  tables = data.find_all('table', {'summary': True})
+  plan = []
+
+  for t in tables:
+
+    classes = t.find_all('td')
+    sem = {'classes': []}
+    for j in classes:
+      c = j.find('a')
+      #TODO: need to parse class description for prereq links to build graph
+      if c != None:
+	csplit = c.contents[0].split(' ')
+	dept = csplit[0]
+	num = csplit[1:]
+	link = []
+	prereqs = []
+
+	if dept != 'GE' and dept != 'Title':
+
+	  n = ''
+          # check if the class has a lab associated with it
+          # if so, add to separate classes to the semester (one lecture and one lab)
+          if '\L' in num:
+	    n = num[0][:len(num)-2]
+	    link.append(classurl + dept.lower() + '-' + n)
+	    link.append(classurl + dept.lower() + '-' + n + 'L')
+          else:
+            link.append(classurl + dept.lower() + '-' + ' '.join(num))
+
+          if len(link) > 1:
+            #add lecture and lab to semester instead of just lecture
+            cl = {'dept': dept, 'number': num[:len(num)-2], 'prereqs': prereqs}
+	    sem['classes'].append(cl)
+	    cl = {'dept': dept, 'number': num[:len(num)-2]+'L', 'prereqs': prereqs}
+	    sem['classes'].append(cl)
+
+          if len(link) == 1:
+	    cl = {'dept': dept, 'number': num, 'prereqs': prereqs}
+	    sem['classes'].append(cl)
+        else:
+          cl = {'dept': dept, 'number': num, 'prereqs': []}
+          sem['classes'].append(cl)
+
+    plan.append(sem)
+  return plan
+	  
+
+def getbaseplans():
+  majors = getmajors()
+  plans = []
+  for m in majors:
+    roadmaplink = getroadmaplinks(m['link'])
+    if len(roadmaplink) > 0:
+      roadmaplink = roadmaplink[0]['link']
+      plans.append(genplan(roadmaplink))
 
 def timeconvert(t):
   hour = t[:2]
@@ -228,11 +313,18 @@ def getroadmap(url, schedule):
 
 
 def get_major_url(major):
-  if major == 'Computer Science':
+  """if major == 'Computer Science':
     return 'http://catalog.csun.edu/academics/comp/programs/bs-computer-science/'
   elif major == 'Math (General)':
     return'http://catalog.csun.edu/academics/math/programs/ba-mathematics-i/general/'
   else:
+<<<<<<< HEAD
+    return 'http://catalog.csun.edu/academics/ece/programs/bs-electrical-engineering/'"""
+  m = getmajors()
+  for i in m:
+    if i['major'] == major:
+      return i['link']
+
     return 'http://catalog.csun.edu/academics/ece/programs/bs-electrical-engineering/'
 
 def format_gradplan(road_map):
