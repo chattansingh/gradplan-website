@@ -324,7 +324,7 @@ def get_major_url(major):
   for i in m:
     if i['major'] == major:
       return i['link']
-=======
+
     return 'http://catalog.csun.edu/academics/ece/programs/bs-electrical-engineering/'
 
 def format_gradplan(road_map):
