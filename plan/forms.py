@@ -55,8 +55,8 @@ class ChooseJobSalaries(forms.Form):
 
 class ClassFilter(forms.Form):
     # Display all of the classes in check box
-    # user_objects = Profile.objects.get(id=1)
-    # url = user_objects.graduation_plan
+    # Fixed this to take the keyword argument of the current user rather than doing a lookup
+    # it was breaking the database
     def __init__(self, *args, **kwargs):
         self.grad_plan = kwargs.pop('grad_plan')
         super(ClassFilter, self).__init__(*args, **kwargs)
@@ -75,10 +75,6 @@ class ClassFilter(forms.Form):
 
     class_list = forms.MultipleChoiceField()
 
-
-    # class Meta:
-    #     model = Profile
-    #     exclude = ['user', 'current_major', 'graduation_plan', 'major', 'subject_interests']
 
 class TimeFilter(forms.Form):
     TIMES_DAYS = [
