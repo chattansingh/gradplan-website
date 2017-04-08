@@ -17,7 +17,7 @@ from ConfigParser import RawConfigParser
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 config = RawConfigParser()
-config.read('gradplanproject/settings.ini')
+config.read(os.path.join(BASE_DIR, 'gradplanproject/settings.ini'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
