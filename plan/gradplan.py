@@ -107,7 +107,7 @@ def genplan(url):
 	    cl = {'dept': dept, 'number': num, 'prereqs': prereqs}
 	    sem['classes'].append(cl)
         else:
-          cl = {'dept': dept, 'number': num, 'prereqs': []}
+          cl = {'dept': dept, 'number': ' '.join(num), 'prereqs': []}
           sem['classes'].append(cl)
 
     plan.append(sem)
@@ -122,6 +122,8 @@ def getbaseplans():
     if len(roadmaplink) > 0:
       roadmaplink = roadmaplink[0]['link']
       plans.append(genplan(roadmaplink))
+      break
+  return plans
 
 def timeconvert(t):
   hour = t[:2]
@@ -324,8 +326,7 @@ def get_major_url(major):
   for i in m:
     if i['major'] == major:
       return i['link']
-=======
-    return 'http://catalog.csun.edu/academics/ece/programs/bs-electrical-engineering/'
+    #return 'http://catalog.csun.edu/academics/ece/programs/bs-electrical-engineering/'
 
 def format_gradplan(road_map):
     counter = 1
