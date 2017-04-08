@@ -109,7 +109,7 @@ def modify_gradplan(request):
 
     if request.method == 'POST':
 
-        class_form = ClassFilter(request.POST, instance=current_user)
+        class_form = ClassFilter(request.POST, grad_plan=grad_plan)
         time_form = TimeFilter(request.POST)
         if class_form.is_valid() and time_form.is_valid():
 
