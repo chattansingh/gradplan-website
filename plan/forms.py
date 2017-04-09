@@ -58,20 +58,20 @@ class ClassFilter(forms.Form):
     # Fixed this to take the keyword argument of the current user rather than doing a lookup
     # it was breaking the database
     def __init__(self, *args, **kwargs):
-        self.grad_plan = kwargs.pop('grad_plan')
+        self.grad_plan = kwargs.pop('grad_plan', None)
         super(ClassFilter, self).__init__(*args, **kwargs)
+        if self.grad_plan != None:
+            url = self.grad_plan;
+            empty_filter = {'days':[], 'times': [], 'taken': []}
+            graduation_plan = getroadmap(url, empty_filter)
+            CLASS_LIST = []
 
-        url = self.grad_plan;
-        empty_filter = {'days':[], 'times': [], 'taken': []}
-        graduation_plan = getroadmap(url, empty_filter)
-        CLASS_LIST = []
-
-        for sem in graduation_plan:
-            for c in sem['classes']:
-                tup = (c['name'], c['name'])
-                CLASS_LIST.append(tup)
-        self.fields['class_list'] = \
-            forms.MultipleChoiceField(choices=CLASS_LIST, widget=forms.CheckboxSelectMultiple, required=False)
+            for sem in graduation_plan:
+                for c in sem['classes']:
+                    tup = (c['name'], c['name'])
+                    CLASS_LIST.append(tup)
+            self.fields['class_list'] = \
+                forms.MultipleChoiceField(choices=CLASS_LIST, widget=forms.CheckboxSelectMultiple, required=False)
 
     class_list = forms.MultipleChoiceField()
 
