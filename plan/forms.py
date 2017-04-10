@@ -60,8 +60,8 @@ class ClassFilter(forms.Form):
     def __init__(self, *args, **kwargs):
         self.grad_plan = kwargs.pop('grad_plan', None)
         super(ClassFilter, self).__init__(*args, **kwargs)
-        if self.grad_plan != None:
-            url = self.grad_plan;
+        if self.grad_plan:
+            url = self.grad_plan
             empty_filter = {'days':[], 'times': [], 'taken': []}
             graduation_plan = getroadmap(url, empty_filter)
             CLASS_LIST = []
