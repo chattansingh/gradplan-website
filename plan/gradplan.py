@@ -56,10 +56,10 @@ def getroadmaplinks(url):
    number and prereqs. The plan structure looks as follows:
    [
      { 'classes': [
-	{ 'dept'    : "COMP",
+	 {'dept'    : "COMP",
 	  'number'  : "110",
           'prereqs' : [ "MATH 150", "COMP 108"]
-        }
+         }
         ]
      }
    ]
@@ -121,8 +121,7 @@ def getbaseplans():
     roadmaplink = getroadmaplinks(m['link'])
     if len(roadmaplink) > 0:
       roadmaplink = roadmaplink[0]['link']
-      plans.append(genplan(roadmaplink))
-      break
+      plans.append({'major': m['major'], 'plan': json.dumps(genplan(roadmaplink))})
   return plans
 
 def timeconvert(t):
