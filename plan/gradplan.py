@@ -121,7 +121,7 @@ def getbaseplans():
     roadmaplink = getroadmaplinks(m['link'])
     if len(roadmaplink) > 0:
       roadmaplink = roadmaplink[0]['link']
-      plans.append({'major': m['major'], 'plan': json.dumps(genplan(roadmaplink))})
+      plans.append({'major': m['major'], 'plan': genplan(roadmaplink)})
   return plans
 
 def timeconvert(t):
