@@ -56,10 +56,10 @@ def getroadmaplinks(url):
    number and prereqs. The plan structure looks as follows:
    [
      { 'classes': [
-	{ 'dept'    : "COMP",
+	 {'dept'    : "COMP",
 	  'number'  : "110",
           'prereqs' : [ "MATH 150", "COMP 108"]
-        }
+         }
         ]
      }
    ]
@@ -107,7 +107,7 @@ def genplan(url):
 	    cl = {'dept': dept, 'number': num, 'prereqs': prereqs}
 	    sem['classes'].append(cl)
         else:
-          cl = {'dept': dept, 'number': num, 'prereqs': []}
+          cl = {'dept': dept, 'number': ' '.join(num), 'prereqs': []}
           sem['classes'].append(cl)
 
     plan.append(sem)
@@ -121,7 +121,8 @@ def getbaseplans():
     roadmaplink = getroadmaplinks(m['link'])
     if len(roadmaplink) > 0:
       roadmaplink = roadmaplink[0]['link']
-      plans.append(genplan(roadmaplink))
+      plans.append({'major': m['major'], 'plan': json.dumps(genplan(roadmaplink))})
+  return plans
 
 def timeconvert(t):
   hour = t[:2]
@@ -324,8 +325,7 @@ def get_major_url(major):
   for i in m:
     if i['major'] == major:
       return i['link']
-
-    return 'http://catalog.csun.edu/academics/ece/programs/bs-electrical-engineering/'
+    #return 'http://catalog.csun.edu/academics/ece/programs/bs-electrical-engineering/'
 
 def format_gradplan(road_map):
     counter = 1
