@@ -328,6 +328,8 @@ def get_major_url(major):
     #return 'http://catalog.csun.edu/academics/ece/programs/bs-electrical-engineering/'
 
 def format_gradplan(road_map):
+
+    # Dont think I need this
     counter = 1
     year1 = []
     year2 = []

@@ -118,87 +118,61 @@ $(window).scroll(function() {
     <div class="col-md-6" id="SemesterView">
 	<h1 class="text-center">Classes by Semester</h1>
     <h2 class="text-center"><a href={% url 'modify_grad_plan' %}>Click here to modify the plan</a></h2>
-	<div class="row" id="Year1">
-	<div class="col-md-6">
-      <div id="section1" >
-	  
-        <h2>Spring 2017</h2>
-		{% for c in year1.1.classes %}
-        <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>
-        {% endfor %}
-      </div>
-	  </div>
-	  <div class="col-md-6">
-      <div id="section2">
-        <h2>Fall 2017</h2>
-        {% for c in year1.0.classes %}
-        <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>
-        {% endfor %}
-      </div>
-      </div>
-       </div>
-       <div class="row" id="Year2">
-       <div class="col-md-6">
-      <div id="section3">
-        <h2>Spring 2018</h2>
-        {% for c in year2.1.classes %}
-        <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>
-        {% endfor %}
-      </div>
-	  </div>
-	  <div class="col-md-6">
-      <div id="section4">
-        <h2>Fall 2018</h2>
-        {% for c in year2.0.classes %}
-        <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-  <div class="row"  id="Year3">
-       <div class="col-md-6">
-      <div id="section3">
-        <h2>Spring 2019</h2>
-        {% for c in year3.1.classes %}
-        <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>
-        {% endfor %}
-      </div>
-	  </div>
-	  <div class="col-md-6">
-      <div id="section4">
-        <h2>Fall 2019</h2>
-        {% for c in year3.0.classes %}
-        <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-  <div class="row" id="Year4">
-       <div class="col-md-6">
-      <div id="section3">
-        <h2>Spring 2020</h2>
-        {% for c in year4.1.classes %}
-        <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>
-        {% endfor %}
-      </div>
-	  </div>
-	  <div class="col-md-6">
-      <div id="section4">
-        <h2>Fall 2020</h2>
-        {% for c in year4.0.classes %}
-        <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-</div>
+
+                    {% for sem in semester %}
+                < class="semester{{ forloop.counter }}" id="{{ sem.semester }}">
+                    <h2>{{ sem.semester }}</h2>
+                    <div id="class-table">
+                    <h3>{{ sem.classes.dept }} {{ sem.classes.number }}</h3>
+                        <table class="classes">
+                            <tbody>
+                                <tr>
+                                    <th>Class Number</th>
+                                    <th>Location</th>
+                                    <th>Day</th>
+                                    <th>Time</th>
+                                </tr>
+                                {% for class in sem.classes.sections %}
+                                    {% for classdet in class %}
+                                        <tr>
+                                            <td>{{ class.catalog_number }}</td>
+                                            <td>{{ class.meetings.0.location }}</td>
+                                            <td>{{ class.meetings.0.days }}</td>
+                                            <td>{{ class.meetings.0.start_time }} - {{ class.meetings.0.end_time }}</td>
+            {#                                    This is what should hide until js lets you see it#}
+                                            <table class="hidden-class-extras">
+                                                <tbody>
+                                                <tr>
+                                                    <th>Class Information</th>
+                                                </tr>
+                                                <tr>
+                                                    <th>Professors Teaching</th>
+                                                </tr>
+                                                {% for prof in class.meetings.instructors %}
+                                                    <tr>{{ prof.first_name }}  {{ prof.last_name }}, Email: {{ prof.instructor }}</tr>
+                                                {% endfor %}
+                                                <tr>
+                                                    <th>Class Description</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>{{ class.description }}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </tr>
+                                    {% endfor %}
+
+                                {% endfor %}
+
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                </div>
+
+            {% endfor %}
 	</Section>
-
-
-
-
-
-
 
 </body>
 
