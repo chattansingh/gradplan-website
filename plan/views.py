@@ -13,28 +13,33 @@ from forms import ChooseMajorForm, ChooseJobSalaries, ClassFilter, TimeFilter
 
 def grad_road_map(request):
     user = request.user
-    if user.is_authenticated():
-        current_user = Profile.objects.get(user=request.user)
-        url = current_user.graduation_plan
-        major = current_user.current_major
-        has_major = major != ''
-
-        if (url == None or url == ''):
-            return redirect('/choosemajor')
-    else:
-        #user is anon, so redirect to the choose major
-        return redirect('/choosemajor')
+    # if user.is_authenticated():
+    #     current_user = Profile.objects.get(user=request.user)
+    #     url = current_user.graduation_plan
+    #     major = current_user.current_major
+    #     has_major = major != ''
+    #
+    #     if (url == None or url == ''):
+    #         return redirect('/choosemajor')
+    # else:
+    #     #user is anon, so redirect to the choose major
+    #     return redirect('/choosemajor')
     #This needs to have the dynamic url that is passed based off the users gradplan
     # url = 'http://catalog.csun.edu/academics/comp/programs/bs-computer-science/'
-
-    empty_filter = {'days': [], 'times': [], 'taken': []}
-    road_map = getroadmap( url, empty_filter)
-    #need to split up the road map to display it according to jesus styling
-    formatted_gradplan = format_gradplan(road_map)
+    #for testing purposes of new road map ############
+    # empty_filter = {'days': [], 'times': [], 'taken': []}
+    # road_map = getroadmap( url, empty_filter)
+    # #need to split up the road map to display it according to jesus styling
+    # formatted_gradplan = format_gradplan(road_map)
     # Separated the formatting code to gradplan
     # It returns a dictionary which you can just add to the current context
+    #########################
+    major = ''
+    has_major = True
+    import testdata
+    road_map = testdata.road_map
     context = {'road_map': road_map, 'major':major, 'has_major':has_major}
-    context.update(formatted_gradplan)
+    # context.update(formatted_gradplan)
 
     template = 'plan/Plans.html'
     return render(request, template, context)
