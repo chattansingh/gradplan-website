@@ -9,6 +9,7 @@ import re
 import json
 import urllib2 as ul
 import requests
+import datetime
 from bs4 import BeautifulSoup
 
 classurl = 'http://curriculum.ptg.csun.edu/classes/'
@@ -114,7 +115,6 @@ def genplan(url):
     plan.append(sem)
   return plan
 	  
-
 def getbaseplans():
   majors = getmajors()
   plans = []
@@ -123,6 +123,7 @@ def getbaseplans():
     if len(roadmaplink) > 0:
       roadmaplink = roadmaplink[0]['link']
       plans.append({'major': m['major'], 'plan': json.dumps(genplan(roadmaplink))})
+      break
   return plans
 
 def timeconvert(t):
@@ -227,14 +228,18 @@ def suggested(data, schedule):
 
 # we pass in a plan to this func. it then gives suggested classes
 # based off already taken classes and schedule
-# TODO: need to add in more data return from metalab's shit api
 # TODO: we also need to get the current semester and only get the classes for the next one
 def changeplan(plan):
-  for i in range(len(plan)):
-    for j in range(len(plan[i]['classes'])):
-      cl = plan[i]['classes'][j]
-      if 'link' in cl:
-        suggest = getclasses(cl['link'])
+  now = datetime.datetime.now()
+  p = json.loads(plan['plan'])
+  for i in range(len(p)):
+    sem = p[i]['classes']
+    for j in range(len(sem)):
+      cl = sem[j]
+      if 'link' in cl and i == 0:
+        p[i]['classes'][j]['details'] = getclasses(cl['link'])
+  print json.dumps(p, indent=4)
+  plan['plan'] = p
 
 """
 the following function expects a url to the catalog majro page and
