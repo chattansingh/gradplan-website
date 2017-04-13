@@ -60,8 +60,10 @@ def rate_professor(request, last_name, first_name, class_name):
         professor = Professor.objects.get(first_name=first_name, last_name=last_name)
 
     except Professor.DoesNotExist:
-        professor = Professor(first_name=first_name, last_name=last_name)
-        professor.save()
+        template = 'accounts/save_error.html'
+        error = 'Professor ' + str(last_name) + ', ' + str(first_name) + ' doesnt exist.'
+        context = {'error': error}
+        return render(request, template, context)
 
     try:
         class_ratings = ClassRating.objects.filter(professor=professor, class_name=class_name)

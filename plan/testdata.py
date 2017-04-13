@@ -17,13 +17,13 @@ road_map = [
                                         "instructors": [
                                             {
                                                 "instructor": "vijay.bhatt@csun.edu",
-                                                "first_name": "FIRST NAME",
-                                                "last_name" : "LAST NAME",
+                                                "first_name": "Vijay",
+                                                "last_name" : "Bhatt",
                                             },
                                             {
                                                 "instructor": "bahram.zartoshty@csun.edu",
-                                                "first_name": "FIRST NAME",
-                                                "last_name" : "LAST NAME",
+                                                "first_name": "Bahram",
+                                                "last_name" : "Zartoshty",
                                             }
                                         ],
                                         "meetings": [
@@ -50,8 +50,8 @@ road_map = [
                                         "instructors": [
                                             {
                                                 "instructor": "vahab.pournaghshband@csun.edu",
-                                                "first_name": "FIRST NAME",
-                                                "last_name" : "LAST NAME",
+                                                "first_name": "Vahab",
+                                                "last_name" : "Pournaghshband",
                                             }
                                         ],
                                         "meetings": [

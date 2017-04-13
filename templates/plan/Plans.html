@@ -155,7 +155,7 @@ $(window).scroll(function() {
                                                     <th>Professors Teaching</th>
                                                 </tr>
                                                 {% for prof in class.instructors %}
-                                                    <tr>{{ prof.first_name }}  {{ prof.last_name }}, Email: {{ prof.instructor }}</tr>
+                                                    <tr><a href="/ratings/{{ prof.last_name }}/{{ prof.first_name }}/{{ sem_classes.dept }}{{ class.catalog_number }}"> {{ prof.first_name }}  {{ prof.last_name }}</a>, Email: {{ prof.instructor }}</tr>
                                                 {% endfor %}
                                                 <tr>
                                                     <th>Class Description</th>
