@@ -90,7 +90,7 @@ def genplan(url):
           # check if the class has a lab associated with it
           # if so, add to separate classes to the semester (one lecture and one lab)
           if '\L' in num:
-	    n = num[0][:len(num)-2]
+	    n = ''.join(num)[:len(num)-2]
 	    link.append(classurl + dept.lower() + '-' + n)
 	    link.append(classurl + dept.lower() + '-' + n + 'L')
           else:
@@ -98,15 +98,16 @@ def genplan(url):
 
           if len(link) > 1:
             #add lecture and lab to semester instead of just lecture
-            cl = {'dept': dept, 'number': num[:len(num)-2], 'prereqs': prereqs}
+            cl = {'dept': dept, 'number': ''.join(num)[:len(num)-2], 'prereqs': prereqs, 'link': link[0]}
 	    sem['classes'].append(cl)
-	    cl = {'dept': dept, 'number': num[:len(num)-2]+'L', 'prereqs': prereqs}
+	    cl = {'dept': dept, 'number': ''.join(num)[:len(num)-2]+'L', 'prereqs': prereqs, 'link': link[1]}
 	    sem['classes'].append(cl)
 
           if len(link) == 1:
-	    cl = {'dept': dept, 'number': num, 'prereqs': prereqs}
+	    cl = {'dept': dept, 'number': ''.join(num), 'prereqs': prereqs, 'link': link[0]}
 	    sem['classes'].append(cl)
         else:
+          #we dont append a link here because it is a GE or title 5 class
           cl = {'dept': dept, 'number': ' '.join(num), 'prereqs': []}
           sem['classes'].append(cl)
 
@@ -224,6 +225,17 @@ def suggested(data, schedule):
       s['days'].append(temp['days'])
   return s
 
+# we pass in a plan to this func. it then gives suggested classes
+# based off already taken classes and schedule
+# TODO: need to add in more data return from metalab's shit api
+# TODO: we also need to get the current semester and only get the classes for the next one
+def changeplan(plan):
+  for i in range(len(plan)):
+    for j in range(len(plan[i]['classes'])):
+      cl = plan[i]['classes'][j]
+      if 'link' in cl:
+        suggest = getclasses(cl['link'])
+
 """
 the following function expects a url to the catalog majro page and
 a schedule dictionary in the following format:
@@ -319,7 +331,6 @@ def get_major_url(major):
   elif major == 'Math (General)':
     return'http://catalog.csun.edu/academics/math/programs/ba-mathematics-i/general/'
   else:
-<<<<<<< HEAD
     return 'http://catalog.csun.edu/academics/ece/programs/bs-electrical-engineering/'"""
   m = getmajors()
   for i in m:
@@ -381,9 +392,3 @@ def filter_gradplan(class_form, time_form):
         filtered_dictionary['times'].append([str(t) for t in saturday])
 
     return filtered_dictionary
-
-#uncomment lines below to see example output for CS
-#e = { 'days': ['Tu','Th'], 'times':[['09:00 AM'], ['09:00 AM']], 'taken':['MATH 150A']}
-# e = {'days':[], 'times':[], 'taken': []}
-# a = getroadmap('http://catalog.csun.edu/academics/comp/programs/bs-computer-science/', e)
-# print a
