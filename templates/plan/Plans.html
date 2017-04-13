@@ -22,6 +22,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
+<!-- Needed for Angular Animations-->
+       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+
 <!-- Google Font-->
 <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
@@ -41,7 +45,7 @@ function openYear(yearNumber) {
     document.getElementById(yearNumber).style.display = "block";
 }
 
-
+   var app = angular.module('myApp', ['ngAnimate']);
 
 
 
@@ -55,8 +59,8 @@ function openYear(yearNumber) {
 	  	</head> 
 		
 		
-<body data-spy="scroll" data-target="#myScrollspy" data-offset="60">
- <br>
+<body   ng-app="myApp">
+
 <div class="container-fluid" id="GraduationPlan">
   <h1 class="text-center">Graduation Plan </h1>
   <h3 class="text-center">Your {{ major }} Roadmap for the coming years</h3>
@@ -90,6 +94,8 @@ function openYear(yearNumber) {
   <button type="button" class="button-red" onclick="openYear('SecondYear')">2018</button>
   <button type="button" class="button-red" onclick="openYear('ThirdYear')">2019</button>
   <button type="button" class="button-red" onclick="openYear('FourthYear')">2020</button>
+<button type="button" class="button-red" onclick="openYear('FourthYear')">FullMap</button>
+
  </div>
  </div>
 </div>                                                                                                      
@@ -109,6 +115,21 @@ function openYear(yearNumber) {
       <div id="section1" >
 
         <h2>Spring 2017</h2>
+
+          <!-- Secret professor div -->
+           <p>Show Professors <input type="button" ng-model="myCheck"></p>
+
+
+                  <div id="professor" ng-hide="myCheck">
+                    <p>Covington,Richard G
+                     JD3508
+                     MoWe
+                     05:00pm-06:15pm
+
+
+                      <p> <a href="addrating.html">Professor</a></p>
+                  </div>
+           <!--->
 		{% for c in year1.1.classes %}
         <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>
         {% endfor %}
@@ -117,6 +138,24 @@ function openYear(yearNumber) {
 	  <div class="col-md-6">
       <div id="section2">
         <h2>Fall 2017</h2>
+
+
+
+         <!-- Secret professor div -->
+          <p>Show Professors <input type="checkbox" ng-model="myCheck" checked></p>
+
+
+                 <div id="professor" ng-hide="myCheck">
+                   <p>Covington,Richard G
+                    JD3508
+                    MoWe
+                    05:00pm-06:15pm
+                    <a href="addrating.html">Rate My Professor</a>
+                   </p>
+
+
+                 </div>
+          <!--->
         {% for c in year1.0.classes %}
         <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>
         {% endfor %}
@@ -128,7 +167,6 @@ function openYear(yearNumber) {
 </div>
 
 <div id="SecondYear" class="year" style="display:none">
-
 
      <div class="row" id="Year2">
        <div class="col-md-6">
@@ -175,6 +213,7 @@ function openYear(yearNumber) {
       </div>
     </div>
   </div>
+
 </div>
 
 <div id="FourthYear" class="year" style="display:none">

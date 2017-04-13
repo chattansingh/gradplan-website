@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 
@@ -21,20 +22,20 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<link rel="stylesheet" href= "css/registration.css">
+    <link rel="stylesheet" href= "{% static 'css/base.css' %}">
+
 
 <!-- Google Font-->
 <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
      </head>
 	 <body>
-	 <div class="container">
-	 <div class="jumbotron csunStyle">
 
-	 <h1>Job Information</h1>
-        <p>See what exciting options your degre offers</p>
+ <div id="jobInformation">
+	 <h1 class="text-center">Job Information</h1>
+        <h2 class="text-center">See what exciting options your degre offers</h2>
+	 </div>
 
-	 </div>
-	 </div>
+
 	 <div class="container">
 	 <div class="row">
 	 <div class="col-md-offset-4">
@@ -42,7 +43,7 @@
     <div class="row">
         <form action="{% url 'view_major_job_salaries' %}" method="post">
             {{ form.as_p }}
-            <input type="submit" value="View Salaries" class="btn-save">
+            <input type="submit" value="View Salaries" class="btn-default">
         </form>
     </div>
     <h4><a href="{% url 'choose_a_major' %}">Choose a Major Road Map</a></h4>

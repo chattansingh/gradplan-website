@@ -21,33 +21,40 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<link rel="stylesheet" href= "{% static 'css/registration.css' %}">
+<link rel="stylesheet" href= "{% static 'css/base.css' %}">
 
 <!-- Google Font-->
 <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
      </head>
 	<body> 
-	 <div class="container">
-	 <div class="jumbotron">
+
+	 <div id="chooseMajor">
+
+	 <h1 class="text-center">Choose Major</h1>
+         <h1 class="text-center">Pick from any of the following</h1>
+     </div>
+
 	 
-	 <h1>Choose Major</h1>
-        
-	 
-	 </div>
-	 </div>
+
 	 <div class="container">
-         <div class="row" id="parent">
-         <div id="child">
+         <div class="row">
+             <div class="col-md-4 col-md-offset-4 >
         <form action="{% url 'choose_a_major' %}" method="post">
             {{ form.as_p }}
-            <input type="submit" value="Select" class="btn-save">
+            <input type="submit" value="Select" class="btn-default">
         </form>
-          <h3><a href="{% url 'suggest_major' %}" >Not sure? Click here to have a Major Suggested</a></h3>
-          <h3><a href="{% url 'view_major_job_salaries' %}">Or Click to see different Major's Jobs/Salaries</a> </h3>
+          <h4><a href="{% url 'suggest_major' %}" >Not sure? Click here to have a Major Suggested</a></h4>
+          <h4><a href="{% url 'view_major_job_salaries' %}">Or Click to see different Major's Jobs/Salaries</a> </h4>
       </div>
-        <p><a href="{% url 'index' %}">Home</a></p><br>
-        <p><a href="{% url 'logout' %}">Logout</a></p><br>
-        <p><a href="{% url 'login' %}">Login</a></p>
+         <ul id="custom">
+        <li id="custom"><a href="{% url 'index' %}">Home</a></li>
+        <li id="custom"><a href="{% url 'logout' %}">Logout</a></li>
+         <li id="custom"><a href="{% url 'login' %}">Login</a></li>
+         </ul>
+     </div>
+     </div>
     </div>
+
+     </div>
   </body>
 </html>

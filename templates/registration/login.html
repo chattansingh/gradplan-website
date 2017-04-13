@@ -1,5 +1,5 @@
 {% load static %}
-{% block title %}Login{% endblock %}
+
 {% block content %}
 
 <!DOCTYPE html>
@@ -28,28 +28,30 @@
 
 <!-- Google Font-->
 <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
-<link rel="stylesheet" href= "{% static 'css/registration.css' %}">
+<link rel="stylesheet" href= "{% static 'css/base.css' %}">
      </head>
 	 <body>
-	 <div class="container">
-	 <div class="jumbotron">
-	 
-	 <h1>GradPlan Login</h1>
-	 
-	 </div>
-	 </div>
+
+
+    <div id="gradLogin">
+	 <h1 class="text-center">GradPlan Login</h1>
+        <h1 class="text-center">Don't worry</h1>
+    <h1 class="text-center">We Remember you!</h1>
+
+</div>
+
 	 
 
 	 
     <div id="content-container" class="container p-none">
-        <div class="lgn-container col-lg-8">
+        <div class="lgn-container col-md-4 col-md-offset-4">
             <form id="login-form" method="post"
                   action=".">
                {% csrf_token %}
                 <table class="table">
                     <tr>
 					    
-                        <td><label for="id_username">Username</label></td>
+                        <td><label  for="id_username">Username</label></td>
                         <td><input id="id_username" name="username"
                                    type="text" class="form-control"></td>
                     </tr>
@@ -60,14 +62,14 @@
                     </tr>
                 </table>
                <!-- {% if form.errors %}-->
-                    <p class=" label label-danger">
+                    <p class=" label label-danger white">
                         Your username and password didn't match.
                         Please try again.
                     </p>
               <!--  {% endif %}-->
 
                 <input type="submit" value="Login"
-                       class="btn btn-primary pull-right" />
+                       class="btn btn-default pull-right" />
                 <input type="hidden" name="next" value="{{ next }}" />
             </form>
         <p>New User?
@@ -76,7 +78,8 @@
         <p>Go Back <a href="{% url 'index' %}">Home</a></p>
         </div>
     </div>
+    {% block title %}Login{% endblock %}
 <!--{% endblock content %}-->
-</div>
+
 </body>
 </html>
