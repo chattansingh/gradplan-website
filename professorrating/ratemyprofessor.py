@@ -1,6 +1,6 @@
 import os, urllib2, json
 from bs4 import BeautifulSoup
-from professorrating.models import Professor
+from professorrating.models import Professor, ClassRating
 
 
 def update_db_rmp_professor_names_urls(json_file_name, **kwargs):
@@ -57,3 +57,13 @@ def update_db_rmp_professor_names_urls(json_file_name, **kwargs):
             else:
                 print 'Updated: ' + last_name + ', ' + first_name + ' rmp url: ' + url
             prof.save()
+
+def clear_rating_data(first_name, last_name):
+    prof = Professor.objects.get(first_name=first_name, last_name=last_name)
+    prof.average_rating = 0
+    prof.number_of_ratings = 0
+    prof.total_rating = 0
+    ratings = ClassRating.objects.filter(professor=prof)
+    for rating in ratings:
+        rating.delete()
+    prof.save()
