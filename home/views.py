@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
@@ -14,9 +15,12 @@ def index(request):
     major = ''
 
     if user_auth:
-        current_user = Profile.objects.get(user=user)
-        major = str(current_user.current_major)
-        has_major = major != ''
+        try:
+            current_user = Profile.objects.get(user=user)
+            major = str(current_user.current_major)
+            has_major = major != ''
+        except ObjectDoesNotExist:
+            pass
 
     context = {'user' : user, 'major': major, 'user_auth':user_auth, 'has_major': has_major}
     template = loader.get_template('home/index.html')

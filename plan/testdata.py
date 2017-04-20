@@ -185,7 +185,7 @@ road_map = [
                                         "instructors": [
                                             {
                                                 "instructor": "jeffrey.drobman@csun.edu",
-        "first_name": "FIRST NAME",
+                                                "first_name": "FIRST NAME",
                                                 "last_name" : "LAST NAME",
                                             }
                                         ],

@@ -118,7 +118,7 @@ $(window).scroll(function() {
     <div class="col-md-6" id="SemesterView">
 	<h1 class="text-center">Classes by Semester</h1>
     <h2 class="text-center"><a href={% url 'modify_grad_plan' %}>Click here to modify the plan</a></h2>
-
+    <h1>{{ progress }}</h1>
             {% for sem in road_map %}
                 <div class="semester{{ forloop.counter }}" id="{{ sem.semester }}">
                     <h2>{{ sem.semester }}</h2>

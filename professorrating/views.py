@@ -24,14 +24,19 @@ def rate_professor(request, last_name, first_name, class_name):
             rating = str(form.cleaned_data['rating'])
             # attempt to query the professor in the database
             try:
+                # ToDo: there is an error here...something going wrong with the average rating
                 professor = Professor.objects.get(first_name=first_name, last_name=last_name)
                 # Add to his average rating
                 total_rating = professor.total_rating
+
                 number_of_ratings = professor.number_of_ratings
+
                 number_of_ratings += 1 #increment the number of ratings
-                total_rating += rating_number #add given rating to professor total
+                total_rating = total_rating + rating_number #add given rating to professor total
                 average_rating = total_rating / number_of_ratings
                 professor.average_rating = average_rating
+                professor.total_rating = total_rating
+                professor.number_of_ratings = number_of_ratings
                 professor.save()
 
             except Professor.DoesNotExist:

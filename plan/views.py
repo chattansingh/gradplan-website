@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from gradplan import getroadmap, get_major_url, format_gradplan, filter_gradplan
 from accounts.models import Profile
 from forms import ChooseMajorForm, ChooseJobSalaries, ClassFilter, TimeFilter
-
+from plan import testdata
 
 
 
@@ -38,7 +38,10 @@ def grad_road_map(request):
     has_major = True
     import testdata
     road_map = testdata.road_map
-    context = {'road_map': road_map, 'major':major, 'has_major':has_major}
+    current_user = Profile.objects.get(user=user)
+    progress = current_user.progress
+
+    context = {'road_map': road_map, 'major':major, 'has_major':has_major, 'progress': progress}
     # context.update(formatted_gradplan)
 
     template = 'plan/Plans.html'
@@ -109,8 +112,9 @@ def view_major_job_salaries(request):
 @csrf_exempt
 def modify_gradplan(request):
     current_user = Profile.objects.get(user=request.user)
-    major = str(current_user.current_major)
-    grad_plan = current_user.graduation_plan
+    # major = str(current_user.current_major)
+    # grad_plan = current_user.graduation_plan
+    grad_plan = testdata.road_map
 
     if request.method == 'POST':
 
@@ -118,18 +122,38 @@ def modify_gradplan(request):
         time_form = TimeFilter(request.POST)
         if class_form.is_valid() and time_form.is_valid():
 
+            print class_form.cleaned_data['class_list']
+            c = class_form.cleaned_data['class_list']
+            # count the amount of units
+            units_list = [units.split(' ')[1] for units in c]
+            units_taken = 0
+            for units in units_list:
+                units_taken += int(units)
+
+            print units_taken
+            if current_user.classes_taken:
+                classes_taken = class_form.cleaned_data['class_list']
+                current_user.classes_taken += classes_taken
+                current_user.progress = units_taken
+                current_user.save()
+                print current_user.progress
+            else:
+                current_user.classes_taken = class_form.cleaned_data['class_list']
+                current_user.progress = units_taken
+                current_user.save()
+                print current_user.progress
             #Do the filtering here
-            filtered_dictionary = filter_gradplan(class_form, time_form)
+            # filtered_dictionary = filter_gradplan(class_form, time_form)
             #Get a revised roadmap
-            road_map = getroadmap(current_user.graduation_plan, filtered_dictionary)
+            # road_map = getroadmap(current_user.graduation_plan, filtered_dictionary)
             # Formate the road map to display it according to jesus styling
-            formatted_gradplan = format_gradplan(road_map)
+            # formatted_gradplan = format_gradplan(road_map)
             # Separated the formatting code to gradplan
             # It returns a dictionary which you can just add to the current context
 
-            context = {'road_map': road_map, 'major': major}
-            context.update(formatted_gradplan)
-
+            # context = {'road_map': road_map, 'major': major}
+            # context.update(formatted_gradplan)
+            context = {}
             template = 'plan/Plans.html'
             return render(request, template, context)
         else:
@@ -138,6 +162,11 @@ def modify_gradplan(request):
     else:
         major = 0
         template = 'plan/modify_plan.html'
-        class_form = ClassFilter(grad_plan=grad_plan)
+
+        if current_user.current_graduation_plan:
+            class_form = ClassFilter(grad_plan=current_user.current_graduation_plan)
+        else:
+            class_form = ClassFilter(grad_plan=grad_plan)
+
         time_form = TimeFilter()
         return render(request, template, {'class_form': class_form, 'time_form': time_form, 'major': major})
