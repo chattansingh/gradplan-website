@@ -11,16 +11,19 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+from ConfigParser import RawConfigParser
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+config = RawConfigParser()
+config.read(os.path.join(BASE_DIR, 'gradplanproject/settings.ini'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '!au@710_co2k#_0vmrik5es@(xex#x506iscn-=t#c_+8%d05l'
+SECRET_KEY = config.get('secret_key', 'SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -77,11 +80,25 @@ WSGI_APPLICATION = 'gradplanproject.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
+ENGINE = config.get('database', 'DATABASE_ENGINE')
+NAME = config.get('database', 'DATABASE_NAME')
+USER = config.get('database', 'DATABASE_USER')
+HOST = config.get('database', 'DATABASE_HOST')
+PORT = config.get('database', 'DATABASE_PORT')
+PASSWORD = config.get('database', 'DATABASE_PASSWORD')
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # },
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': ENGINE,
+        'NAME': NAME,
+        'USER': USER,
+        'PASSWORD': PASSWORD,
+        'HOST': HOST,
+        'PORT': PORT,
     }
 }
 
