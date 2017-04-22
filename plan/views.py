@@ -88,6 +88,7 @@ def choose_a_major(request):
 # To view salaries
 @csrf_exempt
 def view_major_job_salaries(request):
+    major = ''
     if request.method == 'POST':
 
         form = ChooseJobSalaries(request.POST)

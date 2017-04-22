@@ -86,7 +86,7 @@ def suggest_major(request):
 
                 # need to split up the road map to display it according to jesus styling
                 formatted_plan = format_gradplan(road_map)
-                # user is not logged in -- ToDo: need to get the name of the major from the rodemap, will be easy when new system implemented
+                # user is not logged in -- ToDo: need to get the name of the major from the roadmap, will be easy when new system implemented
                 major = ''
                 has_major = False
                 context = {'road_map': road_map,

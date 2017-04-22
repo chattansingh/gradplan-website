@@ -22,5 +22,6 @@ class ClassRating(models.Model):
     number_rating = models.IntegerField(blank=True)
     rating = models.CharField(max_length=500, blank=True)
 
+
     def __str__(self):
         return self.class_name
