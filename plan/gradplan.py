@@ -226,19 +226,40 @@ def suggested(data, schedule):
       s['days'].append(temp['days'])
   return s
 
+def getSem():
+  now = datetime.datetime.now()
+  return now.month, now.year
+
 # we pass in a plan to this func. it then gives suggested classes
 # based off already taken classes and schedule
 # TODO: we also need to get the current semester and only get the classes for the next one
 def changeplan(plan):
   now = datetime.datetime.now()
   p = json.loads(plan['plan'])
+  first = 0
+  month, year = getSem()
+  season = ''
+  if month < 6:
+    season = 'Spring'
+  else:
+    season = 'Fall'
   for i in range(len(p)):
     sem = p[i]['classes']
+    if first == 0:
+      first += 1
+      p[i]['semester'] = season + '-' + str(year)
+    else:
+      if season == 'Fall':
+        season = 'Spring'
+        year += 1
+      else:
+        season = 'Fall'
+      p[i]['semester'] = season + '-' + str(year)
     for j in range(len(sem)):
       cl = sem[j]
       if 'link' in cl and i == 0:
         p[i]['classes'][j]['details'] = getclasses(cl['link'])
-  print json.dumps(p, indent=4)
+  #print json.dumps(p, indent=4)
   plan['plan'] = p
 
 """
