@@ -70,6 +70,7 @@ def genplan(url):
   data = getpage(url)
   tables = data.find_all('table', {'summary': True})
   plan = []
+  first = True
 
   for t in tables:
 
@@ -90,8 +91,8 @@ def genplan(url):
 	  n = ''
           # check if the class has a lab associated with it
           # if so, add to separate classes to the semester (one lecture and one lab)
-          if '\L' in num:
-	    n = ''.join(num)[:len(num)-2]
+          if 'L' in num or 'L' in ''.join(num):
+	    n = ''.join(num)[:len(num)-3]
 	    link.append(classurl + dept.lower() + '-' + n)
 	    link.append(classurl + dept.lower() + '-' + n + 'L')
           else:
@@ -99,18 +100,26 @@ def genplan(url):
 
           if len(link) > 1:
             #add lecture and lab to semester instead of just lecture
-            cl = {'dept': dept, 'number': ''.join(num)[:len(num)-2], 'prereqs': prereqs, 'link': link[0]}
+            cl = {'dept': dept, 'number': ''.join(num)[:len(num)-2], 'prereqs': prereqs, 'link': link[0], 'details': ''}
+            if first:
+              cl['details'] = getclasses(link[0])
 	    sem['classes'].append(cl)
-	    cl = {'dept': dept, 'number': ''.join(num)[:len(num)-2]+'L', 'prereqs': prereqs, 'link': link[1]}
+	    cl = {'dept': dept, 'number': ''.join(num)[:len(num)-2]+'L', 'prereqs': prereqs, 'link': link[1], 'details': ''}
+            if first:
+              cl['details'] = getclasses(link[1])
 	    sem['classes'].append(cl)
 
           if len(link) == 1:
-	    cl = {'dept': dept, 'number': ''.join(num), 'prereqs': prereqs, 'link': link[0]}
+	    cl = {'dept': dept, 'number': ''.join(num), 'prereqs': prereqs, 'link': link[0], 'details': ''}
+            if first:
+              cl['details'] = getclasses(link[0])
 	    sem['classes'].append(cl)
         else:
           #we dont append a link here because it is a GE or title 5 class
-          cl = {'dept': dept, 'number': ' '.join(num), 'prereqs': []}
+          cl = {'dept': dept, 'number': ' '.join(num), 'prereqs': [], 'link': '', 'details': ''}
           sem['classes'].append(cl)
+      if first:
+        first = False
 
     plan.append(sem)
   return plan
