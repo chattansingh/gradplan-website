@@ -71,8 +71,6 @@ def update_database(**kwars):
     if plans:
         print "Argument supplied...\nSkiping the url scrapping..."
         for p in plans:
-            p['major'] = p['major'].encode('utf-8')
-        for p in plans:
             major = p['major']
             road_map = p['plan']
             major_road_map, created = MajorRoadMaps.objects.update_or_create(major=major, road_map=road_map)
@@ -82,12 +80,13 @@ def update_database(**kwars):
         print "No Argument supllied...\nGetting gradutation plans"
         plans = getbaseplans()
         for p in plans:
-            p['major'] = p['major'].encode('utf-8')
-        for p in plans:
-            major = p['major']
-            road_map = p['plan']
+            major = p['major'].encode('utf-8')
+            road_map = json.loads(p['plan'])
             major_road_map, created = MajorRoadMaps.objects.update_or_create(major=major, road_map=road_map)
             output_status(major, created)
+            if not created:
+                major_road_map.major = major
+                major_road_map.road_map = road_map
             major_road_map.save()
 
 def output_status(major, created):

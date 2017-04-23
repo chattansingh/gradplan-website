@@ -418,3 +418,8 @@ def filter_gradplan(class_form, time_form):
         filtered_dictionary['times'].append([str(t) for t in saturday])
 
     return filtered_dictionary
+
+
+def get_class_info(url):
+  response = ul.urlopen(url)
+  return json.loads(response.read())
