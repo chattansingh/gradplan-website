@@ -9,6 +9,7 @@ import re
 import json
 import urllib2 as ul
 import requests
+import datetime
 from bs4 import BeautifulSoup
 
 classurl = 'http://curriculum.ptg.csun.edu/classes/'
@@ -90,7 +91,7 @@ def genplan(url):
           # check if the class has a lab associated with it
           # if so, add to separate classes to the semester (one lecture and one lab)
           if '\L' in num:
-	    n = num[0][:len(num)-2]
+	    n = ''.join(num)[:len(num)-2]
 	    link.append(classurl + dept.lower() + '-' + n)
 	    link.append(classurl + dept.lower() + '-' + n + 'L')
           else:
@@ -98,22 +99,22 @@ def genplan(url):
 
           if len(link) > 1:
             #add lecture and lab to semester instead of just lecture
-            cl = {'dept': dept, 'number': num[:len(num)-2], 'prereqs': prereqs}
+            cl = {'dept': dept, 'number': ''.join(num)[:len(num)-2], 'prereqs': prereqs, 'link': link[0]}
 	    sem['classes'].append(cl)
-	    cl = {'dept': dept, 'number': num[:len(num)-2]+'L', 'prereqs': prereqs}
+	    cl = {'dept': dept, 'number': ''.join(num)[:len(num)-2]+'L', 'prereqs': prereqs, 'link': link[1]}
 	    sem['classes'].append(cl)
 
           if len(link) == 1:
-	    cl = {'dept': dept, 'number': num, 'prereqs': prereqs}
+	    cl = {'dept': dept, 'number': ''.join(num), 'prereqs': prereqs, 'link': link[0]}
 	    sem['classes'].append(cl)
         else:
+          #we dont append a link here because it is a GE or title 5 class
           cl = {'dept': dept, 'number': ' '.join(num), 'prereqs': []}
           sem['classes'].append(cl)
 
     plan.append(sem)
   return plan
 	  
-
 def getbaseplans():
   majors = getmajors()
   plans = []
@@ -121,7 +122,8 @@ def getbaseplans():
     roadmaplink = getroadmaplinks(m['link'])
     if len(roadmaplink) > 0:
       roadmaplink = roadmaplink[0]['link']
-      plans.append({'major': m['major'], 'plan': genplan(roadmaplink)})
+      plans.append({'major': m['major'], 'plan': json.dumps(genplan(roadmaplink))})
+      break
   return plans
 
 def timeconvert(t):
@@ -224,6 +226,42 @@ def suggested(data, schedule):
       s['days'].append(temp['days'])
   return s
 
+def getSem():
+  now = datetime.datetime.now()
+  return now.month, now.year
+
+# we pass in a plan to this func. it then gives suggested classes
+# based off already taken classes and schedule
+# TODO: we also need to get the current semester and only get the classes for the next one
+def changeplan(plan):
+  now = datetime.datetime.now()
+  p = json.loads(plan['plan'])
+  first = 0
+  month, year = getSem()
+  season = ''
+  if month < 6:
+    season = 'Spring'
+  else:
+    season = 'Fall'
+  for i in range(len(p)):
+    sem = p[i]['classes']
+    if first == 0:
+      first += 1
+      p[i]['semester'] = season + '-' + str(year)
+    else:
+      if season == 'Fall':
+        season = 'Spring'
+        year += 1
+      else:
+        season = 'Fall'
+      p[i]['semester'] = season + '-' + str(year)
+    for j in range(len(sem)):
+      cl = sem[j]
+      if 'link' in cl and i == 0:
+        p[i]['classes'][j]['details'] = getclasses(cl['link'])
+  #print json.dumps(p, indent=4)
+  plan['plan'] = p
+
 """
 the following function expects a url to the catalog majro page and
 a schedule dictionary in the following format:
@@ -319,7 +357,6 @@ def get_major_url(major):
   elif major == 'Math (General)':
     return'http://catalog.csun.edu/academics/math/programs/ba-mathematics-i/general/'
   else:
-<<<<<<< HEAD
     return 'http://catalog.csun.edu/academics/ece/programs/bs-electrical-engineering/'"""
   m = getmajors()
   for i in m:
@@ -328,8 +365,6 @@ def get_major_url(major):
     #return 'http://catalog.csun.edu/academics/ece/programs/bs-electrical-engineering/'
 
 def format_gradplan(road_map):
-
-    # Dont think I need this
     counter = 1
     year1 = []
     year2 = []
@@ -383,9 +418,3 @@ def filter_gradplan(class_form, time_form):
         filtered_dictionary['times'].append([str(t) for t in saturday])
 
     return filtered_dictionary
-
-#uncomment lines below to see example output for CS
-#e = { 'days': ['Tu','Th'], 'times':[['09:00 AM'], ['09:00 AM']], 'taken':['MATH 150A']}
-# e = {'days':[], 'times':[], 'taken': []}
-# a = getroadmap('http://catalog.csun.edu/academics/comp/programs/bs-computer-science/', e)
-# print a
