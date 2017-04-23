@@ -207,9 +207,13 @@ def compatible(c, s):
     return True
 
 def filter(cl):
-  meetings = cl['meetings'][0]
-  start = timeconvert(meetings[u'start_time'])
-  end = timeconvert(meetings['end_time'])
+  meetings = {'days': [], 'location': []}
+  start = ''
+  end = ''
+  if len(cl['meetings']) > 0:
+    meetings = cl['meetings'][0]
+    start = timeconvert(meetings[u'start_time'])
+    end = timeconvert(meetings['end_time'])
   result = {'course_id': cl['course_id'], 'start_time': start, 'end_time': end, 'days': meetings['days'], 'location': meetings['location']}
   return result
 
@@ -231,8 +235,7 @@ def getSem():
 
 # we pass in a plan to this func. it then gives suggested classes
 # based off already taken classes and schedule
-# TODO: we also need to get the current semester and only get the classes for the next one
-def changeplan(plan):
+def changeplan(plan, taken, busy):
   now = datetime.datetime.now()
   p = json.loads(plan['plan'])
   first = 0
@@ -257,7 +260,10 @@ def changeplan(plan):
     for j in range(len(sem)):
       cl = sem[j]
       if 'link' in cl and i == 0:
-        p[i]['classes'][j]['details'] = getclasses(cl['link'])
+        #p[i]['classes'][j]['details'] = getclasses(cl['link'])
+        classes = getclasses(cl['link'])
+        classes = suggested(classes, busy)
+        p[i]['classes'][j]['details'] = classes
   #print json.dumps(p, indent=4)
   plan['plan'] = p
 
