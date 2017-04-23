@@ -17,6 +17,7 @@ class Profile(models.Model):
     current_major = models.TextField(max_length=500, blank=True)
     base_graduation_plan = JSONField(blank=True, null=True)
     current_graduation_plan = JSONField(blank=True, null=True)
+    current_semester = JSONField(blank=True, null=True)
     classes_taken = JSONField(blank=True, null=True)
     subject_interests = models.ManyToManyField(SubjectInterests, blank=True)
     progress = models.IntegerField(blank=True, default=0)

@@ -1,55 +1,16 @@
 from django import forms
-from accounts.models import Profile
-from plan.gradplan import getroadmap
+from plan.utilities import get_major_list
 
 
 class ChooseMajorForm(forms.Form):
 
-    #ToDo: Turns out I didnt break it, just need to change these with the gradplan function get_major_url
-
-    # art = 'http://catalog.csun.edu/academics/art/programs/ba-art/'
-    # accounting = 'http://catalog.csun.edu/academics/acctis/programs/bs-accountancy/'
-    # african_studies ='http://catalog.csun.edu/academics/afric/programs/minor-african-studies/'
-    # anthropology = 'http://catalog.csun.edu/academics/anth/programs/ba-anthropology/'
-    # biology = 'http://catalog.csun.edu/academics/biol/programs/ba-biology/'
-    # business_law = 'http://catalog.csun.edu/academics/blaw/programs/bs-business-administration-i/business-law/'
-    # california_studies = 'http://catalog.csun.edu/academics/calif/programs/minor-california-studies/'
-    # marketing ='http://catalog.csun.edu/academics/mkt/programs/bs-marketing/'
-    # nursing = 'http://catalog.csun.edu/academics/nurs/programs/bsn-nursing-ii/accelerated/'
-
-    MAJORS = (
-        ('Computer Science', 'Computer Science'),
-        ('Electrical Engineering', 'Electrical Engineering'),
-        ('Math (General)', 'Math (General)'),
-        # (art, 'Art'),
-        # (accounting, 'Accounting'),
-        # (african_studies, 'African Studies'),
-        # (anthropology, 'Anthropology'),
-        # (biology, 'Biology'),
-        # (business_law, 'Business Law'),
-        # (california_studies, 'California Studies'),
-        # (marketing, 'Marketing'),
-        # (nursing, 'Nursing'),
-    )
+    MAJORS = get_major_list()
     choose_major = forms.ChoiceField(choices=MAJORS, required=False)
 
 
 class ChooseJobSalaries(forms.Form):
 
-    MAJORS = (
-        (1, 'Computer Science'),
-        (2, 'Electrical Engineering'),
-        (3, 'Math (General)'),
-        # (art, 'Art'),
-        # (accounting, 'Accounting'),
-        # (african_studies, 'African Studies'),
-        # (anthropology, 'Anthropology'),
-        # (biology, 'Biology'),
-        # (business_law, 'Business Law'),
-        # (california_studies, 'California Studies'),
-        # (marketing, 'Marketing'),
-        # (nursing, 'Nursing'),
-    )
+    MAJORS = get_major_list()
     choose_major = forms.ChoiceField(choices=MAJORS, required=False)
 
 
@@ -59,16 +20,21 @@ class ClassFilter(forms.Form):
     # it was breaking the database
     def __init__(self, *args, **kwargs):
         self.grad_plan = kwargs.pop('grad_plan', None)
+        self.classes_taken = kwargs.pop('classes_taken', None)
         super(ClassFilter, self).__init__(*args, **kwargs)
         if self.grad_plan:
             grad_plan = self.grad_plan
-            empty_filter = {'days':[], 'times': [], 'taken': []}
+            classes_taken = self.classes_taken
             CLASS_LIST = []
 
             for sem in grad_plan:
                 for c in sem['classes']:
-                    tup = (str(c['dept'] + c['details']['number'] + ' ' + c['details']['units']), str(c['dept'] + c['details']['number']))
-                    CLASS_LIST.append(tup)
+                    tup_val = str(c['dept'] + c['details']['number'] + ' ' + c['details']['units'])
+                    tup_display = str(c['dept'] + c['details']['number'])
+                    tup = (tup_val, tup_display)
+                    # if the current class has not already been filtered add it to the form
+                    if not tup_val in classes_taken:
+                        CLASS_LIST.append(tup)
             self.fields['class_list'] = \
                 forms.MultipleChoiceField(choices=CLASS_LIST, widget=forms.CheckboxSelectMultiple, required=False)
 

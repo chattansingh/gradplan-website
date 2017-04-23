@@ -8,6 +8,7 @@ from forms import InterestsForm, SuggestMajor
 from models import Profile
 from plan.suggest import suggest_plan
 from plan.gradplan import getroadmap, format_gradplan
+from plan.models import MajorRoadMaps
 
 #parse choice into url
 #just thought of it, I could probably jhust change this on the forms
@@ -30,10 +31,12 @@ def update_profile(request):
         if form.is_valid():
             result = 'Profile Updated!'
             template = 'accounts/profile_form.html'
-            major_choice = str(form.cleaned_data['current_major'])
-            major_choice = get_major_url(major_choice)
-
-            current_user.graduation_plan = major_choice
+            major_choice = form.cleaned_data['current_major'].encode('utf-8')
+            maj_obj = MajorRoadMaps.objects.get_object_or_404(major=major_choice)
+            road_map = maj_obj.road_map
+            current_user.current_major = maj_obj.major
+            current_user.base_graduation_plan = road_map
+            current_user.current_graduation_plan = road_map
             current_user.save()
             form.save()
         else:
@@ -47,11 +50,12 @@ def update_profile(request):
 
 
 def suggest_major(request):
-    user_auth = request.user.is_authenticated()
+
 
     if request.method == 'POST':
+        user_auth = request.user.is_authenticated()
         if user_auth:
-            current_user = Profile.objects.get(user=request.user)
+            current_user = Profile.objects.get_objects_or_404(user=request.user)
 
             form = SuggestMajor(request.POST, instance=current_user)
 
@@ -65,8 +69,10 @@ def suggest_major(request):
                 #problem was it was coming in unicode, have to change results to int
                 choice = [int(item) for item in choices]
                 # Based on users choices suggest to them a road map they can follow and save it as their current major
-                url = suggest_plan(choice)
-                current_user.graduation_plan = url
+                major = suggest_plan(choice)
+                maj_obj = MajorRoadMaps.objects.get_object_or_404(major=major)
+                current_user.current_major = maj_obj.major
+                current_user.graduation_plan = maj_obj.road_map
                 current_user.save()
                 return redirect('/roadmap')
             else:
@@ -80,18 +86,16 @@ def suggest_major(request):
                 # problem was it was coming in unicode, have to change results to int
                 choice = [int(item) for item in choices]
                 # Suggest a major based on choices but user is not logged in so cannot save
-                url = suggest_plan(choice)
-                empty_filter = {'days': [], 'times': [], 'taken': []}
-                road_map = getroadmap(url, empty_filter)
+                major = suggest_plan(choice)
+                maj_obj = MajorRoadMaps.objects.get_object_or_404(major=major)
+                road_map = maj_obj.road_map
 
                 # need to split up the road map to display it according to jesus styling
-                formatted_plan = format_gradplan(road_map)
                 # user is not logged in -- ToDo: need to get the name of the major from the roadmap, will be easy when new system implemented
-                major = ''
-                has_major = False
+                major = maj_obj.major
+                has_major = True
                 context = {'road_map': road_map,
                            'major': major, 'has_major': has_major}
-                context.update(formatted_plan)
                 return render(request, template, context)
             else:
                 template = 'accounts/save_error.html'

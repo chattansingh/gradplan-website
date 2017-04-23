@@ -1,8 +1,6 @@
 from django import forms
 from accounts.models import Profile
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout, Field
-from crispy_forms.bootstrap import (PrependedText, PrependedAppendedText, FormActions)
+from plan.utilities import get_major_list
 
 
 class InterestsForm(forms.ModelForm):
@@ -19,15 +17,10 @@ class InterestsForm(forms.ModelForm):
 
     # has_current_major_checkbox = forms.BooleanField(required=False)
     # current major
-    MAJORS = (
-        ('Computer Science', 'Computer Science'),
-        ('Electrical Engineering', 'Electrical Engineering'),
-        ('Math', 'Math (General)'),
-    )
+
+    MAJORS = get_major_list()
     current_major = forms.ChoiceField(choices=MAJORS, required=False)
-    #dont think we need, dont want to show the user
-    graduation_plan = forms.CharField(required=False)
-    # blank = True means the feild is nto required
+
 
     #finally figured it out at https://www.pydanny.com/core-concepts-django-modelforms.html
 
