@@ -50,6 +50,23 @@ def getroadmaplinks(url):
       maplinks.append({'major': i['title'][20:], 'link': i['href']})
   return maplinks
 
+def getprereqs(url):
+  data = getpage(url)
+  em = data.find_all('em')
+  prereqs = []
+  for e in em:
+    a = e.find_all('a', {'title':True})
+    for i in a:
+      title = i['title'].split('.')
+      if len(title) > 1:
+        num = title[0].split(' ')[1]
+        if 'L' in num:
+          prereqs.append(title[0][:len(title[0])-2])
+          prereqs.append(title[0][:len(title[0])-2]+'L')
+        else:
+          prereqs.append(title[0])
+  return prereqs
+
 """The function below generates a basic plan (no modifications) to store
    in a database for future reference. The plan is an array of semesters,
    each semester has a field called "classes". Each classes field is an
@@ -87,7 +104,7 @@ def genplan(url):
 	prereqs = []
 
 	if dept != 'GE' and dept != 'Title':
-
+          prereqs = getprereqs(c['href'])
 	  n = ''
           # check if the class has a lab associated with it
           # if so, add to separate classes to the semester (one lecture and one lab)
