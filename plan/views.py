@@ -7,6 +7,8 @@ from gradplan import getroadmap, get_major_url, format_gradplan, filter_gradplan
 from accounts.models import Profile
 from forms import ChooseMajorForm, ChooseJobSalaries, ClassFilter, TimeFilter
 from plan.models import MajorRoadMaps
+from plan.utilities import get_semester
+import json
 
 
 
@@ -30,8 +32,12 @@ def grad_road_map(request):
     # ToDo: This may not be needed, could be redundant
     if not has_major:
         major = ''
+    print 'processing web page....'
+    dic = get_semester(road_map)
+    print dic['remaining_sem']
 
-    context = {'road_map': road_map, 'major':major, 'has_major':has_major, 'progress': progress}
+    context = {'major':major, 'has_major':has_major, 'progress': progress}
+    context.update(get_semester(road_map))
     template = 'plan/Plans.html'
     return render(request, template, context)
 
@@ -48,13 +54,14 @@ def choose_a_major(request):
             major_choice = form.cleaned_data['choose_major'].encode('utf-8')
             maj_obj = get_object_or_404(MajorRoadMaps, major=major_choice)
             road_map = maj_obj.road_map
-
+            progress = 0
             #save their choice for later if they are authenticated
             if user.is_authenticated():
                 current_user = get_object_or_404(Profile, user=user)
 
                 current_user.base_graduation_plan = road_map
                 current_user.current_graduation_plan = road_map
+                progress = current_user.progress
                 major = major_choice
                 current_user.save()
             else:
@@ -67,10 +74,15 @@ def choose_a_major(request):
             # road_map = {}
             # need to split up the road map to display it according to jesus styling
             # formatted_gradplan = format_gradplan(road_map)
+            has_major = True
 
             # Separated the formatting code to gradplan
             # It returns a dictionary which you can just add to the current context
-            context = {'road_map': road_map, 'major': major}
+            context = {'major': major, 'has_major':has_major, 'progress': progress}
+            # update it with split up semesters to more easily display it
+            # keys are 'detail_sem' and 'remaining_sem'
+            print 'processing web page....'
+            context.update(get_semester(road_map))
             return render(request, template, context)
         else:
             template = 'accounts/save_error.html'

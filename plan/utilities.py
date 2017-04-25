@@ -1,5 +1,6 @@
 #various utilites
 from plan.models import MajorRoadMaps
+import json
 
 
 def get_prof_email_name(email):
@@ -22,3 +23,23 @@ def get_major_list():
     return majors
 
 
+def get_semester(road_map):
+
+    # list of classes
+    road_map = json.loads(road_map)
+    detail_sem = road_map[0]['classes']
+    remaining_sem = road_map[1:]
+    remaining_sem = [sem['classes'] for sem in remaining_sem]
+    for sem in detail_sem:
+        for detail in sem['details']:
+            for prof in detail['instructors']:
+                prof_email = prof['instructor']
+                first_last = get_prof_email_name(prof_email)
+                if len(first_last) > 1:
+                    first_last = {'first_name': first_last[0], 'last_name': first_last[1]}
+                else:
+                    first_last = {'first_name': first_last[0], 'last_name': ''}
+                prof.update(first_last)
+
+
+    return {'detail_sem': detail_sem, 'remaining_sem':remaining_sem}

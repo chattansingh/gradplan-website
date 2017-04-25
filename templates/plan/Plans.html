@@ -1,13 +1,13 @@
 {% load static %}
  <!DOCTYPE html>
-    <html lang="en"> 
-    <head> 
-        <meta charset="utf-8"> 
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1,
-        shrink-to-fit=no"> 
-        <meta http-equiv="x-ua-compatible" content="ie=edge"> 
-        <title>Graduation Plan List</title> 
-		
+        shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Graduation Plan List</title>
+
 		<!-- jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
@@ -25,7 +25,7 @@
 <!-- Google Font-->
 <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
 
 
@@ -39,7 +39,7 @@
 
 $(document).ready(function(){
   // Add scrollspy to <body>
-  $('body').scrollspy({target: ".nav", offset: 60});   
+  $('body').scrollspy({target: ".nav", offset: 60});
 
   // Add smooth scrolling on all links inside the navbar
   $("#myScrollspy a").on('click', function(event) {
@@ -56,7 +56,7 @@ $(document).ready(function(){
       $('html, body').animate({
         scrollTop: $(hash).offset().top
       }, 800, function(){
-   
+
         // Add hash (#) to URL when done scrolling (default click behavior)
         window.location.hash = hash;
       });
@@ -84,24 +84,24 @@ $(window).scroll(function() {
 </script>
 
 </script>
-	  
+
 <link rel="stylesheet" href= "{% static 'css/base.css' %}">
-	   	   
-	   
-	  	</head> 
-		
-		
+
+
+	  	</head>
+
+
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="60">
 
 <div class="container-fluid" id="GraduationPlan">
   <h1 class="text-center">Graduation Plan </h1>
   <h3 class="text-center">Your {{ major }} Roadmap for the coming years</h3>
   <h4 class="text-center">Here are your classes!</h4>
-  
+
 </div>
 
 <Section id="Classes">
-	
+
 	<div class="container-fluid">
   <div class="row">
     <nav class="col-lg-3" id="myScrollspy">
@@ -119,70 +119,69 @@ $(window).scroll(function() {
 	<h1 class="text-center">Classes by Semester</h1>
     <h2 class="text-center"><a href={% url 'modify_grad_plan' %}>Click here to modify the plan</a></h2>
     <h1>{{ progress }}</h1>
-            {% for sem in road_map %}
-                <div class="semester{{ forloop.counter }}" id="{{ sem.semester }}">
-                    <h2>{{ sem.semester }}</h2>
-                    <div id="class-table">
-                    {% for sem_classes in sem.classes %}
-{#                        ask about putting the title here in the outer json dict by dept and number and details#}
-                    <h3>{{ sem_classes.dept }} {{ sem_classes.number }}</h3>
-                        <table class="classes" id="{{ sem_classes.dept }} {{ sem_classes.number }}">
+    <h1>First Semester</h1>
+            {% for sem in detail_sem %}
+            <div>
+                <h3>{{ sem.dept }} {{ sem.number }}</h3>
+                <div id="table-container">
+                    <table class="classes" id="{{ sem.dept }} {{ sem.number }}">
+                        <tbody>
+                        <tr>
+                            <th>Class Number</th>
+                            <th>Location</th>
+                            <th>Day</th>
+                            <th>Time</th>
+                        </tr>
+                        <tr></tr>
+                        {% for class_details in sem.details %}
+                            <tr>
+                                <td>{{ class_details.class_number }}</td>
+                            {% for meetings in class_details.meetings %}
+                                <td>{{ meetings.location }}</td>
+                                <td>{{ meetings.days }}</td>
+                                <td>{{ meetings.start_time }}-{{ meetings.end_time }}</td>
+                            {% endfor %}
+                            </tr>
+                            <tr></tr>
+                            <table>
                             <tbody>
-                                <tr>
-                                    <th>Class Number</th>
-                                    <th>Location</th>
-                                    <th>Day</th>
-                                    <th>Time</th>
-                                </tr>
-                                {% for class in sem_classes.details.sections %}
-                                        <tr>
-                                            <td>{{ class.catalog_number }}</td>
-                                                {% for meetings in class.meetings %}
-                                                    <td>{{ meetings.location }}</td>
-                                                    <td>{{ meetings.days }}</td>
-                                                    <td>{{ meetings.start_time }} - {{ meetings.end_time }}</td>
-                                                {% endfor %}
-            {#                                    This is what should hide until js lets you see it#}
-                                            <table class="hidden-class-extras">
-                                                <tbody>
-                                                <tr>
-                                                    <th>Class Information</th>
-                                                </tr>
-                                                <tr>
-                                                    <th>Class Title: {{ class.title }}</th>
-                                                </tr>
-                                                <tr>
-                                                    <th>Professors Teaching</th>
-                                                </tr>
-                                                {% for prof in class.instructors %}
-                                                    <tr><a href="/ratings/{{ prof.last_name }}/{{ prof.first_name }}/{{ sem_classes.dept }}{{ class.catalog_number }}"> {{ prof.first_name }}  {{ prof.last_name }}</a>, Email: {{ prof.instructor }}</tr>
-                                                {% endfor %}
-                                                <tr>
-                                                    <th>Class Description</th>
-                                                </tr>
-                                                <tr>
-                                                    <td>{{ class.description }}</td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </tr>
-
-                                {% endfor %}
-
-                            </tbody>
-
+                            <tr>
+                            {% for instructor in class_details.instructors %}
+                                <th>Instructors: <a href="/ratings/{{ instructor.last_name }}/{{ instructor.first_name }}/{{ sem.dept }}{{ sem.number }}">{{ instructor.first_name }} {{ instructor.last_name }}</a> Email:{{ instructor.instructor }}</td>
+                            {% endfor %}
+                            </tr>
+                            <tr></tr>
+                            <tr>
+                                <th>Class Title: {{ class_details.title }}</td>
+                            </tr>
+                            <tr></tr>
+                            <tr>
+                                <th>Class Description: {{ class_details.description }}</td>
+                            </tr>
                         </table>
-                    {% endfor %}
-                    </div>
+                        </tbody>
+                        {% endfor %}
 
+
+                        </tbody>
+                    </table>
                 </div>
-
+            </div>
+        {% endfor %}
+    <h1>Remaining Semesters</>
+                {% for sem in remaining_sem %}
+            {#sem is a list of the classes#}
+            <h2>Separating Semesters: Semester {{ forloop.counter }}</h2>
+            {% for class in sem %}
+                <h3>{{ class.dept }} {{ class.number }}</h3>
             {% endfor %}
+        {% endfor %}
+
 	</Section>
 
 </body>
 
-</html>		
+</html>
 		
 		
 		
