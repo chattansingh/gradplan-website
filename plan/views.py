@@ -33,15 +33,19 @@ def grad_road_map(request):
     if not has_major:
         major = ''
     print 'processing web page....'
-    dic = get_semester(road_map)
-    print dic['remaining_sem']
+    if road_map:
+        dic = get_semester(road_map)
+    else:
+        return redirect('/choosemajor')
+
+    # print dic['remaining_sem']
 
     context = {'major':major, 'has_major':has_major, 'progress': progress}
     context.update(get_semester(road_map))
     template = 'plan/Plans.html'
     return render(request, template, context)
 
-@csrf_exempt
+# @csrf_exempt
 def choose_a_major(request):
     user = request.user
 
@@ -93,7 +97,7 @@ def choose_a_major(request):
 
 # To view salaries
 # ToDo: this needs to be completely overhauled to not be hard coded
-@csrf_exempt
+# @csrf_exempt
 def view_major_job_salaries(request):
     major = ''
     if request.method == 'POST':
@@ -131,7 +135,7 @@ def modify_gradplan(request):
         if class_form.is_valid() and time_form.is_valid():
             c = class_form.cleaned_data['class_list']
             # count the amount of units
-            units_list = [units.split(' ')[1] for units in c]
+            units_list = [units.split(' ')[-1] for units in c]
             units_taken = 0
             for units in units_list:
                 units_taken += int(units)
@@ -170,11 +174,8 @@ def modify_gradplan(request):
         # not a post
         template = 'plan/modify_plan.html'
 
-        if current_user.current_graduation_plan:
-            class_form = ClassFilter(grad_plan=current_user.current_graduation_plan, classes_taken=current_user.classes_taken)
-        else:
-            # because the user does not have a major to modify
-            redirect(choose_a_major)
+        class_form = ClassFilter(grad_plan=current_user.current_graduation_plan, classes_taken=current_user.classes_taken)
+
 
         time_form = TimeFilter()
         return render(request, template, {'class_form': class_form, 'time_form': time_form, 'major': major})

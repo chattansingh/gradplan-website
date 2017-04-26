@@ -1,6 +1,6 @@
 from django import forms
 from plan.utilities import get_major_list
-
+import json
 
 class ChooseMajorForm(forms.Form):
 
@@ -23,17 +23,26 @@ class ClassFilter(forms.Form):
         self.classes_taken = kwargs.pop('classes_taken', None)
         super(ClassFilter, self).__init__(*args, **kwargs)
         if self.grad_plan:
-            grad_plan = self.grad_plan
+            grad_plan = json.loads(self.grad_plan)
             classes_taken = self.classes_taken
             CLASS_LIST = []
 
             for sem in grad_plan:
                 for c in sem['classes']:
-                    tup_val = str(c['dept'] + c['details']['number'] + ' ' + c['details']['units'])
-                    tup_display = str(c['dept'] + c['details']['number'])
+                    if 'details' in c and not c['details'] == '' and len(c['details']) > 1:
+                        # ha to have the details key, not be empty and the details list must have something in it
+                        tup_val = str(c['dept'] + c['number'] + ' ' + c['details'][0]['units'])
+                    else:
+                        tup_val = str(c['dept'] + c['number'] + ' 3')
+                    tup_display = str(c['dept'] + c['number'])
                     tup = (tup_val, tup_display)
                     # if the current class has not already been filtered add it to the form
-                    if not tup_val in classes_taken:
+                    if classes_taken:
+                        if not tup_val in classes_taken:
+                            CLASS_LIST.append(tup)
+                    else:
+                        # if the classes taken is null, just append everything
+                        # this is a new user or someone who has not taken any classes
                         CLASS_LIST.append(tup)
             self.fields['class_list'] = \
                 forms.MultipleChoiceField(choices=CLASS_LIST, widget=forms.CheckboxSelectMultiple, required=False)
