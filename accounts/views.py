@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
 
 # Create your views here.
 from django.contrib.auth.decorators import login_required
@@ -32,7 +32,7 @@ def update_profile(request):
             result = 'Profile Updated!'
             template = 'accounts/profile_form.html'
             major_choice = form.cleaned_data['current_major'].encode('utf-8')
-            maj_obj = MajorRoadMaps.objects.get_object_or_404(major=major_choice)
+            maj_obj = get_object_or_404(MajorRoadMaps, major=major_choice)
             road_map = maj_obj.road_map
             current_user.current_major = maj_obj.major
             current_user.base_graduation_plan = road_map
@@ -55,7 +55,7 @@ def suggest_major(request):
     if request.method == 'POST':
         user_auth = request.user.is_authenticated()
         if user_auth:
-            current_user = Profile.objects.get_objects_or_404(user=request.user)
+            current_user = get_object_or_404(Profile, user=request.user)
 
             form = SuggestMajor(request.POST, instance=current_user)
 
@@ -70,7 +70,7 @@ def suggest_major(request):
                 choice = [int(item) for item in choices]
                 # Based on users choices suggest to them a road map they can follow and save it as their current major
                 major = suggest_plan(choice)
-                maj_obj = MajorRoadMaps.objects.get_object_or_404(major=major)
+                maj_obj = get_object_or_404(MajorRoadMaps, major=major)
                 current_user.current_major = maj_obj.major
                 current_user.graduation_plan = maj_obj.road_map
                 current_user.save()
@@ -87,7 +87,7 @@ def suggest_major(request):
                 choice = [int(item) for item in choices]
                 # Suggest a major based on choices but user is not logged in so cannot save
                 major = suggest_plan(choice)
-                maj_obj = MajorRoadMaps.objects.get_object_or_404(major=major)
+                maj_obj = get_object_or_404(MajorRoadMaps, major=major)
                 road_map = maj_obj.road_map
 
                 # need to split up the road map to display it according to jesus styling
