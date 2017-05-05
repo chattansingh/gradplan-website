@@ -46,7 +46,6 @@ class ClassFilter(forms.Form):
                         CLASS_LIST.append(tup)
             self.fields['class_list'] = \
                 forms.MultipleChoiceField(choices=CLASS_LIST, widget=forms.CheckboxSelectMultiple, required=False)
-
     class_list = forms.MultipleChoiceField()
 
 
@@ -73,3 +72,28 @@ class TimeFilter(forms.Form):
     thursday = forms.MultipleChoiceField(choices=TIMES_DAYS, widget=forms.CheckboxSelectMultiple, required=False)
     friday = forms.MultipleChoiceField(choices=TIMES_DAYS, widget=forms.CheckboxSelectMultiple, required=False)
     saturday = forms.MultipleChoiceField(choices=TIMES_DAYS, widget=forms.CheckboxSelectMultiple, required=False)
+
+# going to create individual forms for each class
+class SemesterClass(forms.Form):
+
+    def __init__(self, *args, **kwargs):
+        self.sem_class = kwargs.pop('sem_class', None)
+        super(SemesterClass, self).__init__(*args, **kwargs)
+        if self.sem_class:
+
+            CLASSES= []
+            for sem in self.sem_class:
+                class_name = str(sem['dept']) + str(sem['number'])
+                for details in sem['details']:
+                    tup_val = class_name + ' ' + details['class_number']
+                    for meetings in details['meetings']:
+                        tup_val += ' ' + meetings['location'] + ' ' + meetings['days'] + ' ' + meetings['start_time']+ ' ' + meetings['end_time']
+                    tup_display = tup_val
+                    tup = (tup_val, tup_display)
+                    CLASSES.append(tup)
+            self.fields['sem_classess'] = forms.ChoiceField(choices=CLASSES, widget=forms.CheckboxSelectMultiple, required=False)
+
+    sem_classes = forms.ChoiceField()
+
+
+

@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from gradplan import getroadmap, get_major_url, format_gradplan, filter_gradplan
 from accounts.models import Profile
-from forms import ChooseMajorForm, ChooseJobSalaries, ClassFilter, TimeFilter
+from forms import ChooseMajorForm, ChooseJobSalaries, ClassFilter, TimeFilter, SemesterClass
 from plan.models import MajorRoadMaps
 from plan.utilities import get_semester
 import json
@@ -179,3 +179,42 @@ def modify_gradplan(request):
 
         time_form = TimeFilter()
         return render(request, template, {'class_form': class_form, 'time_form': time_form, 'major': major})
+
+@login_required
+def current_semester(request):
+    current_user = get_object_or_404(Profile, user=request.user)
+    current_semester = current_user.current_semester
+
+    if current_semester:
+        pass
+    else:
+        return redirect('/plan/choosesemester')
+
+
+
+    return render(request, template, context)
+
+@login_required
+def choose_semester(request):
+    current_user = get_object_or_404(Profile, user=request.user)
+
+    if request.method == 'POST':
+
+        classes_chosen = []
+
+
+    else:
+        road_map = current_user.current_graduation_plan
+        semester = get_semester(road_map)['detail_sem']
+        form = SemesterClass(sem_class=semester)
+        # create a form for each class
+        # forms = {}
+        # count = 0
+        # for sem in semester:
+        #     count += 1
+        #     key = 'class_form_' + count
+        #     forms.update({key : SemesterClass(sem_class=sem)})
+
+        template = 'plan/choose_semester.html'
+
+        return render(request, template, {'form': form})
