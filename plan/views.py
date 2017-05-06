@@ -5,9 +5,9 @@ from django.views.decorators.csrf import csrf_exempt
 
 from gradplan import getroadmap, get_major_url, format_gradplan, filter_gradplan
 from accounts.models import Profile
-from forms import ChooseMajorForm, ChooseJobSalaries, ClassFilter, TimeFilter, SemesterClass, SetUpSemesterClasses
+from forms import ChooseMajorForm, ChooseJobSalaries, ClassFilter, TimeFilter, SemesterClass, SetUpSemesterClasses, ChooseMultipleMajors
 from plan.models import MajorRoadMaps
-from plan.utilities import get_semester
+from plan.utilities import get_semester, get_common_classes
 import json
 
 
@@ -32,15 +32,14 @@ def grad_road_map(request):
     if not has_major:
         major = ''
     print 'processing web page....'
-    if road_map:
-        dic = get_semester(road_map)
-    else:
+    if not road_map:
         return redirect('/choosemajor')
 
     # print dic['remaining_sem']
 
     context = {'major': major, 'has_major': has_major, 'progress': progress}
-    context.update(get_semester(road_map))
+    dictionary = get_semester(road_map)
+    context.update(dictionary)
     template = 'plan/Plans.html'
     return render(request, template, context)
 
@@ -242,3 +241,21 @@ def choose_semester(request):
         template = 'plan/choose_semester.html'
 
         return render(request, template, {'time_filter_form': time_filter_form, 'filter_time': filter_time, 'choose_classes': choose_classes})
+
+
+@login_required
+def common_classes(request):
+    current_user = get_object_or_404(Profile, user=request.user)
+
+    if request.method == 'POST':
+        form = ChooseMultipleMajors(request.POST)
+        if form.is_valid():
+            majors_chosen = form.cleaned_data['choose_multiple_majors']
+            road_maps = [MajorRoadMaps.objects.get(major=major).road_map for major in majors_chosen]
+            context = {'detail_sem': get_common_classes(road_maps)}
+            return render(request, 'plan/Plans.html', context)
+        else:
+            return redirect('roadmap/commonclasses/')
+    else:
+        form = ChooseMultipleMajors()
+        return render(request, 'plan/choose_common.html', {'form': form})

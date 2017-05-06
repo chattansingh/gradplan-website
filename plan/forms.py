@@ -1,5 +1,6 @@
 from django import forms
 from plan.utilities import get_major_list
+
 import json
 
 class ChooseMajorForm(forms.Form):
@@ -121,3 +122,7 @@ class SetUpSemesterClasses(forms.Form):
 
     choose_number_of_classes = forms.ChoiceField(choices=NUMBER_CLASSES, required=True)
 
+
+class ChooseMultipleMajors(forms.Form):
+    MAJORS = get_major_list()
+    choose_multiple_majors = forms.MultipleChoiceField(choices=MAJORS, widget=forms.CheckboxSelectMultiple, required=True)
