@@ -5,18 +5,17 @@ from django.views.decorators.csrf import csrf_exempt
 
 from gradplan import getroadmap, get_major_url, format_gradplan, filter_gradplan
 from accounts.models import Profile
-from forms import ChooseMajorForm, ChooseJobSalaries, ClassFilter, TimeFilter, SemesterClass
+from forms import ChooseMajorForm, ChooseJobSalaries, ClassFilter, TimeFilter, SemesterClass, SetUpSemesterClasses
 from plan.models import MajorRoadMaps
 from plan.utilities import get_semester
 import json
-
 
 
 def grad_road_map(request):
     user = request.user
     if user.is_authenticated():
         current_user = get_object_or_404(Profile, user=request.user)
-        #get the current graduation plan that the user has selected
+        # get the current graduation plan that the user has selected
         road_map = current_user.current_graduation_plan
         major = current_user.current_major
         progress = current_user.progress
@@ -26,7 +25,7 @@ def grad_road_map(request):
             return redirect('/choosemajor')
 
     else:
-        #user is anon, so redirect to the choose major
+        # user is anon, so redirect to the choose major
         return redirect('/choosemajor')
 
     # ToDo: This may not be needed, could be redundant
@@ -40,12 +39,13 @@ def grad_road_map(request):
 
     # print dic['remaining_sem']
 
-    context = {'major':major, 'has_major':has_major, 'progress': progress}
+    context = {'major': major, 'has_major': has_major, 'progress': progress}
     context.update(get_semester(road_map))
     template = 'plan/Plans.html'
     return render(request, template, context)
 
-# @csrf_exempt
+
+
 def choose_a_major(request):
     user = request.user
 
@@ -59,7 +59,7 @@ def choose_a_major(request):
             maj_obj = get_object_or_404(MajorRoadMaps, major=major_choice)
             road_map = maj_obj.road_map
             progress = 0
-            #save their choice for later if they are authenticated
+            # save their choice for later if they are authenticated
             if user.is_authenticated():
                 current_user = get_object_or_404(Profile, user=user)
 
@@ -82,7 +82,7 @@ def choose_a_major(request):
 
             # Separated the formatting code to gradplan
             # It returns a dictionary which you can just add to the current context
-            context = {'major': major, 'has_major':has_major, 'progress': progress}
+            context = {'major': major, 'has_major': has_major, 'progress': progress}
             # update it with split up semesters to more easily display it
             # keys are 'detail_sem' and 'remaining_sem'
             print 'processing web page....'
@@ -93,7 +93,8 @@ def choose_a_major(request):
     else:
         template = 'plan/choose_major.html'
         form = ChooseMajorForm()
-    return render(request, template, {'form': form,})
+    return render(request, template, {'form': form, })
+
 
 # To view salaries
 # ToDo: this needs to be completely overhauled to not be hard coded
@@ -114,14 +115,14 @@ def view_major_job_salaries(request):
             template = 'accounts/save_error.html'
             return render(request, template, {})
     else:
-        
+
         template = 'plan/job_information.html'
         form = ChooseJobSalaries()
 
     return render(request, template, {'form': form, 'major': major})
 
+
 @login_required
-# @csrf_exempt
 def modify_gradplan(request):
     current_user = get_object_or_404(Profile, user=request.user)
 
@@ -131,8 +132,7 @@ def modify_gradplan(request):
     if request.method == 'POST':
 
         class_form = ClassFilter(request.POST, grad_plan=grad_plan)
-        time_form = TimeFilter(request.POST)
-        if class_form.is_valid() and time_form.is_valid():
+        if class_form.is_valid():
             c = class_form.cleaned_data['class_list']
             # count the amount of units
             units_list = [units.split(' ')[-1] for units in c]
@@ -149,11 +149,11 @@ def modify_gradplan(request):
             else:
                 # user has not taken any other classes
                 current_user.classes_taken = class_form.cleaned_data['class_list']
-                current_user.progress = units_taken
+                current_user.progress += units_taken
                 current_user.save()
-            #Do the filtering here
+            # Do the filtering here
             # filtered_dictionary = filter_gradplan(class_form, time_form)
-            #Get a revised roadmap
+            # Get a revised roadmap
             # road_map = getroadmap(current_user.graduation_plan, filtered_dictionary)
             # Formate the road map to display it according to jesus styling
             # formatted_gradplan = format_gradplan(road_map)
@@ -174,11 +174,12 @@ def modify_gradplan(request):
         # not a post
         template = 'plan/modify_plan.html'
 
-        class_form = ClassFilter(grad_plan=current_user.current_graduation_plan, classes_taken=current_user.classes_taken)
-
+        class_form = ClassFilter(grad_plan=current_user.current_graduation_plan,
+                                 classes_taken=current_user.classes_taken)
 
         time_form = TimeFilter()
-        return render(request, template, {'class_form': class_form, 'time_form': time_form, 'major': major})
+        return render(request, template, {'class_form': class_form, 'major': major})
+
 
 @login_required
 def current_semester(request):
@@ -186,27 +187,50 @@ def current_semester(request):
     current_semester = current_user.current_semester
 
     if current_semester:
-        pass
+
+        context = {'classes': current_semester}
+        template = 'plan/current_semester.html'
     else:
         return redirect('/plan/choosesemester')
 
-
-
     return render(request, template, context)
+
 
 @login_required
 def choose_semester(request):
     current_user = get_object_or_404(Profile, user=request.user)
 
     if request.method == 'POST':
+        if request.POST['classes'] == 'Get Classes':
+            # Do the filtering of classes
+            #     This is disabling the forms for the page
+            filter_time = False
+            choose_classes = True
+            template = 'plan/choose_semester.html'
+            current_graduation_plan = current_user.current_graduation_plan
+            semester = get_semester(current_graduation_plan)['detail_sem']
+            select_classes_form = SemesterClass(sem_class=semester)
+            return render(request, template,
+                          {'select_classes_form': select_classes_form,
+                           'filter_time': filter_time, 'select_classes': choose_classes})
+        else:
+            classes_chosen = SemesterClass(request.POST)
 
-        classes_chosen = []
+            if classes_chosen.is_valid():
+                classes = []
+                for key in classes_chosen.data:
+                    if key != 'csrfmiddlewaretoken':
+                        classes.append(classes_chosen.data[key])
 
+                current_user.current_semester = classes
+                current_user.save()
 
+        return render(request, 'plan/current_semester.html', {'classes': classes})
     else:
-        road_map = current_user.current_graduation_plan
-        semester = get_semester(road_map)['detail_sem']
-        form = SemesterClass(sem_class=semester)
+        filter_time = True
+        choose_classes = False
+        time_filter_form = TimeFilter()
+
         # create a form for each class
         # forms = {}
         # count = 0
@@ -217,4 +241,4 @@ def choose_semester(request):
 
         template = 'plan/choose_semester.html'
 
-        return render(request, template, {'form': form})
+        return render(request, template, {'time_filter_form': time_filter_form, 'filter_time': filter_time, 'choose_classes': choose_classes})

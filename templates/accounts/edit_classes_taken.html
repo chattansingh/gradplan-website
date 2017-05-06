@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,
         shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Choose Semester</title>
+    <title>Profile Form</title>
 
 
     <!-- jquery -->
@@ -32,7 +32,7 @@
 <div class="container">
     <div class="jumbotron csunStyle">
 
-        <h1>Choose Semester</h1>
+        <h1>Edit Classes</h1>
 
 
     </div>
@@ -40,37 +40,19 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3 col-offset-md-6">
+
+            <h1>Select Classes to Remove</h1>
             <div class="container">
-                {% if filter_time %}
-                    <div class="row">
-                    <h2>Choose the times you are available for classes.  Leave blank if available for all times.</h2>
-                        <form action="{% url 'choose_semester' %}" method="post">
-                            {% csrf_token %}
-                            {{ time_filter_form.as_p }}
-                            <input type="submit" name="classes" value="Get Classes" class="btn-save">
-                        </form>
-                    </div>
-                {% endif %}
-                {% if select_classes %}
-                    <div class="row">
-                        <form action="{% url 'choose_semester' %}" method="post">
-                            {% csrf_token %}
-                            <table>
-                                <tr>
-                                    <th>Class Number</th>
-                                    <th>Location</th>
-                                    <th>Day</th>
-                                    <th>Time</th>
-                                </tr>
-                            </table>
-                            {{ select_classes_form.as_table }}
-                            <input type="submit" name="classes" value="Select Classes" class="btn-save">
-                        </form>
-                    </div>
-                {% endif %}
+                <div class="row">
+                    <form action="{% url 'edit_classes' %}" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" value="Remove Classes" class="btn-save">
+                    </form>
+                </div>
                 <p><a href="{% url 'index' %}">Home</a></p>
                 <p><a href="{% url 'logout' %}">Logout</a></p>
-                <p><a href="{% url 'login' %}">Login</a></p>
             </div>
-</body>
-</html>
+
+        </div>
+    </div>

@@ -4,11 +4,12 @@ from django.shortcuts import render, redirect, get_list_or_404, get_object_or_40
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.shortcuts import render
-from forms import InterestsForm, SuggestMajor
+from forms import InterestsForm, SuggestMajor, EditClasses
 from models import Profile
 from plan.suggest import suggest_plan
 from plan.gradplan import getroadmap, format_gradplan
 from plan.models import MajorRoadMaps
+import json
 
 #parse choice into url
 #just thought of it, I could probably jhust change this on the forms
@@ -29,7 +30,6 @@ def update_profile(request):
         form = InterestsForm(request.POST, instance=current_user)
 
         if form.is_valid():
-            result = 'Profile Updated!'
             template = 'accounts/profile_form.html'
             major_choice = form.cleaned_data['current_major'].encode('utf-8')
             maj_obj = get_object_or_404(MajorRoadMaps, major=major_choice)
@@ -39,14 +39,58 @@ def update_profile(request):
             current_user.current_graduation_plan = road_map
             current_user.save()
             form.save()
+            progress = current_user.progress
+            classes_taken = current_user.classes_taken
+            return render(request, template, {'form': form, 'progress': progress, 'classes_taken': classes_taken})
         else:
-            result = 'not valid form'
             template = 'accounts/save_error.html'
+            return render(request, template, { })
     else:
-        result =''
         template = 'accounts/profile_form.html'
         form = InterestsForm(instance=current_user)
-    return render(request, template, {'form': form, 'result': result})
+        progress = current_user.progress
+        classes_taken = current_user.classes_taken
+        return render(request, template, {'form': form, 'progress': progress, 'classes_taken': classes_taken})
+
+
+
+@login_required
+def edit_classes(request):
+    current_user = Profile.objects.get(user=request.user)
+
+    if request.method == 'POST':
+        classes_taken = current_user.classes_taken
+        remove_form = EditClasses(request.POST, classes_taken=classes_taken)
+
+
+        # ERROR HERE SOMETHING TO DO WITH NOT RESPONSE, AND TO DO WITH THE FORM
+        if remove_form.is_valid():
+            classes_taken = current_user.classes_taken
+            classes_to_remove = remove_form.cleaned_data['classes']
+            units_to_remove = 0
+            for item in classes_to_remove:
+                classes_taken.remove(item.encode('utf-8'))
+                units_to_remove += int(item.split(' ')[-1])
+
+            current_user.classes_taken = classes_taken
+            current_user.progress -= units_to_remove
+            current_user.save()
+
+            template = 'accounts/profile_form.html'
+            form = InterestsForm(instance=current_user)
+            progress = current_user.progress
+            classes_taken = current_user.classes_taken
+            # return render(request, template,
+            #               {'form': form, 'progress': progress, 'classes_taken': classes_taken})
+            return redirect('/profile/')
+        else:
+            return redirect('/profile/')
+
+    else:
+        classes_taken = current_user.classes_taken
+        form = EditClasses(classes_taken=classes_taken)
+        template = 'accounts/edit_classes_taken.html'
+        return render(request, template, {'form': form})
 
 
 def suggest_major(request):
@@ -62,7 +106,6 @@ def suggest_major(request):
             if form.is_valid():
                 result = 'Profile Updated!'
                 #this needs to change to point to where we want to display their grad plan
-                form.save()
                 #this is a list of the choices
                 #choices are 1, 2, 3, 4 1 = Science, 2 = Math..and so on.
                 choices = form.cleaned_data['subject_interests']

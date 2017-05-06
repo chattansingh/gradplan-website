@@ -5,16 +5,6 @@ from plan.utilities import get_major_list
 
 class InterestsForm(forms.ModelForm):
     #to store the user data
-    SUBJECT_INTERESTS = (
-        (1, 'Science'),
-        (2, 'Math'),
-        (3, 'History'),
-        (4, 'Biology'),
-        (5, 'Psychology'),
-    )
-    subject_interests = forms.MultipleChoiceField(choices=SUBJECT_INTERESTS
-                                                  ,widget=forms.CheckboxSelectMultiple, required=False)
-
     # has_current_major_checkbox = forms.BooleanField(required=False)
     # current major
 
@@ -26,8 +16,7 @@ class InterestsForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        exclude = [ 'user', 'subject_interests', 'graduation_plan']
-
+        fields = ['current_major']
 
 class SuggestMajor(forms.ModelForm):
 
@@ -45,6 +34,19 @@ class SuggestMajor(forms.ModelForm):
 
     class Meta:
         model = Profile
-        exclude = ['user', 'current_major', 'graduation_plan', 'major']
+        fields = ['subject_interests']
 
+
+class EditClasses(forms.Form):
+    def __init__(self, *args, **kwargs):
+        self.classes_taken = kwargs.pop('classes_taken', None)
+        super(EditClasses, self).__init__(*args, **kwargs)
+        if self.classes_taken:
+            CLASSES_TAKEN = []
+            for item in self.classes_taken:
+                CLASSES_TAKEN.append((item,item))
+            self.fields['classes'] = forms.MultipleChoiceField(choices=CLASSES_TAKEN, widget=forms.CheckboxSelectMultiple, required=False)
+
+
+    classes = forms.MultipleChoiceField()
 
