@@ -307,32 +307,6 @@ def meetsPrereqs(taken, cl):
 def changeplan(plan, taken, busy):
   now = datetime.datetime.now()
   p = json.loads(plan['plan'])
-  first = 0
-  month, year = getSem()
-  season = ''
-  if month < 6:
-    season = 'Spring'
-  else:
-    season = 'Fall'
-  for i in range(len(p)):
-    sem = p[i]['classes']
-    if first == 0:
-      first += 1
-      p[i]['semester'] = season + '-' + str(year)
-    else:
-      if season == 'Fall':
-        season = 'Spring'
-        year += 1
-      else:
-        season = 'Fall'
-      p[i]['semester'] = season + '-' + str(year)
-    for j in range(len(sem)):
-      cl = sem[j]
-      if cl['link'] != '' and i == 0:
-        #p[i]['classes'][j]['details'] = getclasses(cl['link'])
-        classes = getclasses(cl['link'])
-        classes = suggested(classes, busy)
-        p[i]['classes'][j]['details'] = classes
   plan['plan'] = p
   for i in range(len(p)):
     for j in p[i]['classes']:
@@ -358,8 +332,7 @@ def changeplan(plan, taken, busy):
               else:
                 p[i]['classes'].remove(p[i]['classes'][ind])
                 s -= 1
-  plan['plan'] = p
-  print json.dumps(p, indent=4)
+  plan['plan'] = json.dumps(p)
 
 """
 the following function expects a url to the catalog majro page and
