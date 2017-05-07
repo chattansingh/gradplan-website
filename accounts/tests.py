@@ -1,21 +1,35 @@
-from django.test import TestCase
+from django.test import TestCase, LiveServerTestCase
 
-from django.core.urlresolvers import reverse
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
-class AccountViewTests(TestCase):
+class ProfileTestCase(LiveServerTestCase):
 
-    def test_accounts_view(self):
-        response = self.client.get(reverse('profile_form'))
-        self.assertEqual(response.status_code, 200)
+    def setUp(self):
+        self.selenium = webdriver.Safari()
+        super(ProfileTestCase, self).setUp()
 
-    def test_anonymous_view(self):
-        response = self.client.get(reverse('anonymous_profile'))
-        self.assertEqual(response.status_code, 200)
+    def tearDown(self):
+        self.selenium.quit()
+        super(ProfileTestCase, self).tearDown()
 
-    def test_save_view(self):
-        response = self.client.get(reverse('save_error'))
-        self.assertEqual(response.status_code, 200)
+    def test_login(self):
+        selenium = self.selenium
+        selenium.get('http://127.0.0.1:3000/login/')
+        username = selenium.find_element_by_id('id_username')
+        password = selenium.find_element_by_id('id_password')
+        submit = selenium.find_element_by_id('login')
 
-    def test_major_view(self):
-        response = self.client.get(reverse('suggest_major'))
-        self.assertEqual(response.status_code, 200)
+        username.send_keys('chattan12')
+        password.send_keys('Password123')
+        submit.send_keys(Keys.RETURN)
+       # assert 'Successfully saved' in selenium.page_source
+
+    def test_profile(self):
+        selenium = self.selenium
+        selenium.get('http://127.0.0.1:3000/profile/')
+        major = selenium.find_element_by_id('id_current_major')
+        submit = selenium.find_element_by_id('save')
+
+        major.send_keys('Computer Science, B.S.')
+        submit.send_keys(Keys.RETURN)

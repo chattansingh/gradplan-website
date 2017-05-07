@@ -1,41 +1,23 @@
-from django.test import TestCase
+from django.test import TestCase, LiveServerTestCase
 
-# Create your tests here.
-from django.core.urlresolvers import reverse
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
-class planTestS(TestCase):
+class ProfileTestCase(LiveServerTestCase):
 
-    def Test_plans(self):
-        response = self.client.get(reverse('Plans'))
-        self.assertEqual(response.status_code,200)
+    def setUp(self):
+        self.selenium = webdriver.Safari()
+        super(ProfileTestCase, self).setUp()
 
-    def Test_choose_major(self):
-        response = self.client.get(reverse('choose_major'))
-        self.assertEqual(response.status_code, 200)
+    def tearDown(self):
+        self.selenium.quit()
+        super(ProfileTestCase, self).tearDown()
 
-    def Test_choose_semester(self):
-        response = self.client.get(reverse('choose_semester'))
-        self.assertEqual(response.status_code, 200)
+    def test_profile(self):
+        selenium = self.selenium
+        selenium.get('http://127.0.0.1:3000/choosemajor/')
+        major= selenium.find_element_by_id('id_choose_major')
+        submit = selenium.find_element_by_id('select')
 
-    def Test_graduation_roadmap(self):
-        response = self.client.get(reverse('graduation_roadmap'))
-        self.assertEqual(response.status_code, 200)
-
-    def Test_job_information(self):
-        response = self.client.get(reverse('job_information'))
-        self.assertEqual(response.status_code, 200)
-
-    def Test_modify_plan(self):
-        response = self.client.get(reverse('modify_plan'))
-        self.assertEqual(response.status_code, 200)
-
-    def Test_newplan(self):
-        response = self.client.get(reverse('newPlan'))
-        self.assertEqual(response.status_code, 200)
-
-    def Test_test(self):
-        response = self.client.get(reverse('test'))
-        self.assertEqual(response.status_code, 200)
-
-
-
+        major.send_keys('Computer Engineering, B.S.')
+        submit.send_keys(Keys.RETURN)
