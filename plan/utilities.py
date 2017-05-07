@@ -23,14 +23,8 @@ def get_major_list():
     return majors
 
 
-def get_semester(road_map):
-
-    # list of classes
-    road_map = json.loads(road_map)
-    detail_sem = road_map[0]['classes']
-    remaining_sem = road_map[1:]
-    remaining_sem = [sem['classes'] for sem in remaining_sem]
-    for sem in detail_sem:
+def update_detail_sem(detail_sem):
+    for sem in detail_sem['classes']:
         for detail in sem['details']:
             for prof in detail['instructors']:
                 prof_email = prof['instructor']
@@ -40,6 +34,27 @@ def get_semester(road_map):
                 else:
                     first_last = {'first_name': first_last[0], 'last_name': ''}
                 prof.update(first_last)
+    return detail_sem
 
+def get_semester(road_map):
 
-    return {'detail_sem': detail_sem, 'remaining_sem':remaining_sem}
+    # list of classes
+    road_map = json.loads(road_map)
+    detail_sem = road_map[0]
+    remaining_sem = road_map[1:]
+    remaining_sem = [sem['classes'] for sem in remaining_sem]
+    dict = update_detail_sem(detail_sem)
+    return {'detail_sem': dict, 'remaining_sem':remaining_sem}
+
+def get_common_classes(majors_chosen):
+
+    if majors_chosen:
+        majors = []
+
+        for major in majors_chosen:
+            semester = json.loads(major)[0]
+            majors.append([c['dept'] + c['number'] for c in semester['classes']])
+
+        result = list(set.intersection(*map(set, majors)))
+        detail_sem =  {'classes' : [item  for item in json.loads(majors_chosen[0])[0]['classes'] if item['dept']+item['number'] in result]}
+        return update_detail_sem(detail_sem)

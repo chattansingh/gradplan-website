@@ -117,10 +117,10 @@ $(window).scroll(function() {
     </nav>
     <div class="col-md-6" id="SemesterView">
 	<h1 class="text-center">Classes by Semester</h1>
-    <h2 class="text-center"><a href={% url 'modify_grad_plan' %}>Click here to modify the plan</a></h2>
+    <h2 class="text-center"><a href={% url 'modify_grad_plan' %}>Taken some of these already? Click to Remove Them</a></h2>
     <h1>{{ progress }}</h1>
     <h1>First Semester</h1>
-            {% for sem in detail_sem %}
+            {% for sem in detail_sem.classes %}
             <div>
                 <h3>{{ sem.dept }} {{ sem.number }}</h3>
                 <div id="table-container">

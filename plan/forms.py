@@ -1,5 +1,6 @@
 from django import forms
 from plan.utilities import get_major_list
+
 import json
 
 class ChooseMajorForm(forms.Form):
@@ -80,20 +81,48 @@ class SemesterClass(forms.Form):
         self.sem_class = kwargs.pop('sem_class', None)
         super(SemesterClass, self).__init__(*args, **kwargs)
         if self.sem_class:
+            counter = 0
 
-            CLASSES= []
+            classes= []
             for sem in self.sem_class:
-                class_name = str(sem['dept']) + str(sem['number'])
-                for details in sem['details']:
-                    tup_val = class_name + ' ' + details['class_number']
-                    for meetings in details['meetings']:
-                        tup_val += ' ' + meetings['location'] + ' ' + meetings['days'] + ' ' + meetings['start_time']+ ' ' + meetings['end_time']
-                    tup_display = tup_val
+                counter+= 1
+                class_name = str(sem['dept']) + " " +  str(sem['number'])
+                if sem['details'] != '':
+                    for details in sem['details']:
+                        tup_val = details['class_number']
+                        for meetings in details['meetings']:
+                            tup_val += ' ' + meetings['location'] + ' ' + meetings['days'] + ' ' + meetings['start_time']+ ' ' + meetings['end_time']
+                        tup_display = tup_val
+                        tup_val = class_name + ' ' + tup_val
+                        tup = (tup_val, tup_display)
+                        classes.append(tup)
+                else:
+                    tup_val = tup_display = class_name
                     tup = (tup_val, tup_display)
-                    CLASSES.append(tup)
-            self.fields['sem_classess'] = forms.ChoiceField(choices=CLASSES, widget=forms.CheckboxSelectMultiple, required=False)
+                    classes.append(tup)
 
-    sem_classes = forms.ChoiceField()
+                self.fields[class_name] = forms.ChoiceField(choices=classes, widget=forms.RadioSelect, required=False)
+                classes = []
 
 
 
+
+
+class SetUpSemesterClasses(forms.Form):
+
+    NUMBER_CLASSES = [
+        (1,'One Class'),
+        (2,'Two Classes'),
+        (3, 'Three Classes'),
+        (4, 'Four Classes'),
+        (5, 'Five Classes'),
+        (6, 'Six Classes')
+
+    ]
+
+    choose_number_of_classes = forms.ChoiceField(choices=NUMBER_CLASSES, required=True)
+
+
+class ChooseMultipleMajors(forms.Form):
+    MAJORS = get_major_list()
+    choose_multiple_majors = forms.MultipleChoiceField(choices=MAJORS, widget=forms.CheckboxSelectMultiple, required=True)

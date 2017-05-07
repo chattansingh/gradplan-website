@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html>
-
-<head> 
-        <meta charset="utf-8"> 
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1,
-        shrink-to-fit=no"> 
-        <meta http-equiv="x-ua-compatible" content="ie=edge"> 
-        <title>Modify Plan</title> 
+        shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>FindCommonClasses</title>
 
-		
-		
+
+
 			<!-- jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
        <!-- Latest compiled and minified CSS -->
@@ -21,39 +20,34 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<link rel="stylesheet" href= "css/registration.css">  
+<link rel="stylesheet" href= "css/registration.css">
 
 <!-- Google Font-->
 <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
      </head>
-	 <body>
+	<body>
 	 <div class="container">
 	 <div class="jumbotron csunStyle">
-	 
-	 <h1>Modify Plan</h1>
-       
+
+	 <h1>Find Common Classes in Majors</h1>
+
 	 </div>
 	 </div>
 	 <div class="container">
 	 <div class="row">
-	 <div class="col-md-4">
-  <h1>{{request.user.username}} Filter</h1>
+	 <div class="col-md-3 col-offset-md-6">
+         <h2>Select Majors to check for common classes to count for both in next semester.</h2>
     <div class="container">
       <div class="row">
-          <h3>Check off boxes for classes you have taken for {{ major }}.</h3>
-        <form action="{% url 'modify_grad_plan' %}" method="post">
+        <form action="{% url 'common_classes' %}" method="post">
             {% csrf_token %}
-            {{ class_form.as_p }}
-{#            {{ result }}#}
-            <input type="submit" value="Save" class="btn-save">
+            {{ form.as_p }}
+            <input type="submit" value="Select" class="btn-save">
         </form>
-          <p><a href="{% url 'index' %}">Home</a></p>
+      </div>
+        <p><a href="{% url 'index' %}">Home</a></p>
         <p><a href="{% url 'logout' %}">Logout</a></p>
         <p><a href="{% url 'login' %}">Login</a></p>
-      </div>
     </div>
-	</div>
-	</div>
-	</div>
   </body>
 </html>
