@@ -304,7 +304,7 @@ def meetsPrereqs(taken, cl):
 
 # we pass in a plan to this func. it then gives suggested classes
 # based off already taken classes and schedule
-def changeplan(plan, taken, busy):
+def changeplan(plan, taken):
   now = datetime.datetime.now()
   p = json.loads(plan['plan'])
   plan['plan'] = p
