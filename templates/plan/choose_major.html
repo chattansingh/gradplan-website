@@ -42,7 +42,7 @@
         <form action="{% url 'choose_a_major' %}" method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <input type="submit" value="Select" class="btn-save">
+            <input type="submit" value="Select" class="btn-save" id="select">
         </form>
           <h3><a href="{% url 'suggest_major' %}" >Not sure? Click here to have a Major Suggested</a></h3>
           <h3><a href="{% url 'view_major_job_salaries' %}">Or Click to see different Major's Jobs/Salaries</a> </h3>
