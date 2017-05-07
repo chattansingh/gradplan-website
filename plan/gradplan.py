@@ -108,7 +108,8 @@ def genplan(url):
 	  n = ''
           # check if the class has a lab associated with it
           # if so, add to separate classes to the semester (one lecture and one lab)
-          if 'L' in num or 'L' in ''.join(num):
+          print num
+          if '\L' in num or '/L' in num or '/L' in ''.join(num) or '\L' in ''.join(num):
 	    n = ''.join(num)[:len(num)-3]
 	    link.append(classurl + dept.lower() + '-' + n)
 	    link.append(classurl + dept.lower() + '-' + n + 'L')
@@ -142,13 +143,47 @@ def genplan(url):
   return plan
 	  
 def getbaseplans():
+  busy = {}
+  now = datetime.datetime.now()
+  #p = json.loads(plan['plan'])
+  first = 0
+  month, year = getSem()
+  season = ''
+  if month < 6:
+    season = 'Spring'
+  else:
+    season = 'Fall'
   majors = getmajors()
   plans = []
   for m in majors:
     roadmaplink = getroadmaplinks(m['link'])
     if len(roadmaplink) > 0:
       roadmaplink = roadmaplink[0]['link']
-      plans.append({'major': m['major'], 'plan': json.dumps(genplan(roadmaplink))})
+      #plans.append({'major': m['major'], 'plan': json.dumps(genplan(roadmaplink))})
+      p = genplan(roadmaplink)
+      for i in range(len(p)):
+        sem = p[i]['classes']
+        if first == 0:
+          first += 1
+          p[i]['semester'] = season + '-' + str(year)
+        else:
+          if season == 'Fall':
+            season = 'Spring'
+            year += 1
+          else:
+            season = 'Fall'
+          p[i]['semester'] = season + '-' + str(year)
+        for j in range(len(sem)):
+          cl = sem[j]
+          if cl['link'] != '' and i == 0:
+            #p[i]['classes'][j]['details'] = getclasses(cl['link'])
+            print cl['link']
+            if '/F' in cl['link']:
+              cl['link'] = cl['link'][:len(cl['link'])-2] + cl['link'][len(cl['link'])-1]
+            classes = getclasses(cl['link'])
+            classes = suggested(classes, busy)
+            p[i]['classes'][j]['details'] = classes
+      plans.append({'major': m['major'], 'plan': p})
   return plans
 
 def timeconvert(t):
@@ -227,10 +262,10 @@ def inrange(cl, s):
 #this function is supposed to determine compatability of a class
 #i.e. has the user taken this class and is it in their schedule range?
 def compatible(c, s):
+  if s == {}:
+    return True
   if inrange([c['days'], c['start_time'], c['end_time']], [s['days'], s['times']]):
     return False
-  else:
-    return True
 
 def filter(cl):
   meetings = {'days': [], 'location': []}
@@ -259,6 +294,14 @@ def getSem():
   now = datetime.datetime.now()
   return now.month, now.year
 
+def meetsPrereqs(taken, cl):
+  if cl['prereqs'] == []:
+    return True
+  for c in cl['prereqs']:
+    if c not in taken:
+      return False
+  return True
+
 # we pass in a plan to this func. it then gives suggested classes
 # based off already taken classes and schedule
 def changeplan(plan, taken, busy):
@@ -285,13 +328,38 @@ def changeplan(plan, taken, busy):
       p[i]['semester'] = season + '-' + str(year)
     for j in range(len(sem)):
       cl = sem[j]
-      if 'link' in cl and i == 0:
+      if cl['link'] != '' and i == 0:
         #p[i]['classes'][j]['details'] = getclasses(cl['link'])
         classes = getclasses(cl['link'])
         classes = suggested(classes, busy)
         p[i]['classes'][j]['details'] = classes
-  #print json.dumps(p, indent=4)
   plan['plan'] = p
+  for i in range(len(p)):
+    for j in p[i]['classes']:
+      #check if class has been taken
+      #find next class and replace it if so
+      #be sure to replace the classes moved
+      name = j['dept'] + ' ' + j['number']
+      if name in taken:
+        nextclass = {}
+        for k in range(i, len(p)):
+          s = len(p[k]['classes'])
+          for h in p[k]['classes']:
+            if meetsPrereqs(taken, h): #p[k]['classes'][h]):
+              nextclass = h
+              ind = -1
+              for x in range(len(p[i]['classes'])):
+                n = p[i]['classes'][x]['dept'] + ' ' + p[i]['classes'][x]['number']
+                if name == n:
+                  ind = x
+              p[k]['classes'].remove(h)
+              if nextclass != {}:
+                p[i]['classes'][ind] = nextclass
+              else:
+                p[i]['classes'].remove(p[i]['classes'][ind])
+                s -= 1
+  plan['plan'] = p
+  print json.dumps(p, indent=4)
 
 """
 the following function expects a url to the catalog majro page and

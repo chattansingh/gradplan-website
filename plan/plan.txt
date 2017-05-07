@@ -1,0 +1,540 @@
+[
+    {
+        "semester": "Spring-2017",
+        "classes": [
+            {
+                "dept": "COMP",
+                "prereqs": [
+                    "MATH 102",
+                    "MATH 103",
+                    "MATH 104",
+                    "MATH 105",
+                    "MATH 150A",
+                    "MATH 255A"
+                ],
+                "link": "http://curriculum.ptg.csun.edu/classes/comp-110",
+                "number": "110/",
+                "details": {
+                    "course_id": [
+                        "18237",
+                        "18237",
+                        "18237",
+                        "18237",
+                        "18237",
+                        "18237",
+                        "18237"
+                    ],
+                    "start_time": [
+                        "7:00 PM",
+                        "3:30 PM",
+                        "08:00 AM",
+                        "11:00 AM",
+                        "12:30 PM",
+                        "09:00 AM",
+                        "2:00 PM"
+                    ],
+                    "location": [
+                        "JD1538",
+                        "JD1104",
+                        "JD1104",
+                        "JD1104",
+                        "JD1600A",
+                        "JD1104",
+                        "JD1104"
+                    ],
+                    "end_time": [
+                        "8:15 PM",
+                        "4:45 PM",
+                        "09:15 AM",
+                        "12:15 PM",
+                        "1:45 PM",
+                        "11:45 AM",
+                        "3:15 PM"
+                    ],
+                    "days": [
+                        "TR",
+                        "TR",
+                        "TR",
+                        "TR",
+                        "TR",
+                        "S",
+                        "MW"
+                    ]
+                }
+            },
+            {
+                "dept": "COMP",
+                "prereqs": [
+                    "MATH 102",
+                    "MATH 103",
+                    "MATH 104",
+                    "MATH 105",
+                    "MATH 150A",
+                    "MATH 255A"
+                ],
+                "link": "http://curriculum.ptg.csun.edu/classes/comp-110L",
+                "number": "110/L",
+                "details": {
+                    "course_id": [
+                        "15268",
+                        "15268",
+                        "15268",
+                        "15268",
+                        "15268",
+                        "15268",
+                        "15268"
+                    ],
+                    "start_time": [
+                        "8:30 PM",
+                        "5:00 PM",
+                        "09:30 AM",
+                        "12:30 PM",
+                        "2:00 PM",
+                        "1:00 PM",
+                        "3:30 PM"
+                    ],
+                    "location": [
+                        "JD1538",
+                        "JD1104",
+                        "JD1104",
+                        "JD1104",
+                        "JD1600A",
+                        "JD1104",
+                        "JD1104"
+                    ],
+                    "end_time": [
+                        "9:45 PM",
+                        "6:15 PM",
+                        "10:45 AM",
+                        "1:45 PM",
+                        "3:15 PM",
+                        "3:45 PM",
+                        "4:45 PM"
+                    ],
+                    "days": [
+                        "TR",
+                        "TR",
+                        "TR",
+                        "TR",
+                        "TR",
+                        "S",
+                        "MW"
+                    ]
+                }
+            },
+            {
+                "dept": "MATH",
+                "prereqs": [
+                    "MATH 105",
+                    "MATH 102",
+                    "MATH 104",
+                    "MATH 150",
+                    "MATH 150L"
+                ],
+                "link": "http://curriculum.ptg.csun.edu/classes/math-150A",
+                "number": "150A",
+                "details": {
+                    "course_id": [
+                        "4370",
+                        "4370",
+                        "4370",
+                        "4370",
+                        "4370",
+                        "4370",
+                        "4370",
+                        "4370",
+                        "4370"
+                    ],
+                    "start_time": [
+                        "3:30 PM",
+                        "08:00 AM",
+                        "11:00 AM",
+                        "2:00 PM",
+                        "12:30 PM",
+                        "09:30 AM",
+                        "12:30 PM",
+                        "2:00 PM",
+                        "5:00 PM"
+                    ],
+                    "location": [
+                        "CR5114",
+                        "CR5208",
+                        "CR5114",
+                        "CR5123",
+                        "CR5124",
+                        "CR5208",
+                        "CR5119",
+                        "CR5119",
+                        "CR5126"
+                    ],
+                    "end_time": [
+                        "4:55 PM",
+                        "09:05 AM",
+                        "12:05 PM",
+                        "3:25 PM",
+                        "1:35 PM",
+                        "10:35 AM",
+                        "1:55 PM",
+                        "3:25 PM",
+                        "6:25 PM"
+                    ],
+                    "days": [
+                        "MTR",
+                        "MTWR",
+                        "MTWR",
+                        "MTR",
+                        "MTWR",
+                        "MTWR",
+                        "MWF",
+                        "MWF",
+                        "MTR"
+                    ]
+                }
+            },
+            {
+                "dept": "GE",
+                "prereqs": [],
+                "link": "",
+                "number": "Basic Skills: Written Communication",
+                "details": ""
+            },
+            {
+                "dept": "Title",
+                "prereqs": [],
+                "link": "",
+                "number": "5 Requirement",
+                "details": ""
+            }
+        ]
+    },
+    {
+        "semester": "Fall-2017",
+        "classes": [
+            {
+                "dept": "COMP",
+                "prereqs": [
+                    "COMP 110",
+                    "COMP 110L",
+                    "MATH 103",
+                    "MATH 104",
+                    "MATH 105",
+                    "MATH 150A",
+                    "MATH 255A"
+                ],
+                "link": "http://curriculum.ptg.csun.edu/classes/comp-122",
+                "number": "122",
+                "details": ""
+            },
+            {
+                "dept": "COMP",
+                "prereqs": [
+                    "COMP 110",
+                    "COMP 110L",
+                    "MATH 103",
+                    "MATH 104",
+                    "MATH 105",
+                    "MATH 150A",
+                    "MATH 255A"
+                ],
+                "link": "http://curriculum.ptg.csun.edu/classes/comp-182",
+                "number": "182",
+                "details": ""
+            },
+            {
+                "dept": "MATH",
+                "prereqs": [
+                    "MATH 150",
+                    "MATH 150L"
+                ],
+                "link": "http://curriculum.ptg.csun.edu/classes/math-150B",
+                "number": "150B",
+                "details": ""
+            },
+            {
+                "dept": "PHIL",
+                "prereqs": [
+                    "MATH 210"
+                ],
+                "link": "http://curriculum.ptg.csun.edu/classes/phil-230",
+                "number": "230",
+                "details": ""
+            }
+        ]
+    },
+    {
+        "semester": "Spring-2018",
+        "classes": [
+            {
+                "dept": "COMP",
+                "prereqs": [
+                    "COMP 122",
+                    "COMP 122L",
+                    "COMP 182",
+                    "COMP 182L"
+                ],
+                "link": "http://curriculum.ptg.csun.edu/classes/comp-222",
+                "number": "222",
+                "details": ""
+            },
+            {
+                "dept": "COMP",
+                "prereqs": [
+                    "COMP 182",
+                    "COMP 182L",
+                    "MATH 150A"
+                ],
+                "link": "http://curriculum.ptg.csun.edu/classes/comp-282",
+                "number": "282",
+                "details": ""
+            },
+            {
+                "dept": "COMP",
+                "prereqs": [
+                    "COMP 182",
+                    "COMP 182L",
+                    "MATH 150A",
+                    "PHIL 230"
+                ],
+                "link": "http://curriculum.ptg.csun.edu/classes/comp-256",
+                "number": "256/",
+                "details": ""
+            },
+            {
+                "dept": "COMP",
+                "prereqs": [
+                    "COMP 182",
+                    "COMP 182L",
+                    "MATH 150A",
+                    "PHIL 230"
+                ],
+                "link": "http://curriculum.ptg.csun.edu/classes/comp-256L",
+                "number": "256/L",
+                "details": ""
+            },
+            {
+                "dept": "GE",
+                "prereqs": [],
+                "link": "",
+                "number": "Basic Skills: Oral Communication",
+                "details": ""
+            },
+            {
+                "dept": "Title",
+                "prereqs": [],
+                "link": "",
+                "number": "5 Requirement",
+                "details": ""
+            }
+        ]
+    },
+    {
+        "semester": "Fall-2018",
+        "classes": [
+            {
+                "dept": "COMP",
+                "prereqs": [
+                    "COMP 282"
+                ],
+                "link": "http://curriculum.ptg.csun.edu/classes/comp-333",
+                "number": "333",
+                "details": ""
+            },
+            {
+                "dept": "COMP",
+                "prereqs": [
+                    "COMP 222",
+                    "ECE 422",
+                    "ECE 425",
+                    "ECE 425L"
+                ],
+                "link": "http://curriculum.ptg.csun.edu/classes/comp-322",
+                "number": "322/",
+                "details": ""
+            },
+            {
+                "dept": "COMP",
+                "prereqs": [
+                    "COMP 222",
+                    "ECE 422",
+                    "ECE 425",
+                    "ECE 425L"
+                ],
+                "link": "http://curriculum.ptg.csun.edu/classes/comp-322L",
+                "number": "322/L",
+                "details": ""
+            },
+            {
+                "dept": "GE",
+                "prereqs": [],
+                "link": "",
+                "number": "Natural Science with lab",
+                "details": ""
+            },
+            {
+                "dept": "MATH",
+                "prereqs": [
+                    "MATH 150B"
+                ],
+                "link": "http://curriculum.ptg.csun.edu/classes/math-262",
+                "number": "262",
+                "details": ""
+            }
+        ]
+    },
+    {
+        "semester": "Spring-2019",
+        "classes": [
+            {
+                "dept": "COMP",
+                "prereqs": [
+                    "COMP 256",
+                    "COMP 256L"
+                ],
+                "link": "http://curriculum.ptg.csun.edu/classes/comp-310",
+                "number": "310",
+                "details": ""
+            },
+            {
+                "dept": "COMP",
+                "prereqs": [
+                    "COMP 282"
+                ],
+                "link": "http://curriculum.ptg.csun.edu/classes/comp-380",
+                "number": "380/",
+                "details": ""
+            },
+            {
+                "dept": "COMP",
+                "prereqs": [
+                    "COMP 282"
+                ],
+                "link": "http://curriculum.ptg.csun.edu/classes/comp-380L",
+                "number": "380/L",
+                "details": ""
+            },
+            {
+                "dept": "GE",
+                "prereqs": [],
+                "link": "",
+                "number": "Arts and Humanities",
+                "details": ""
+            },
+            {
+                "dept": "GE",
+                "prereqs": [],
+                "link": "",
+                "number": "Comparative Cultures",
+                "details": ""
+            }
+        ]
+    },
+    {
+        "semester": "Fall-2019",
+        "classes": [
+            {
+                "dept": "MATH",
+                "prereqs": [
+                    "MATH 150B"
+                ],
+                "link": "http://curriculum.ptg.csun.edu/classes/math-340",
+                "number": "340",
+                "details": ""
+            },
+            {
+                "dept": "GE",
+                "prereqs": [],
+                "link": "",
+                "number": "Natural Science with lab",
+                "details": ""
+            },
+            {
+                "dept": "GE",
+                "prereqs": [],
+                "link": "",
+                "number": "Social Sciences",
+                "details": ""
+            }
+        ]
+    },
+    {
+        "semester": "Spring-2020",
+        "classes": [
+            {
+                "dept": "COMP",
+                "prereqs": [
+                    "COMP 380",
+                    "COMP 380L"
+                ],
+                "link": "http://curriculum.ptg.csun.edu/classes/comp-490",
+                "number": "490/",
+                "details": ""
+            },
+            {
+                "dept": "COMP",
+                "prereqs": [
+                    "COMP 380",
+                    "COMP 380L"
+                ],
+                "link": "http://curriculum.ptg.csun.edu/classes/comp-490L",
+                "number": "490/L",
+                "details": ""
+            },
+            {
+                "dept": "MATH",
+                "prereqs": [
+                    "MATH 150B",
+                    "MATH 262"
+                ],
+                "link": "http://curriculum.ptg.csun.edu/classes/math-482",
+                "number": "482",
+                "details": ""
+            },
+            {
+                "dept": "GE",
+                "prereqs": [],
+                "link": "",
+                "number": "Upper Division Social Science",
+                "details": ""
+            }
+        ]
+    },
+    {
+        "semester": "Fall-2020",
+        "classes": [
+            {
+                "dept": "COMP",
+                "prereqs": [
+                    "COMP 490",
+                    "COMP 490L"
+                ],
+                "link": "http://curriculum.ptg.csun.edu/classes/comp-49",
+                "number": "491",
+                "details": ""
+            },
+            {
+                "dept": "COMP",
+                "prereqs": [
+                    "COMP 490",
+                    "COMP 490L"
+                ],
+                "link": "http://curriculum.ptg.csun.edu/classes/comp-49L",
+                "number": "491L",
+                "details": ""
+            },
+            {
+                "dept": "GE",
+                "prereqs": [],
+                "link": "",
+                "number": "Upper Division Arts and Humanities",
+                "details": ""
+            },
+            {
+                "dept": "GE",
+                "prereqs": [],
+                "link": "",
+                "number": "Upper Division Comparative Cultures ",
+                "details": ""
+            }
+        ]
+    }
+]
