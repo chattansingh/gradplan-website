@@ -40,10 +40,10 @@
   <h1>{{request.user.username}} Filter</h1>
     <div class="container">
       <div class="row">
-          <h3>Check off boxes for classes you have taken for {{ major }} or times you are not available.</h3>
+          <h3>Check off boxes for classes you have taken for {{ major }}.</h3>
         <form action="{% url 'modify_grad_plan' %}" method="post">
+            {% csrf_token %}
             {{ class_form.as_p }}
-            {{ time_form.as_p }}
 {#            {{ result }}#}
             <input type="submit" value="Save" class="btn-save">
         </form>

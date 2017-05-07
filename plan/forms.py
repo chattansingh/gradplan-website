@@ -1,55 +1,17 @@
 from django import forms
-from accounts.models import Profile
-from plan.gradplan import getroadmap
+from plan.utilities import get_major_list
 
+import json
 
 class ChooseMajorForm(forms.Form):
 
-    #ToDo: Turns out I didnt break it, just need to change these with the gradplan function get_major_url
-
-    # art = 'http://catalog.csun.edu/academics/art/programs/ba-art/'
-    # accounting = 'http://catalog.csun.edu/academics/acctis/programs/bs-accountancy/'
-    # african_studies ='http://catalog.csun.edu/academics/afric/programs/minor-african-studies/'
-    # anthropology = 'http://catalog.csun.edu/academics/anth/programs/ba-anthropology/'
-    # biology = 'http://catalog.csun.edu/academics/biol/programs/ba-biology/'
-    # business_law = 'http://catalog.csun.edu/academics/blaw/programs/bs-business-administration-i/business-law/'
-    # california_studies = 'http://catalog.csun.edu/academics/calif/programs/minor-california-studies/'
-    # marketing ='http://catalog.csun.edu/academics/mkt/programs/bs-marketing/'
-    # nursing = 'http://catalog.csun.edu/academics/nurs/programs/bsn-nursing-ii/accelerated/'
-
-    MAJORS = (
-        ('Computer Science', 'Computer Science'),
-        ('Electrical Engineering', 'Electrical Engineering'),
-        ('Math (General)', 'Math (General)'),
-        # (art, 'Art'),
-        # (accounting, 'Accounting'),
-        # (african_studies, 'African Studies'),
-        # (anthropology, 'Anthropology'),
-        # (biology, 'Biology'),
-        # (business_law, 'Business Law'),
-        # (california_studies, 'California Studies'),
-        # (marketing, 'Marketing'),
-        # (nursing, 'Nursing'),
-    )
+    MAJORS = get_major_list()
     choose_major = forms.ChoiceField(choices=MAJORS, required=False)
 
 
 class ChooseJobSalaries(forms.Form):
 
-    MAJORS = (
-        (1, 'Computer Science'),
-        (2, 'Electrical Engineering'),
-        (3, 'Math (General)'),
-        # (art, 'Art'),
-        # (accounting, 'Accounting'),
-        # (african_studies, 'African Studies'),
-        # (anthropology, 'Anthropology'),
-        # (biology, 'Biology'),
-        # (business_law, 'Business Law'),
-        # (california_studies, 'California Studies'),
-        # (marketing, 'Marketing'),
-        # (nursing, 'Nursing'),
-    )
+    MAJORS = get_major_list()
     choose_major = forms.ChoiceField(choices=MAJORS, required=False)
 
 
@@ -59,20 +21,32 @@ class ClassFilter(forms.Form):
     # it was breaking the database
     def __init__(self, *args, **kwargs):
         self.grad_plan = kwargs.pop('grad_plan', None)
+        self.classes_taken = kwargs.pop('classes_taken', None)
         super(ClassFilter, self).__init__(*args, **kwargs)
         if self.grad_plan:
-            url = self.grad_plan
-            empty_filter = {'days':[], 'times': [], 'taken': []}
-            graduation_plan = getroadmap(url, empty_filter)
+            grad_plan = json.loads(self.grad_plan)
+            classes_taken = self.classes_taken
             CLASS_LIST = []
 
-            for sem in graduation_plan:
+            for sem in grad_plan:
                 for c in sem['classes']:
-                    tup = (c['name'], c['name'])
-                    CLASS_LIST.append(tup)
+                    if 'details' in c and not c['details'] == '' and len(c['details']) > 1:
+                        # ha to have the details key, not be empty and the details list must have something in it
+                        tup_val = str(c['dept'] + c['number'] + ' ' + c['details'][0]['units'])
+                    else:
+                        tup_val = str(c['dept'] + c['number'] + ' 3')
+                    tup_display = str(c['dept'] + c['number'])
+                    tup = (tup_val, tup_display)
+                    # if the current class has not already been filtered add it to the form
+                    if classes_taken:
+                        if not tup_val in classes_taken:
+                            CLASS_LIST.append(tup)
+                    else:
+                        # if the classes taken is null, just append everything
+                        # this is a new user or someone who has not taken any classes
+                        CLASS_LIST.append(tup)
             self.fields['class_list'] = \
                 forms.MultipleChoiceField(choices=CLASS_LIST, widget=forms.CheckboxSelectMultiple, required=False)
-
     class_list = forms.MultipleChoiceField()
 
 
@@ -99,3 +73,56 @@ class TimeFilter(forms.Form):
     thursday = forms.MultipleChoiceField(choices=TIMES_DAYS, widget=forms.CheckboxSelectMultiple, required=False)
     friday = forms.MultipleChoiceField(choices=TIMES_DAYS, widget=forms.CheckboxSelectMultiple, required=False)
     saturday = forms.MultipleChoiceField(choices=TIMES_DAYS, widget=forms.CheckboxSelectMultiple, required=False)
+
+# going to create individual forms for each class
+class SemesterClass(forms.Form):
+
+    def __init__(self, *args, **kwargs):
+        self.sem_class = kwargs.pop('sem_class', None)
+        super(SemesterClass, self).__init__(*args, **kwargs)
+        if self.sem_class:
+            counter = 0
+
+            classes= []
+            for sem in self.sem_class:
+                counter+= 1
+                class_name = str(sem['dept']) + " " +  str(sem['number'])
+                if sem['details'] != '':
+                    for details in sem['details']:
+                        tup_val = details['class_number']
+                        for meetings in details['meetings']:
+                            tup_val += ' ' + meetings['location'] + ' ' + meetings['days'] + ' ' + meetings['start_time']+ ' ' + meetings['end_time']
+                        tup_display = tup_val
+                        tup_val = class_name + ' ' + tup_val
+                        tup = (tup_val, tup_display)
+                        classes.append(tup)
+                else:
+                    tup_val = tup_display = class_name
+                    tup = (tup_val, tup_display)
+                    classes.append(tup)
+
+                self.fields[class_name] = forms.ChoiceField(choices=classes, widget=forms.RadioSelect, required=False)
+                classes = []
+
+
+
+
+
+class SetUpSemesterClasses(forms.Form):
+
+    NUMBER_CLASSES = [
+        (1,'One Class'),
+        (2,'Two Classes'),
+        (3, 'Three Classes'),
+        (4, 'Four Classes'),
+        (5, 'Five Classes'),
+        (6, 'Six Classes')
+
+    ]
+
+    choose_number_of_classes = forms.ChoiceField(choices=NUMBER_CLASSES, required=True)
+
+
+class ChooseMultipleMajors(forms.Form):
+    MAJORS = get_major_list()
+    choose_multiple_majors = forms.MultipleChoiceField(choices=MAJORS, widget=forms.CheckboxSelectMultiple, required=True)

@@ -1,0 +1,180 @@
+{#first semester with details#}
+{% for sem in detail_sem %}
+    <div>
+        <h3>{{ sem.dept }} {{ sem.number }}</h3>
+        <div id="table-container">
+            <table class="classes" id="{{ sem.dept }} {{ sem.number }}">
+                <tbody>
+                <tr>
+                    <th>Class Number</th>
+                    <th>Location</th>
+                    <th>Day</th>
+                    <th>Time</th>
+                </tr>
+                {% for class_details in sem.details %}
+                    <tr>
+                        <td>{{ class_details.class_number }}</td>
+                        {% for meetings in class_details.meetings %}
+                            <td>{{ meetings.location }}</td>
+                            <td>{{ meetings.days }}</td>
+                            <td>{{ meetings.start_time }}-{{ meetings.end_time }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% for instructor in class_details.instructors %}
+                        <tr>Instructors: {{ instructor.instructor }}</tr>
+                    {% endfor %}
+                    <tr>Class Title: {{ class_details.title }}</tr>
+                    <tr>Class Description: {{ class_details.description }}</tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endfor %}
+{#second semester without details#}
+
+{% for sem in remaining_sem %}
+    {#sem is a list of the classes#}
+    <h2>Separating Semesters: Semester {{ forloop.counter }}</h2>
+    {% for class in sem %}
+        <h3>{{ class.dept }} {{ class.number }}</h3>
+    {% endfor %}
+{% endfor %}
+
+
+
+{% for sem in road_map %}
+    <div class="semester{{ forloop.counter }}" id="{{ sem.semester }}">
+        <h2>{{ sem.semester }}</h2>
+        <div id="class-table">
+            {% for sem_classes in sem.classes %}
+                {#                        ask about putting the title here in the outer json dict by dept and number and details#}
+                <h3>{{ sem_classes.dept }} {{ sem_classes.number }}</h3>
+                <table class="classes" id="{{ sem_classes.dept }} {{ sem_classes.number }}">
+                    <tbody>
+                    <tr>
+                        <th>Class Number</th>
+                        <th>Location</th>
+                        <th>Day</th>
+                        <th>Time</th>
+                    </tr>
+                    {% for class in sem_classes.details.sections %}
+                        <tr>
+                            <td>{{ class.catalog_number }}</td>
+                            {% for meetings in class.meetings %}
+                                <td>{{ meetings.location }}</td>
+                                <td>{{ meetings.days }}</td>
+                                <td>{{ meetings.start_time }} - {{ meetings.end_time }}</td>
+                            {% endfor %}
+                            {#                                    This is what should hide until js lets you see it#}
+                            <table class="hidden-class-extras">
+                                <tbody>
+                                <tr>
+                                    <th>Class Information</th>
+                                </tr>
+                                <tr>
+                                    <th>Class Title: {{ class.title }}</th>
+                                </tr>
+                                <tr>
+                                    <th>Professors Teaching</th>
+                                </tr>
+                                {% for prof in class.instructors %}
+                                    <tr>{{ prof.first_name }} {{ prof.last_name }}, Email: {{ prof.instructor }}</tr>
+                                {% endfor %}
+                                <tr>
+                                    <th>Class Description</th>
+                                </tr>
+                                <tr>
+                                    <td>{{ class.description }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+            {% endfor %}
+        </div>
+
+    </div>
+
+{% endfor %}
+
+
+
+{#<div class="row" id="Year1">#}
+{#      <div id="section1" >#}
+{#      <h2>Spring 2017</h2>#}
+{#		{% for c in year1.1.classes %}#}
+{#        <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>#}
+{#        {% endfor %}#}
+{#      </div>#}
+{#	  </div>#}
+{#	  <div class="col-md-6">#}
+{#      <div id="section2">#}
+{#        <h2>Fall 2017</h2>#}
+{#        {% for c in year1.0.classes %}#}
+{#        <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>#}
+{#        {% endfor %}#}
+{#      </div>#}
+{#      </div>#}
+{#       </div>#}
+{#       <div class="row" id="Year2">#}
+{#       <div class="col-md-6">#}
+{#      <div id="section3">#}
+{#        <h2>Spring 2018</h2>#}
+{#        {% for c in year2.1.classes %}#}
+{#        <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>#}
+{#        {% endfor %}#}
+{#      </div>#}
+{#	  </div>#}
+{#	  <div class="col-md-6">#}
+{#      <div id="section4">#}
+{#        <h2>Fall 2018</h2>#}
+{#        {% for c in year2.0.classes %}#}
+{#        <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>#}
+{#        {% endfor %}#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#  <div class="row"  id="Year3">#}
+{#       <div class="col-md-6">#}
+{#      <div id="section3">#}
+{#        <h2>Spring 2019</h2>#}
+{#        {% for c in year3.1.classes %}#}
+{#        <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>#}
+{#        {% endfor %}#}
+{#      </div>#}
+{#	  </div>#}
+{#	  <div class="col-md-6">#}
+{#      <div id="section4">#}
+{#        <h2>Fall 2019</h2>#}
+{#        {% for c in year3.0.classes %}#}
+{#        <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>#}
+{#        {% endfor %}#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#  <div class="row" id="Year4">#}
+{#       <div class="col-md-6">#}
+{#      <div id="section3">#}
+{#        <h2>Spring 2020</h2>#}
+{#        {% for c in year4.1.classes %}#}
+{#        <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>#}
+{#        {% endfor %}#}
+{#      </div>#}
+{#	  </div>#}
+{#	  <div class="col-md-6">#}
+{#      <div id="section4">#}
+{#        <h2>Fall 2020</h2>#}
+{#        {% for c in year4.0.classes %}#}
+{#        <div id="class{{ forloop.counter }}"><h2>{{ c.name }}</h2></div>#}
+{#        {% endfor %}#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#</div>#}

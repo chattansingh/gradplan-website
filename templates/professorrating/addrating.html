@@ -6,8 +6,9 @@
 </head>
 <body>
 <h1>{{ professor.last_name }}, {{ professor.first_name }} {{ class_name }}</h1>
+<h3><a href="{{ professor.rmp_url }}">Check out more details on Rate My Professor</a></h3>
 {#We can beautify this or even make it more accurate with float if we need to! It should show up as stars#}
-<h2>Average Rating (out of 5): {{ professor.average_rating }}</h2>
+<h2>Average Rating (out of 6): {{ professor.average_rating }}</h2>
 {% if has_ratings %}
     <h3>Current ratings:</h3>
     {% for rating in class_ratings %}
