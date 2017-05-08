@@ -488,11 +488,8 @@ def format_gradplan(road_map):
 
     return {'year1':year1, 'year2':year2,'year3':year3, 'year4':year4}
 
-def filter_gradplan(class_form, time_form):
-    filtered_dictionary = {'days': [], 'times': [], 'taken': []}
-
-    class_fliter = class_form.cleaned_data['class_list']
-    filtered_dictionary['taken'] = [str(c) for c in class_fliter]
+def filtered_time(time_form):
+    filtered_dictionary = {'days': [], 'times': []}
 
     # Time and Day filter
     monday = time_form.cleaned_data['monday']

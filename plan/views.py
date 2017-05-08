@@ -3,12 +3,12 @@ from django.shortcuts import render, redirect, get_list_or_404, get_object_or_40
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
 
-from gradplan import getroadmap, get_major_url, format_gradplan, filter_gradplan
+from gradplan import getroadmap, get_major_url, format_gradplan, filtered_time
 from accounts.models import Profile
 from forms import ChooseMajorForm, ChooseJobSalaries, ClassFilter, TimeFilter, SemesterClass, ChooseMultipleMajors
 from plan.models import MajorRoadMaps
 from plan.utilities import get_semester, get_common_classes
-from plan.gradplan import changeplan
+from plan.gradplan import changeplan, filtertimes
 import json
 
 
@@ -134,8 +134,15 @@ def modify_gradplan(request):
     major = current_user.current_major
     grad_plan = current_user.current_graduation_plan
 
+
     if request.method == 'POST':
 
+
+        try:
+            grad_plan = json.loads(grad_plan)
+        except TypeError:
+            pass
+        filter_input = {'major': major, 'plan': grad_plan}
         class_form = ClassFilter(request.POST, grad_plan=grad_plan)
         if class_form.is_valid():
             c = class_form.cleaned_data['class_list']
@@ -168,9 +175,9 @@ def modify_gradplan(request):
             # context = {'road_map': road_map, 'major': major}
             # context.update(formatted_gradplan)
             c = [ cl[:-2] for cl in c]
+            c += [cl[:-2] for cl in current_user.classes_taken]
 
-            plan = changeplan({'plan':json.dumps(grad_plan)}, c)
-            current_user.current_graduation_plan = plan
+            current_user.current_graduation_plan = changeplan(filter_input, c)
             current_user.save()
             return redirect('/roadmap/')
         else:
@@ -180,7 +187,11 @@ def modify_gradplan(request):
         # not a post
         template = 'plan/modify_plan.html'
 
-        class_form = ClassFilter(grad_plan=current_user.current_graduation_plan,
+        try:
+            grad_plan = json.loads(grad_plan)
+        except TypeError:
+            pass
+        class_form = ClassFilter(grad_plan=grad_plan,
                                  classes_taken=current_user.classes_taken)
 
         time_form = TimeFilter()
@@ -214,11 +225,16 @@ def choose_semester(request):
             choose_classes = True
             template = 'plan/choose_semester.html'
             current_graduation_plan = current_user.current_graduation_plan
-            semester = get_semester(current_graduation_plan)['detail_sem']
-            select_classes_form = SemesterClass(sem_class=semester)
-            return render(request, template,
-                          {'select_classes_form': select_classes_form,
-                           'filter_time': filter_time, 'select_classes': choose_classes})
+            filter_time_form = TimeFilter(request.POST)
+            if filter_time_form.is_valid():
+                first_semester = current_graduation_plan[0]['classes']
+                times = filtered_time(filter_time_form)
+                semester = filtertimes(first_semester, times)
+
+                select_classes_form = SemesterClass(sem_class=semester)
+                return render(request, template,
+                              {'select_classes_form': select_classes_form,
+                               'filter_time': filter_time, 'select_classes': choose_classes})
         else:
             classes_chosen = SemesterClass(request.POST)
 

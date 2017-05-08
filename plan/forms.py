@@ -24,8 +24,12 @@ class ClassFilter(forms.Form):
         self.classes_taken = kwargs.pop('classes_taken', None)
         super(ClassFilter, self).__init__(*args, **kwargs)
         if self.grad_plan:
-            grad_plan = self.grad_plan
+
             classes_taken = self.classes_taken
+            try:
+                grad_plan = json.loads(self.grad_plan)
+            except TypeError:
+                grad_plan = self.grad_plan
             CLASS_LIST = []
 
             for sem in grad_plan:
