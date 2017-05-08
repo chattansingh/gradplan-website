@@ -186,6 +186,20 @@ def getbaseplans():
       plans.append({'major': m['major'], 'plan': p})
   return plans
 
+def filtertimes(sem, busy):
+  s = []
+  for i in range(len(sem)):
+    cl = sem[i]
+    if cl['dept'] != 'GE' or cl['dept'] != 'Title' and cl['link'] != u'':
+      classes = getclasses(cl['link'])
+      classes = suggested(classes, busy)
+      clcopy = cl
+      clcopy['details'] = classes
+      s.append(clcopy)
+    else:
+      s.append(cl)
+  return s
+
 def timeconvert(t):
   hour = t[:2]
   minutes = t[2:4]
@@ -231,7 +245,7 @@ def inrange(cl, s):
   if s[0] == []:
     return False
   c1 = cl[0]
-  c1 = cl[1]
+  #c1 = cl[1]
   c2 = '    '
   if len(cl[0]) > 2:
     c2 = cl[0]
@@ -239,14 +253,26 @@ def inrange(cl, s):
   s1 = s[0][0][:2]
   s2 = s[0][0][2:]
 
-  if c1 == 'T':
+  if 'Mo' not in c1 and 'Tu' not in c1 and 'Th' not in c1 and 'We' not in c1 and 'S' not in c1 and 'F' not in c1:
+    c1 = c1.replace('M', 'Mo')
+    c1 = c1.replace('T', 'Tu')
+    c1 = c1.replace('R', 'Th')
+    c1 = c1.replace('W', 'We')
+    c2 = c1[2:]
+    c1 = c1[:2]
+  else:
+    if 'S' not in c1 and 'F' not in c1:
+      c2 = c1[2:]
+      c1 = c1[:2]
+  """if c1 == 'T':
     c1 = 'Tu'
   if c1 == 'M':
     c1 = 'Mo'
   if c2 == 'R':
     c2 = 'Th'
   if c2 == 'W':
-    c2 = 'We'
+    c2 = 'We'"""
+
 
   if c1 in s[0]:
     day = s[0].index(c1)
@@ -266,6 +292,8 @@ def compatible(c, s):
     return True
   if inrange([c['days'], c['start_time'], c['end_time']], [s['days'], s['times']]):
     return False
+  else:
+    return True
 
 def filter(cl):
   meetings = {'days': [], 'location': []}
