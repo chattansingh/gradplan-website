@@ -39,7 +39,10 @@ def update_detail_sem(detail_sem):
 def get_semester(road_map):
 
     # list of classes
-    road_map = json.loads(road_map)
+    try:
+        road_map = json.loads(road_map)
+    except TypeError or ValueError:
+        pass
     detail_sem = road_map[0]
     remaining_sem = road_map[1:]
     remaining_sem = [sem['classes'] for sem in remaining_sem]
@@ -52,9 +55,16 @@ def get_common_classes(majors_chosen):
         majors = []
 
         for major in majors_chosen:
-            semester = json.loads(major)[0]
+            try:
+                semester = json.loads(major)[0]
+            except TypeError or ValueError:
+                semester = major[0]
             majors.append([c['dept'] + c['number'] for c in semester['classes']])
 
         result = list(set.intersection(*map(set, majors)))
-        detail_sem =  {'classes' : [item  for item in json.loads(majors_chosen[0])[0]['classes'] if item['dept']+item['number'] in result]}
+        try:
+            detail_sem =  {'classes' : [item  for item in json.loads(majors_chosen[0])[0]['classes'] if item['dept']+item['number'] in result]}
+        except TypeError or ValueError:
+            detail_sem = {'classes': [item for item in majors_chosen[0][0]['classes'] if
+                                      item['dept'] + item['number'] in result]}
         return update_detail_sem(detail_sem)

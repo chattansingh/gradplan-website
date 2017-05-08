@@ -24,7 +24,7 @@ class ClassFilter(forms.Form):
         self.classes_taken = kwargs.pop('classes_taken', None)
         super(ClassFilter, self).__init__(*args, **kwargs)
         if self.grad_plan:
-            grad_plan = json.loads(self.grad_plan)
+            grad_plan = self.grad_plan
             classes_taken = self.classes_taken
             CLASS_LIST = []
 
@@ -32,9 +32,9 @@ class ClassFilter(forms.Form):
                 for c in sem['classes']:
                     if 'details' in c and not c['details'] == '' and len(c['details']) > 1:
                         # ha to have the details key, not be empty and the details list must have something in it
-                        tup_val = str(c['dept'] + c['number'] + ' ' + c['details'][0]['units'])
+                        tup_val = str(c['dept'] + ' ' + c['number'] + ' ' + c['details'][0]['units'])
                     else:
-                        tup_val = str(c['dept'] + c['number'] + ' 3')
+                        tup_val = str(c['dept'] + ' ' + c['number'] + ' 3')
                     tup_display = str(c['dept'] + c['number'])
                     tup = (tup_val, tup_display)
                     # if the current class has not already been filtered add it to the form

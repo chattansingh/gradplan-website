@@ -306,7 +306,10 @@ def meetsPrereqs(taken, cl):
 # based off already taken classes and schedule
 def changeplan(plan, taken):
   now = datetime.datetime.now()
-  p = json.loads(plan['plan'])
+  try:
+    p = json.loads(plan['plan'])
+  except ValueError:
+    pass
   plan['plan'] = p
   for i in range(len(p)):
     for j in p[i]['classes']:

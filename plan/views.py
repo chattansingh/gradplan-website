@@ -5,9 +5,10 @@ from django.views.decorators.csrf import csrf_exempt
 
 from gradplan import getroadmap, get_major_url, format_gradplan, filter_gradplan
 from accounts.models import Profile
-from forms import ChooseMajorForm, ChooseJobSalaries, ClassFilter, TimeFilter, SemesterClass, SetUpSemesterClasses, ChooseMultipleMajors
+from forms import ChooseMajorForm, ChooseJobSalaries, ClassFilter, TimeFilter, SemesterClass, ChooseMultipleMajors
 from plan.models import MajorRoadMaps
 from plan.utilities import get_semester, get_common_classes
+from plan.gradplan import changeplan
 import json
 
 
@@ -19,9 +20,13 @@ def grad_road_map(request):
         road_map = current_user.current_graduation_plan
         major = current_user.current_major
         progress = current_user.progress
+        if progress < 0:
+            progress = 0
+            current_user.progress = 0
+            current_user.save()
         has_major = major != ''
 
-        if grad_road_map == None:
+        if road_map == None:
             return redirect('/choosemajor')
 
     else:
@@ -63,8 +68,9 @@ def choose_a_major(request):
                 current_user = get_object_or_404(Profile, user=user)
 
                 current_user.base_graduation_plan = road_map
-                current_user.current_graduation_plan = road_map
+                current_user.current_graduation_plan = json.loads(road_map)
                 progress = current_user.progress
+                current_user.current_major = major_choice
                 major = major_choice
                 current_user.save()
             else:
@@ -161,11 +167,12 @@ def modify_gradplan(request):
 
             # context = {'road_map': road_map, 'major': major}
             # context.update(formatted_gradplan)
+            c = [ cl[:-2] for cl in c]
 
-
-            context = {}
-            template = 'plan/Plans.html'
-            return render(request, template, context)
+            plan = changeplan({'plan':json.dumps(grad_plan)}, c)
+            current_user.current_graduation_plan = plan
+            current_user.save()
+            return redirect('/roadmap/')
         else:
             template = 'accounts/save_error.html'
             return render(request, template, {})

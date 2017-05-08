@@ -14,7 +14,7 @@ class AccountTestCase(LiveServerTestCase):
 
     def test_register(self):
         selenium = self.selenium
-        selenium.get('http://127.0.0.1:3000/accounts/register/')
+        selenium.get('http://127.0.0.1:8000/accounts/register/')
         username= selenium.find_element_by_id('id_username')
         email = selenium.find_element_by_id('id_email')
         password = selenium.find_element_by_id('id_password1')

@@ -9,6 +9,7 @@ from models import Profile
 from plan.suggest import suggest_plan
 from plan.gradplan import getroadmap, format_gradplan
 from plan.models import MajorRoadMaps
+from plan.utilities import *
 import json
 
 #parse choice into url
@@ -76,12 +77,6 @@ def edit_classes(request):
             current_user.progress -= units_to_remove
             current_user.save()
 
-            template = 'accounts/profile_form.html'
-            form = InterestsForm(instance=current_user)
-            progress = current_user.progress
-            classes_taken = current_user.classes_taken
-            # return render(request, template,
-            #               {'form': form, 'progress': progress, 'classes_taken': classes_taken})
             return redirect('/profile/')
         else:
             return redirect('/profile/')
@@ -133,12 +128,19 @@ def suggest_major(request):
                 maj_obj = get_object_or_404(MajorRoadMaps, major=major)
                 road_map = maj_obj.road_map
 
+                has_major = True
+                progress = 0
+                major = maj_obj.major
+                # Separated the formatting code to gradplan
+                # It returns a dictionary which you can just add to the current context
+                context = {'major': major, 'has_major': has_major, 'progress': progress}
+                # update it with split up semesters to more easily display it
+                # keys are 'detail_sem' and 'remaining_sem'
+                print 'processing web page....'
+                context.update(get_semester(road_map))
                 # need to split up the road map to display it according to jesus styling
                 # user is not logged in -- ToDo: need to get the name of the major from the roadmap, will be easy when new system implemented
-                major = maj_obj.major
-                has_major = True
-                context = {'road_map': road_map,
-                           'major': major, 'has_major': has_major}
+
                 return render(request, template, context)
             else:
                 template = 'accounts/save_error.html'
