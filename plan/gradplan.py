@@ -360,7 +360,8 @@ def changeplan(plan, taken):
               else:
                 p[i]['classes'].remove(p[i]['classes'][ind])
                 s -= 1
-  plan['plan'] = json.dumps(p)
+  #plan['plan'] = json.dumps(p)
+  return p
 
 """
 the following function expects a url to the catalog majro page and
