@@ -34,9 +34,9 @@ class ClassFilter(forms.Form):
 
             for sem in grad_plan:
                 for c in sem['classes']:
-                    if 'details' in c and not c['details'] == '' and len(c['details']) > 1:
+                    if 'details' in c and not c['details'] == '' and len(c['details']['details']) > 1:
                         # ha to have the details key, not be empty and the details list must have something in it
-                        tup_val = str(c['dept'] + ' ' + c['number'] + ' ' + c['details'][0]['units'])
+                        tup_val = str(c['dept'] + ' ' + c['number'] + ' ' + c['details']['details'][0]['units'])
                     else:
                         tup_val = str(c['dept'] + ' ' + c['number'] + ' 3')
                     tup_display = str(c['dept'] + c['number'])
@@ -92,7 +92,7 @@ class SemesterClass(forms.Form):
                 counter+= 1
                 class_name = str(sem['dept']) + " " +  str(sem['number'])
                 if sem['details'] != '':
-                    for details in sem['details']:
+                    for details in sem['details']['details']:
                         tup_val = details['class_number']
                         for meetings in details['meetings']:
                             tup_val += ' ' + meetings['location'] + ' ' + meetings['days'] + ' ' + meetings['start_time']+ ' ' + meetings['end_time']

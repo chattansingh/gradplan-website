@@ -92,6 +92,11 @@ def update_database(**kwars):
                 major_road_map.road_map = road_map
             major_road_map.save()
 
+def clear_major_database():
+    query = MajorRoadMaps.objects.filter()
+    for major in query:
+        major.delete()
+
 def output_status(major, created):
     if created:
         print "Created: " + major + "grad plan."

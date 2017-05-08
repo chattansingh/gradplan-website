@@ -25,15 +25,16 @@ def get_major_list():
 
 def update_detail_sem(detail_sem):
     for sem in detail_sem['classes']:
-        for detail in sem['details']:
-            for prof in detail['instructors']:
-                prof_email = prof['instructor']
-                first_last = get_prof_email_name(prof_email)
-                if len(first_last) > 1:
-                    first_last = {'first_name': first_last[0], 'last_name': first_last[1]}
-                else:
-                    first_last = {'first_name': first_last[0], 'last_name': ''}
-                prof.update(first_last)
+        if sem['details'] != '':
+            for detail in sem['details']['details']:
+                for prof in detail['instructors']:
+                    prof_email = prof['instructor']
+                    first_last = get_prof_email_name(prof_email)
+                    if len(first_last) > 1:
+                        first_last = {'first_name': first_last[0], 'last_name': first_last[1]}
+                    else:
+                        first_last = {'first_name': first_last[0], 'last_name': ''}
+                    prof.update(first_last)
     return detail_sem
 
 def get_semester(road_map):

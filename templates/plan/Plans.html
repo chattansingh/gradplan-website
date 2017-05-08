@@ -133,7 +133,7 @@ $(window).scroll(function() {
                             <th>Time</th>
                         </tr>
                         <tr></tr>
-                        {% for class_details in sem.details %}
+                        {% for class_details in sem.details.details %}
                             <tr>
                                 <td>{{ class_details.class_number }}</td>
                             {% for meetings in class_details.meetings %}

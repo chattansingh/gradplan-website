@@ -67,8 +67,12 @@ def choose_a_major(request):
             if user.is_authenticated():
                 current_user = get_object_or_404(Profile, user=user)
 
+                try:
+                    road_map = json.loads(road_map)
+                except TypeError:
+                    pass
                 current_user.base_graduation_plan = road_map
-                current_user.current_graduation_plan = json.loads(road_map)
+                current_user.current_graduation_plan = road_map
                 progress = current_user.progress
                 current_user.current_major = major_choice
                 major = major_choice
