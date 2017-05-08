@@ -227,7 +227,10 @@ def choose_semester(request):
             current_graduation_plan = current_user.current_graduation_plan
             filter_time_form = TimeFilter(request.POST)
             if filter_time_form.is_valid():
-                first_semester = current_graduation_plan[0]['classes']
+                try:
+                    first_semester = json.loads(current_graduation_plan)[0]['classes']
+                except TypeError:
+                    first_semester = current_graduation_plan[0]['classes']
                 times = filtered_time(filter_time_form)
                 semester = filtertimes(first_semester, times)
 
