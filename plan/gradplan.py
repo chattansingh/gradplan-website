@@ -118,11 +118,11 @@ def genplan(url):
 
           if len(link) > 1:
             #add lecture and lab to semester instead of just lecture
-            cl = {'dept': dept, 'number': ''.join(num)[:len(num)-2], 'prereqs': prereqs, 'link': link[0], 'details': ''}
+            cl = {'dept': dept, 'number': ''.join(num)[:len(num)-3], 'prereqs': prereqs, 'link': link[0], 'details': ''}
             if first:
               cl['details'] = getclasses(link[0])
 	    sem['classes'].append(cl)
-	    cl = {'dept': dept, 'number': ''.join(num)[:len(num)-2]+'L', 'prereqs': prereqs, 'link': link[1], 'details': ''}
+	    cl = {'dept': dept, 'number': ''.join(num)[:len(num)-3]+'L', 'prereqs': prereqs, 'link': link[1], 'details': ''}
             if first:
               cl['details'] = getclasses(link[1])
 	    sem['classes'].append(cl)
@@ -244,6 +244,7 @@ def checktime(cl, day):
 def inrange(cl, s):
   if s[0] == []:
     return False
+  print cl
   c1 = cl[0]
   #c1 = cl[1]
   c2 = '    '
@@ -288,7 +289,8 @@ def inrange(cl, s):
 #this function is supposed to determine compatability of a class
 #i.e. has the user taken this class and is it in their schedule range?
 def compatible(c, s):
-  if s == {}:
+  print c
+  if s == {} or c['start_time'] == '':
     return True
   if inrange([c['days'], c['start_time'], c['end_time']], [s['days'], s['times']]):
     return False
@@ -307,7 +309,7 @@ def filter(cl):
   return result
 
 def suggested(data, schedule):
-  s = {'course_id': [], 'start_time': [], 'end_time': [], 'days': [], 'location': []}
+  s = {'course_id': [], 'start_time': [], 'end_time': [], 'days': [], 'location': [], 'details': data}
   for c in data:
     temp = filter(c)
     if compatible(temp, schedule):
@@ -334,11 +336,8 @@ def meetsPrereqs(taken, cl):
 # based off already taken classes and schedule
 def changeplan(plan, taken):
   now = datetime.datetime.now()
-  try:
-    p = json.loads(plan['plan'])
-  except ValueError:
-    pass
-  plan['plan'] = p
+  p = plan['plan']
+  #plan['plan'] = p
   for i in range(len(p)):
     for j in p[i]['classes']:
       #check if class has been taken
