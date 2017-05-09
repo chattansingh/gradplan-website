@@ -795,8 +795,21 @@ input
     color: #d22030;
 }
 
-div#salary
+
+div#chooseMajors
 {
+    height:200px;
+    background-color: white;
+    padding-top: 20px;
+    padding-bottom:20px;
+}
 
+div#chooseMajors h1
+{
+   color:#d22030;
+}
 
+h3
+{
+    color:black;
 }
