@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 
@@ -24,17 +25,19 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="css/registration.css">
+    <link rel="stylesheet" href= "{% static 'css/base.css' %}">
 
     <!-- Google Font-->
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
 </head>
 <body>
 <div class="container">
-    <div class="jumbotron csunStyle">
+    <div class="jobInformation">
 
-        <h1>Job Information</h1>
-        <p>See what exciting options your degree offers</p>
+        <h1 class="text-center">Job Information</h1>
+        <p class="text-center">See what exciting options your degree offers</p>
+        <h4 class="text-center" ><a href="{% url 'choose_a_major' %}">Choose a Major</a></h4>
+         <h3 class="text-center">Top 5 Paying College Majors 2016</h3>
 
     </div>
 </div>
@@ -43,61 +46,61 @@
         <div class="col-md-offset-4">
             <div class="container">
                 
-                <h4><a href="{% url 'choose_a_major' %}">Choose a Major</a></h4>
+
 
                 {#        Computer Science#}
                 {#        job salaries#}
-                <h3>Top 5 Paying College Majors 2016</h3><br>
-                <a href="http://www.payscale.com/index/US/Degree" onClick="return confirm('Warning, this is an external site. Do you wish to continue?')"><h2>Want to see more? Check out Payscale.com</h2></a><br>
+
+                <a href="http://www.payscale.com/index/US/Degree" onClick="return confirm('Warning, this is an external site. Do you wish to continue?')"><h3>Want to see more? Check out Payscale.com</h3></a><br>
                 <h5>Warning. Payscale.com is an external site.</h5>
                 <h2>1.</h2>
-                <div style="background:white;color:#333;font:normal 11pt Verdana,Arial,sans-serif;text-align:center;border:1px solid #96b9d7;padding:5px;width:300px;">
-                    <p>Median Salary by Years Experience - Degree: Bachelor's Degree Petroleum Engineering (United
-                        States)</p><br><img
+                <div style="background:white;color:#333;font:normal 11pt Verdana,Arial,sans-serif;text-align:center;border:1px solid #96b9d7;padding:5px;width:320px;">
+                    <h4 id="black">Median Salary by Years Experience - Degree: Bachelor's Degree Petroleum Engineering (United
+                        States)</h4><br><img
                         src="http://www.payscale.com/research/US/Degree=Bachelor%2527s_Degree%252c_Petroleum_Engineering/Salary/by_Years_Experience/300s.png"
                         alt="Median Salary by Years Experience" border="0" style="margin-top:10px;"/>
                 </div>
                 <h2>2.</h2>
-                <div style="background:white;color:#333;font:normal 11pt Verdana,Arial,sans-serif;text-align:center;border:1px solid #96b9d7;padding:5px;width:300px;">
-                    <p>Median Salary by Years Experience - Degree: Bachelor's Degree Systems Engineering (United
-                        States)</p><br/><img
+                <div style="background:white;color:#333;font:normal 11pt Verdana,Arial,sans-serif;text-align:center;border:1px solid #96b9d7;padding:5px;width:320px;">
+                    <h4 id="black">Median Salary by Years Experience - Degree: Bachelor's Degree Systems Engineering (United
+                        States)</h4><br/><img
                         src="http://www.payscale.com/research/US/Degree=Bachelor%2527s_Degree%252c_Systems_Engineering/Salary/by_Years_Experience/300s.png"
                         alt="Median Salary by Years Experience" border="0" style="margin-top:10px;"/>
 
                 </div>
                 <h2>3.</h2>
-                <div style="background:white;color:#333;font:normal 11pt Verdana,Arial,sans-serif;text-align:center;border:1px solid #96b9d7;padding:5px;width:300px;">
-                    <p>Median Salary by Years Experience - Degree: Bachelor's Degree, Actuarial Science (United
-                        States)</p><br/><img
+                <div style="background:white;color:#333;font:normal 11pt Verdana,Arial,sans-serif;text-align:center;border:1px solid #96b9d7;padding:5px;width:320px;">
+                    <h4 id="black">Median Salary by Years Experience - Degree: Bachelor's Degree, Actuarial Science (United
+                        States)</h4><br/><img
                         src="http://www.payscale.com/research/US/Degree=Bachelor%27s_Degree%2c_Actuarial_Science/Salary/by_Years_Experience/300s.png"
                         alt="Median Salary by Years Experience" border="0" style="margin-top:10px;"/>
                 </div>
                 <h2>3 (tie).</h2>
-                <div style="background:white;color:#333;font:normal 11pt Verdana,Arial,sans-serif;text-align:center;border:1px solid #96b9d7;padding:5px;width:300px;">
-                    <p>Median Salary by Job - Degree: Bachelor's Degree Chemical Engineering (United States)</p>
+                <div style="background:white;color:#333;font:normal 11pt Verdana,Arial,sans-serif;text-align:center;border:1px solid #96b9d7;padding:5px;width:320px;">
+                    <h4 id="black">Median Salary by Job - Degree: Bachelor's Degree Chemical Engineering (United States)</h4>
                     <br/><img
                         src="http://www.payscale.com/research/US/Degree=Bachelor%2527s_Degree%252c_Chemical_Engineering/Salary/by_Job/300s.png"
                         alt="Median Salary by Job" border="0" style="margin-top:10px;"/>
                 </div>
 
                 <h2>4.</h2>
-                <div style="background:white;color:#333;font:normal 11pt Verdana,Arial,sans-serif;text-align:center;border:1px solid #96b9d7;padding:5px;width:300px;">
-                    <p>Median Salary by Job - Degree: Bachelor's Degree Computer Science (CS) and Engineering (United
+                <div style="background:white;color:#333;font:normal 11pt Verdana,Arial,sans-serif;text-align:center;border:1px solid #96b9d7;padding:5px;width:320px;">
+                    <h4 id="black">Median Salary by Job - Degree: Bachelor's Degree Computer Science (CS) and Engineering (United
                         States)</p><br/><img
                         src="http://www.payscale.com/research/US/Degree=Bachelor%2527s_Degree%252c_Computer_Science_(CS)_%2526_Engineering/Salary/by_Job/300s.png"
                         alt="Median Salary by Job" border="0" style="margin-top:10px;"/>
                 </div>
 
                 <h2>5.</h2>
-                <div style="background:white;color:#333;font:normal 11pt Verdana,Arial,sans-serif;text-align:center;border:1px solid #96b9d7;padding:5px;width:300px;">
-                    <p>Median Salary by Years Experience - Degree: Bachelor's Degree Nuclear Engineering (United
-                        States)</p><br/><img
+                <div style="background:white;color:#333;font:normal 11pt Verdana,Arial,sans-serif;text-align:center;border:1px solid #96b9d7;padding:5px;width:320px;">
+                    <h4 id="black">Median Salary by Years Experience - Degree: Bachelor's Degree Nuclear Engineering (United
+                        States)</h4><br/><img
                         src="http://www.payscale.com/research/US/Degree=Bachelor%2527s_Degree%252c_Nuclear_Engineering/Salary/by_Years_Experience/300s.png"
-                        alt="Median Salary by Years Experience" border="0" style="margin-top:10px;"/>
+                        alt="Median Salary by Years Experience" border="0" style="margin-top:10px;">
                 </div>
 
 
-{#                <div style="background:white;color:#333;font:normal 11pt Verdana,Arial,sans-serif;text-align:center;border:1px solid #96b9d7;padding:5px;width:300px;">#}
+{#                <div style="background:white;color:#333;font:normal 11pt Verdana,Arial,sans-serif;text-align:center;border:1px solid #96b9d7;padding:5px;width:320px;">#}
 {#                    <p style="color:#06C;text-decoration: none;font-weight:bold;">Median Salary by Job - Degree:#}
 {#                        Bachelors Degree Computer Science (CS) (United States)</p><br/><img#}
 {#                        src="http://www.payscale.com/research/US/Degree=Bachelor%2527s_Degree%252c_Computer_Science_(CS)/Salary/by_Job/300s.png"#}
@@ -106,7 +109,7 @@
 {##}
 {##}
                 {#        hourly#}
-{#                <div style="background:white;color:#333;font:normal 11pt Verdana,Arial,sans-serif;text-align:center;border:1px solid #96b9d7;padding:5px;width:300px;">#}
+{#                <div style="background:white;color:#333;font:normal 11pt Verdana,Arial,sans-serif;text-align:center;border:1px solid #96b9d7;padding:5px;width:320px;">#}
 {#                    <p style="color:#06C;text-decoration: none;font-weight:bold;">Median Hourly Rate by Job -#}
 {#                        Degree: Bachelor of Science Computer Science (CS) (United States)</p><br/><a#}
 {#                        href="http://www.payscale.com/research/US/Degree=Bachelor_of_Science_(BS_%252f_BSc)%252c_Computer_Science_(CS)/Hourly_Rate#by_Job"#}
@@ -117,14 +120,14 @@
 {#                </div>#}
 {##}
                 {#electrical engineering#}
-{#                <div style="background:white;color:#333;font:normal 11pt Verdana,Arial,sans-serif;text-align:center;border:1px solid #96b9d7;padding:5px;width:300px;">#}
+{#                <div style="background:white;color:#333;font:normal 11pt Verdana,Arial,sans-serif;text-align:center;border:1px solid #96b9d7;padding:5px;width:320px;">#}
 {#                    <p style="color:#06C;text-decoration: none;font-weight:bold;">Median Salary by Job - Degree:#}
 {#                        Bachelor of Science Electrical Engineering (BSEE) (United States)</p><br/>#}
 {#                    <img src="http://www.payscale.com/research/US/Degree=Bachelor_of_Science%252c_Electrical_Engineering_(BSEE)/Salary/by_Job/300s.png"#}
 {#                         alt="Median Salary by Job" border="0" style="margin-top:10px;"/>#}
 {#                </div>#}
                 {#        hourly#}
-{#                <div style="background:white;color:#333;font:normal 11pt Verdana,Arial,sans-serif;text-align:center;border:1px solid #96b9d7;padding:5px;width:300px;">#}
+{#                <div style="background:white;color:#333;font:normal 11pt Verdana,Arial,sans-serif;text-align:center;border:1px solid #96b9d7;padding:5px;width:320px;">#}
 {#                    <p style="color:#06C;text-decoration: none;font-weight:bold;">Median Hourly Rate by Job -#}
 {#                        Degree:#}
 {#                        Bachelor of Science Electrical Engineering (BSEE) (United States)</p><br/>#}
@@ -135,7 +138,7 @@
 {##}
 {##}
                 {#        math#}
-{#                <div style="background:white;color:#333;font:normal 11pt Verdana,Arial,sans-serif;text-align:center;border:1px solid #96b9d7;padding:5px;width:300px;">#}
+{#                <div style="background:white;color:#333;font:normal 11pt Verdana,Arial,sans-serif;text-align:center;border:1px solid #96b9d7;padding:5px;width:320px;">#}
 {#                    <p style="color:#06C;text-decoration: none;font-weight:bold;">Median Salary by Job - Degree:#}
 {#                        Bachelor of Science (BS) Mathematics (United States)</p><br/>#}
 {#                    <img#}
@@ -143,7 +146,7 @@
 {#                            alt="Median Salary by Job" border="0" style="margin-top:10px;"/>#}
 {#                </div>#}
                 {#        hourly#}
-{#                <div style="background:white;color:#333;font:normal 11pt Verdana,Arial,sans-serif;text-align:center;border:1px solid #96b9d7;padding:5px;width:300px;">#}
+{#                <div style="background:white;color:#333;font:normal 11pt Verdana,Arial,sans-serif;text-align:center;border:1px solid #96b9d7;padding:5px;width:320px;">#}
 {#                    <p style="color:#06C;text-decoration: none;font-weight:bold;">Median Hourly Rate by Years#}
 {#                        Experience - Degree: Bachelor of Science (BS %2f BSc)%2c Mathematics (United States)</p>#}
 {#                    <br/>#}

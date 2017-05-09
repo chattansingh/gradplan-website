@@ -813,3 +813,8 @@ h3
 {
     color:black;
 }
+
+img#gold
+{
+    visibility: hidden;
+}
