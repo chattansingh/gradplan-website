@@ -31,10 +31,17 @@
 
 <script>
 
-<script>
 
 
+ $(document).ready(function() {
 
+            var p={{ progress }};
+            var progress= parseInt(p);
+            $("#pbar").css({'background-color': "#d22030"});
+            $("#pbar").css("width", progress+"%");
+            $("#pbar").attr("aria-valuenow",progress+"%");
+            $("#pbar").html(progress+" units");
+        });
 
 
 
@@ -69,7 +76,13 @@
 	<h1 class="text-center">Classes by Semester</h1>
     <h2 class="text-center"><a href={% url 'modify_grad_plan' %}>Taken some of these already? Click to Remove Them</a></h2>
     <h1>{{ progress }}</h1>
-    <h1>First Semester</h1>
+    <div class="progress">
+  <div  id="pbar" class="progress-bar progress-bar-striped active" role="progressbar"
+  aria-valuenow="40" aria-valuemin="0" aria-valuemax="120" style="width:40%">
+    40%
+  </div>
+</div>
+    <h1 class="text-center">First Semester</h1>
             {% for sem in detail_sem.classes %}
             <div>
 
@@ -124,7 +137,7 @@
             </div>
             </div>
         {% endfor %}
-    <h1>Remaining Semesters</>
+    <h1 class="text-center">Remaining Semesters<h1/>
                 {% for sem in remaining_sem %}
             {#sem is a list of the classes#}
             <h2>Separating Semesters: Semester {{ forloop.counter }}</h2>
