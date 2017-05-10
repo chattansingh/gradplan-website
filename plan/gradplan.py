@@ -216,10 +216,10 @@ def splittime(t):
   return [h, m, setting]
 
 def check(t1, t2):
-  print t1[0] + '==' + t2[0]
+  """print t1[0] + '==' + t2[0]
   print t1[0] == t2[0]
   print t1[2] + '==' + t2[2]
-  print t1[2] == t2[2]
+  print t1[2] == t2[2]"""
   if t1[0] == t2[0] and t1[2] == t2[2]:
     return True
   else:
@@ -231,22 +231,21 @@ def checktime(cl, day):
     start = splittime(cl[1])
     end = splittime(cl[2])
     busy = splittime(t)
-    print cl[1] + '-' + cl[2] + ' ' + t
+    #print cl[1] + '-' + cl[2] + ' ' + t
     if check(start, busy) or check(end, busy):
       result = True
-      print result
-
   return result
 
 def inrange(cl, s):
   if s[0] == []:
     return False
-  c1 = cl[0]
+  c1 = cl[0][0]
   c2 = '    '
-  print cl
+  #print c1
   if len(cl[0]) > 1:
     c2 = cl[0]
     c2 = c2[1]
+  #print c2
   s1 = s[0][0][:2]
   s2 = s[0][0][2:]
 
@@ -300,9 +299,6 @@ def filter(cl):
     meetings = cl['meetings'][0]
     start = timeconvert(meetings[u'start_time'])
     end = timeconvert(meetings['end_time'])
-    print start
-    print end
-    print ''
   result = {'course_id': cl['course_id'], 'start_time': start, 'end_time': end, 'days': meetings['days'], 'location': meetings['location'], 'units': cl['units']}
   return result
 
