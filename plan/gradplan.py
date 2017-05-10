@@ -218,10 +218,10 @@ def splittime(t):
   return [h, m, setting]
 
 def check(t1, t2):
-  print t1[0] + '==' + t2[0]
+  """print t1[0] + '==' + t2[0]
   print t1[0] == t2[0]
   print t1[2] + '==' + t2[2]
-  print t1[2] == t2[2]
+  print t1[2] == t2[2]"""
   if t1[0] == t2[0] and t1[2] == t2[2]:
     return True
   else:
@@ -233,9 +233,7 @@ def checktime(cl, day):
     start = splittime(cl[1])
     end = splittime(cl[2])
     busy = splittime(t)
-    print cl[1] + '-' + cl[2] + ' ' + t
-    print check(start, busy)
-    print check(end, busy)
+    #print cl[1] + '-' + cl[2] + ' ' + t
     if check(start, busy) or check(end, busy):
       result = True
 
@@ -244,7 +242,6 @@ def checktime(cl, day):
 def inrange(cl, s):
   if s[0] == []:
     return False
-  print cl
   c1 = cl[0]
   #c1 = cl[1]
   c2 = '    '
@@ -305,7 +302,7 @@ def filter(cl):
     meetings = cl['meetings'][0]
     start = timeconvert(meetings[u'start_time'])
     end = timeconvert(meetings['end_time'])
-  result = {'course_id': cl['course_id'], 'start_time': start, 'end_time': end, 'days': meetings['days'], 'location': meetings['location']}
+  result = {'course_id': cl['course_id'], 'start_time': start, 'end_time': end, 'days': meetings['days'], 'location': meetings['location'], 'units': cl['units']}
   return result
 
 def suggested(data, schedule):
@@ -332,21 +329,65 @@ def meetsPrereqs(taken, cl):
       return False
   return True
 
+def moveclassup(taken, temp, pos):
+  if len(temp)-2 >= pos:
+    result = temp[pos+1][0]
+    temp[pos+1].remove(result)
+    return result
+  else:
+    return {}
+  """for j in range(pos+1, len(temp)):
+    for k in range(len(temp[j])):
+      name = temp[j][k]['dept'] + ' ' + temp[j][k]['number']
+      if 'GE' in name or 'Title' in name:
+        result = temp[j][k]
+        temp[j].remove(result)
+        return result
+      for ii in range(pos-1):
+        for jj in range(len(temp[ii])):
+          if temp[ii][jj]['dept'] + ' ' + temp[ii][jj]['number'] == name:
+            result = temp[j][k]
+            temp[j].remove(temp[j][k])
+            return result
+      if name in taken:
+        result = temp[j][k]
+        return result"""
+
+def unitsnotmet(sem):
+   if len(sem)>4:
+     return False
+   else:
+     return True
+
 # we pass in a plan to this func. it then gives suggested classes
 # based off already taken classes and schedule
 def changeplan(plan, taken):
   now = datetime.datetime.now()
   p = plan['plan']
   #plan['plan'] = p
+  #delete classes taken from plan
+  temp = []
   for i in range(len(p)):
+    tem = []
     for j in p[i]['classes']:
       #check if class has been taken
-      #find next class and replace it if so
-      #be sure to replace the classes moved
       name = j['dept'] + ' ' + j['number']
       if name in taken:
-        nextclass = {}
-        for k in range(i, len(p)):
+        p[i]['classes'].remove(j)
+      else:
+        tem.append(j)
+    temp.append(tem)
+  if len(temp) >= 2:
+    for i in range(len(temp)):
+      sem = temp[i]
+      nextclass = moveclassup(taken, temp, i)
+      if unitsnotmet(sem) and i < len(temp)-2 and nextclass != {}:
+        sem.append(nextclass)
+        p[i]['classes'] = sem
+  else:
+    return p
+  #todo: determine how mot move classes up based off taken/tobe take classes (temp)
+    """for k in range(i, len(p)):
           s = len(p[k]['classes'])
           for h in p[k]['classes']:
             if meetsPrereqs(taken, h): #p[k]['classes'][h]):
@@ -361,7 +402,7 @@ def changeplan(plan, taken):
                 p[i]['classes'][ind] = nextclass
               else:
                 p[i]['classes'].remove(p[i]['classes'][ind])
-                s -= 1
+                s -= 1"""
   #plan['plan'] = json.dumps(p)
   return p
 

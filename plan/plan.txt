@@ -1,234 +1,782 @@
 {
-    "major": "Accountancy, B.S.",
+    "major": "Computer Science, B.S.",
     "plan": [
         {
-            "semester": "Spring-2017",
+            "semester": "Fall-2161",
             "classes": [
                 {
-                    "dept": "MATH",
-                    "prereqs": [],
-                    "link": "http://curriculum.ptg.csun.edu/classes/math-103",
-                    "number": "103",
+                    "dept": "COMP",
+                    "prereqs": [
+                        "MATH 102",
+                        "MATH 103",
+                        "MATH 104",
+                        "MATH 105",
+                        "MATH 150A",
+                        "MATH 255A"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/comp-110",
+                    "number": "110",
                     "details": {
-                        "course_id": [
-                            "19832",
-                            "19832",
-                            "19832",
-                            "19832",
-                            "19832",
-                            "19832",
-                            "19832",
-                            "19832",
-                            "19832",
-                            "19832",
-                            "19832",
-                            "19832",
-                            "19832",
-                            "19832",
-                            "19832",
-                            "19832",
-                            "19832",
-                            "19832",
-                            "19832"
-                        ],
                         "start_time": [
-                            "",
-                            "2:00 PM",
+                            "7:00 PM",
                             "3:30 PM",
-                            "12:30 PM",
-                            "08:00 AM",
-                            "09:00 AM",
-                            "3:30 PM",
-                            "",
-                            "6:30 PM",
-                            "09:30 AM",
                             "08:00 AM",
                             "11:00 AM",
+                            "12:30 PM",
+                            "09:00 AM",
+                            "2:00 PM"
+                        ],
+                        "days": [
+                            "TR",
+                            "TR",
+                            "TR",
+                            "TR",
+                            "TR",
+                            "S",
+                            "MW"
+                        ],
+                        "end_time": [
+                            "8:15 PM",
+                            "4:45 PM",
+                            "09:15 AM",
+                            "12:15 PM",
+                            "1:45 PM",
+                            "11:45 AM",
+                            "3:15 PM"
+                        ],
+                        "details": [
+                            {
+                                "term": "Spring-2017",
+                                "catalog_number": "110",
+                                "title": "Introduction to Algorithms and Programming",
+                                "description": "Prerequisites: Grade of C or better in MATH 102 103  104 105 150A or 255A or a passing score on the Math Placement Test (MPT) that satisfies prerequisites for MATH 150A or 255A . Corequisites: COMP 110L. Introduction to algorithms their representation design structuring analysis and optimization. Implementation of algorithms as structured programs in a high level language. Lab: three hours per week. (Available for General Education Lifelong Learning if required by students major.)\n",
+                                "instructors": [
+                                    {
+                                        "instructor": "vijay.bhatt@csun.edu"
+                                    },
+                                    {
+                                        "instructor": "bahram.zartoshty@csun.edu"
+                                    }
+                                ],
+                                "section_number": "03",
+                                "units": "3",
+                                "course_id": "18237",
+                                "class_number": "15535",
+                                "meetings": [
+                                    {
+                                        "days": "TR",
+                                        "start_time": "1900h",
+                                        "meeting_number": "1",
+                                        "location": "JD1538",
+                                        "end_time": "2015h"
+                                    }
+                                ],
+                                "subject": "COMP"
+                            },
+                            {
+                                "term": "Spring-2017",
+                                "catalog_number": "110",
+                                "title": "Introduction to Algorithms and Programming",
+                                "description": "Prerequisites: Grade of C or better in MATH 102 103  104 105 150A or 255A or a passing score on the Math Placement Test (MPT) that satisfies prerequisites for MATH 150A or 255A . Corequisites: COMP 110L. Introduction to algorithms their representation design structuring analysis and optimization. Implementation of algorithms as structured programs in a high level language. Lab: three hours per week. (Available for General Education Lifelong Learning if required by students major.)\n",
+                                "instructors": [
+                                    {
+                                        "instructor": "vahab.pournaghshband@csun.edu"
+                                    }
+                                ],
+                                "section_number": "04",
+                                "units": "3",
+                                "course_id": "18237",
+                                "class_number": "15537",
+                                "meetings": [
+                                    {
+                                        "days": "TR",
+                                        "start_time": "1530h",
+                                        "meeting_number": "1",
+                                        "location": "JD1104",
+                                        "end_time": "1645h"
+                                    }
+                                ],
+                                "subject": "COMP"
+                            },
+                            {
+                                "term": "Spring-2017",
+                                "catalog_number": "110",
+                                "title": "Introduction to Algorithms and Programming",
+                                "description": "Prerequisites: Grade of C or better in MATH 102 103  104 105 150A or 255A or a passing score on the Math Placement Test (MPT) that satisfies prerequisites for MATH 150A or 255A . Corequisites: COMP 110L. Introduction to algorithms their representation design structuring analysis and optimization. Implementation of algorithms as structured programs in a high level language. Lab: three hours per week. (Available for General Education Lifelong Learning if required by students major.)\n",
+                                "instructors": [
+                                    {
+                                        "instructor": "gloria.melara@csun.edu"
+                                    }
+                                ],
+                                "section_number": "05",
+                                "units": "3",
+                                "course_id": "18237",
+                                "class_number": "15729",
+                                "meetings": [
+                                    {
+                                        "days": "TR",
+                                        "start_time": "0800h",
+                                        "meeting_number": "1",
+                                        "location": "JD1104",
+                                        "end_time": "0915h"
+                                    }
+                                ],
+                                "subject": "COMP"
+                            },
+                            {
+                                "term": "Spring-2017",
+                                "catalog_number": "110",
+                                "title": "Introduction to Algorithms and Programming",
+                                "description": "Prerequisites: Grade of C or better in MATH 102 103  104 105 150A or 255A or a passing score on the Math Placement Test (MPT) that satisfies prerequisites for MATH 150A or 255A . Corequisites: COMP 110L. Introduction to algorithms their representation design structuring analysis and optimization. Implementation of algorithms as structured programs in a high level language. Lab: three hours per week. (Available for General Education Lifelong Learning if required by students major.)\n",
+                                "instructors": [
+                                    {
+                                        "instructor": "hsu.wen-chin@csun.edu"
+                                    }
+                                ],
+                                "section_number": "01",
+                                "units": "3",
+                                "course_id": "18237",
+                                "class_number": "15815",
+                                "meetings": [
+                                    {
+                                        "days": "TR",
+                                        "start_time": "1100h",
+                                        "meeting_number": "1",
+                                        "location": "JD1104",
+                                        "end_time": "1215h"
+                                    }
+                                ],
+                                "subject": "COMP"
+                            },
+                            {
+                                "term": "Spring-2017",
+                                "catalog_number": "110",
+                                "title": "Introduction to Algorithms and Programming",
+                                "description": "Prerequisites: Grade of C or better in MATH 102 103  104 105 150A or 255A or a passing score on the Math Placement Test (MPT) that satisfies prerequisites for MATH 150A or 255A . Corequisites: COMP 110L. Introduction to algorithms their representation design structuring analysis and optimization. Implementation of algorithms as structured programs in a high level language. Lab: three hours per week. (Available for General Education Lifelong Learning if required by students major.)\n",
+                                "instructors": [
+                                    {
+                                        "instructor": "gloria.melara@csun.edu"
+                                    }
+                                ],
+                                "section_number": "06",
+                                "units": "3",
+                                "course_id": "18237",
+                                "class_number": "15943",
+                                "meetings": [
+                                    {
+                                        "days": "TR",
+                                        "start_time": "1230h",
+                                        "meeting_number": "1",
+                                        "location": "JD1600A",
+                                        "end_time": "1345h"
+                                    }
+                                ],
+                                "subject": "COMP"
+                            },
+                            {
+                                "term": "Spring-2017",
+                                "catalog_number": "110",
+                                "title": "Introduction to Algorithms and Programming",
+                                "description": "Prerequisites: Grade of C or better in MATH 102 103  104 105 150A or 255A or a passing score on the Math Placement Test (MPT) that satisfies prerequisites for MATH 150A or 255A . Corequisites: COMP 110L. Introduction to algorithms their representation design structuring analysis and optimization. Implementation of algorithms as structured programs in a high level language. Lab: three hours per week. (Available for General Education Lifelong Learning if required by students major.)\n",
+                                "instructors": [
+                                    {
+                                        "instructor": "sevak.asadorian@csun.edu"
+                                    }
+                                ],
+                                "section_number": "07",
+                                "units": "3",
+                                "course_id": "18237",
+                                "class_number": "16031",
+                                "meetings": [
+                                    {
+                                        "days": "S",
+                                        "start_time": "0900h",
+                                        "meeting_number": "1",
+                                        "location": "JD1104",
+                                        "end_time": "1145h"
+                                    }
+                                ],
+                                "subject": "COMP"
+                            },
+                            {
+                                "term": "Spring-2017",
+                                "catalog_number": "110",
+                                "title": "Introduction to Algorithms and Programming",
+                                "description": "Prerequisites: Grade of C or better in MATH 102 103  104 105 150A or 255A or a passing score on the Math Placement Test (MPT) that satisfies prerequisites for MATH 150A or 255A . Corequisites: COMP 110L. Introduction to algorithms their representation design structuring analysis and optimization. Implementation of algorithms as structured programs in a high level language. Lab: three hours per week. (Available for General Education Lifelong Learning if required by students major.)\n",
+                                "instructors": [
+                                    {
+                                        "instructor": "jeffrey.drobman@csun.edu"
+                                    }
+                                ],
+                                "section_number": "08",
+                                "units": "3",
+                                "course_id": "18237",
+                                "class_number": "16194",
+                                "meetings": [
+                                    {
+                                        "days": "MW",
+                                        "start_time": "1400h",
+                                        "meeting_number": "1",
+                                        "location": "JD1104",
+                                        "end_time": "1515h"
+                                    }
+                                ],
+                                "subject": "COMP"
+                            }
+                        ],
+                        "course_id": [
+                            "18237",
+                            "18237",
+                            "18237",
+                            "18237",
+                            "18237",
+                            "18237",
+                            "18237"
+                        ],
+                        "location": [
+                            "JD1538",
+                            "JD1104",
+                            "JD1104",
+                            "JD1104",
+                            "JD1600A",
+                            "JD1104",
+                            "JD1104"
+                        ]
+                    }
+                },
+                {
+                    "dept": "COMP",
+                    "prereqs": [
+                        "MATH 102",
+                        "MATH 103",
+                        "MATH 104",
+                        "MATH 105",
+                        "MATH 150A",
+                        "MATH 255A"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/comp-110L",
+                    "number": "110L",
+                    "details": {
+                        "start_time": [
+                            "8:30 PM",
                             "5:00 PM",
                             "09:30 AM",
                             "12:30 PM",
                             "2:00 PM",
-                            "",
-                            "2:00 PM",
-                            "5:00 PM"
+                            "1:00 PM",
+                            "3:30 PM"
                         ],
-                        "location": [
-                            [],
-                            "CR5127",
-                            "LO1328",
-                            "CR5123",
-                            "CR5127",
-                            "LO1219",
-                            "EH2132",
-                            [],
-                            "LO1328",
-                            "CR5118",
-                            "LO1219",
-                            "CR5127",
-                            "CR5127",
-                            "CR5127",
-                            "CR5127",
-                            "MZ130",
-                            [],
-                            "LO1127",
-                            "LO1127"
+                        "days": [
+                            "TR",
+                            "TR",
+                            "TR",
+                            "TR",
+                            "TR",
+                            "S",
+                            "MW"
                         ],
                         "end_time": [
-                            "",
-                            "3:15 PM",
-                            "4:45 PM",
-                            "1:45 PM",
-                            "09:15 AM",
-                            "10:15 AM",
-                            "4:45 PM",
-                            "",
-                            "7:45 PM",
-                            "10:45 AM",
-                            "09:15 AM",
-                            "12:15 PM",
+                            "9:45 PM",
                             "6:15 PM",
                             "10:45 AM",
                             "1:45 PM",
                             "3:15 PM",
-                            "",
-                            "3:15 PM",
-                            "6:15 PM"
+                            "3:45 PM",
+                            "4:45 PM"
                         ],
-                        "days": [
-                            [],
-                            "MW",
-                            "TR",
-                            "MW",
-                            "TR",
-                            "FS",
-                            "MW",
-                            [],
-                            "MW",
-                            "MW",
-                            "MW",
-                            "MW",
-                            "MW",
-                            "TR",
-                            "TR",
-                            "TR",
-                            [],
-                            "TR",
-                            "TR"
-                        ]
-                    }
-                },
-                {
-                    "dept": "GE",
-                    "prereqs": [],
-                    "link": "",
-                    "number": "Basic Skills: Written Communication ",
-                    "details": ""
-                },
-                {
-                    "dept": "COMP",
-                    "prereqs": [],
-                    "link": "http://curriculum.ptg.csun.edu/classes/comp-100",
-                    "number": "100",
-                    "details": {
+                        "details": [
+                            {
+                                "term": "Spring-2017",
+                                "catalog_number": "110L",
+                                "title": "Introduction to Algorithms and Programming Lab",
+                                "description": "Prerequisites: Grade of C or better in MATH 102 103  104 105 150A or 255A or a passing score on the Math Placement Test (MPT) that satisfies prerequisites for MATH 150A or 255A . Corequisites: COMP 110. Introduction to algorithms their representation design structuring analysis and optimization. Implementation of algorithms as structured programs in a high level language. Lab: three hours per week. (Available for General Education Lifelong Learning if required by students major.)\n",
+                                "instructors": [
+                                    {
+                                        "instructor": "vijay.bhatt@csun.edu"
+                                    },
+                                    {
+                                        "instructor": "bahram.zartoshty@csun.edu"
+                                    }
+                                ],
+                                "section_number": "03",
+                                "units": "1",
+                                "course_id": "15268",
+                                "class_number": "15536",
+                                "meetings": [
+                                    {
+                                        "days": "TR",
+                                        "start_time": "2030h",
+                                        "meeting_number": "1",
+                                        "location": "JD1538",
+                                        "end_time": "2145h"
+                                    }
+                                ],
+                                "subject": "COMP"
+                            },
+                            {
+                                "term": "Spring-2017",
+                                "catalog_number": "110L",
+                                "title": "Introduction to Algorithms and Programming Lab",
+                                "description": "Prerequisites: Grade of C or better in MATH 102 103  104 105 150A or 255A or a passing score on the Math Placement Test (MPT) that satisfies prerequisites for MATH 150A or 255A . Corequisites: COMP 110. Introduction to algorithms their representation design structuring analysis and optimization. Implementation of algorithms as structured programs in a high level language. Lab: three hours per week. (Available for General Education Lifelong Learning if required by students major.)\n",
+                                "instructors": [
+                                    {
+                                        "instructor": "vahab.pournaghshband@csun.edu"
+                                    }
+                                ],
+                                "section_number": "04",
+                                "units": "1",
+                                "course_id": "15268",
+                                "class_number": "15538",
+                                "meetings": [
+                                    {
+                                        "days": "TR",
+                                        "start_time": "1700h",
+                                        "meeting_number": "1",
+                                        "location": "JD1104",
+                                        "end_time": "1815h"
+                                    }
+                                ],
+                                "subject": "COMP"
+                            },
+                            {
+                                "term": "Spring-2017",
+                                "catalog_number": "110L",
+                                "title": "Introduction to Algorithms and Programming Lab",
+                                "description": "Prerequisites: Grade of C or better in MATH 102 103  104 105 150A or 255A or a passing score on the Math Placement Test (MPT) that satisfies prerequisites for MATH 150A or 255A . Corequisites: COMP 110. Introduction to algorithms their representation design structuring analysis and optimization. Implementation of algorithms as structured programs in a high level language. Lab: three hours per week. (Available for General Education Lifelong Learning if required by students major.)\n",
+                                "instructors": [
+                                    {
+                                        "instructor": "gloria.melara@csun.edu"
+                                    }
+                                ],
+                                "section_number": "05",
+                                "units": "1",
+                                "course_id": "15268",
+                                "class_number": "15730",
+                                "meetings": [
+                                    {
+                                        "days": "TR",
+                                        "start_time": "0930h",
+                                        "meeting_number": "1",
+                                        "location": "JD1104",
+                                        "end_time": "1045h"
+                                    }
+                                ],
+                                "subject": "COMP"
+                            },
+                            {
+                                "term": "Spring-2017",
+                                "catalog_number": "110L",
+                                "title": "Introduction to Algorithms and Programming Lab",
+                                "description": "Prerequisites: Grade of C or better in MATH 102 103  104 105 150A or 255A or a passing score on the Math Placement Test (MPT) that satisfies prerequisites for MATH 150A or 255A . Corequisites: COMP 110. Introduction to algorithms their representation design structuring analysis and optimization. Implementation of algorithms as structured programs in a high level language. Lab: three hours per week. (Available for General Education Lifelong Learning if required by students major.)\n",
+                                "instructors": [
+                                    {
+                                        "instructor": "hsu.wen-chin@csun.edu"
+                                    }
+                                ],
+                                "section_number": "01",
+                                "units": "1",
+                                "course_id": "15268",
+                                "class_number": "15814",
+                                "meetings": [
+                                    {
+                                        "days": "TR",
+                                        "start_time": "1230h",
+                                        "meeting_number": "1",
+                                        "location": "JD1104",
+                                        "end_time": "1345h"
+                                    }
+                                ],
+                                "subject": "COMP"
+                            },
+                            {
+                                "term": "Spring-2017",
+                                "catalog_number": "110L",
+                                "title": "Introduction to Algorithms and Programming Lab",
+                                "description": "Prerequisites: Grade of C or better in MATH 102 103  104 105 150A or 255A or a passing score on the Math Placement Test (MPT) that satisfies prerequisites for MATH 150A or 255A . Corequisites: COMP 110. Introduction to algorithms their representation design structuring analysis and optimization. Implementation of algorithms as structured programs in a high level language. Lab: three hours per week. (Available for General Education Lifelong Learning if required by students major.)\n",
+                                "instructors": [
+                                    {
+                                        "instructor": "gloria.melara@csun.edu"
+                                    }
+                                ],
+                                "section_number": "06",
+                                "units": "1",
+                                "course_id": "15268",
+                                "class_number": "15944",
+                                "meetings": [
+                                    {
+                                        "days": "TR",
+                                        "start_time": "1400h",
+                                        "meeting_number": "1",
+                                        "location": "JD1600A",
+                                        "end_time": "1515h"
+                                    }
+                                ],
+                                "subject": "COMP"
+                            },
+                            {
+                                "term": "Spring-2017",
+                                "catalog_number": "110L",
+                                "title": "Introduction to Algorithms and Programming Lab",
+                                "description": "Prerequisites: Grade of C or better in MATH 102 103  104 105 150A or 255A or a passing score on the Math Placement Test (MPT) that satisfies prerequisites for MATH 150A or 255A . Corequisites: COMP 110. Introduction to algorithms their representation design structuring analysis and optimization. Implementation of algorithms as structured programs in a high level language. Lab: three hours per week. (Available for General Education Lifelong Learning if required by students major.)\n",
+                                "instructors": [
+                                    {
+                                        "instructor": "sevak.asadorian@csun.edu"
+                                    }
+                                ],
+                                "section_number": "07",
+                                "units": "1",
+                                "course_id": "15268",
+                                "class_number": "16032",
+                                "meetings": [
+                                    {
+                                        "days": "S",
+                                        "start_time": "1300h",
+                                        "meeting_number": "1",
+                                        "location": "JD1104",
+                                        "end_time": "1545h"
+                                    }
+                                ],
+                                "subject": "COMP"
+                            },
+                            {
+                                "term": "Spring-2017",
+                                "catalog_number": "110L",
+                                "title": "Introduction to Algorithms and Programming Lab",
+                                "description": "Prerequisites: Grade of C or better in MATH 102 103  104 105 150A or 255A or a passing score on the Math Placement Test (MPT) that satisfies prerequisites for MATH 150A or 255A . Corequisites: COMP 110. Introduction to algorithms their representation design structuring analysis and optimization. Implementation of algorithms as structured programs in a high level language. Lab: three hours per week. (Available for General Education Lifelong Learning if required by students major.)\n",
+                                "instructors": [
+                                    {
+                                        "instructor": "jeffrey.drobman@csun.edu"
+                                    }
+                                ],
+                                "section_number": "08",
+                                "units": "1",
+                                "course_id": "15268",
+                                "class_number": "16195",
+                                "meetings": [
+                                    {
+                                        "days": "MW",
+                                        "start_time": "1530h",
+                                        "meeting_number": "1",
+                                        "location": "JD1104",
+                                        "end_time": "1645h"
+                                    }
+                                ],
+                                "subject": "COMP"
+                            }
+                        ],
                         "course_id": [
-                            "10080",
-                            "10080",
-                            "10080",
-                            "10080",
-                            "10080",
-                            "10080",
-                            "10080",
-                            "10080",
-                            "10080",
-                            "10080",
-                            "10080",
-                            "10080",
-                            "10080",
-                            "10080",
-                            "10080",
-                            "10080",
-                            "10080",
-                            "10080"
-                        ],
-                        "start_time": [
-                            "12:30 PM",
-                            "09:30 AM",
-                            "09:30 AM",
-                            "3:30 PM",
-                            "12:30 PM",
-                            "12:30 PM",
-                            "09:30 AM",
-                            "2:00 PM",
-                            "11:00 AM",
-                            "11:00 AM",
-                            "11:00 AM",
-                            "11:00 AM",
-                            "09:30 AM",
-                            "08:00 AM",
-                            "08:00 AM",
-                            "12:30 PM",
-                            "11:00 AM",
-                            "11:00 AM"
+                            "15268",
+                            "15268",
+                            "15268",
+                            "15268",
+                            "15268",
+                            "15268",
+                            "15268"
                         ],
                         "location": [
-                            "JD1105",
-                            "JD1105",
-                            "JD2215",
-                            "JD1105",
-                            "JD1107",
-                            "JD1107",
-                            "JD1107",
-                            "JD1105",
-                            "JD1107",
-                            "JD1107",
-                            "JD1105",
-                            "JD1105",
-                            "JD1107",
-                            "JD1105",
-                            "JD1107",
-                            "JD1105",
-                            "JD1105",
-                            "JD1107"
-                        ],
-                        "end_time": [
-                            "1:45 PM",
-                            "10:45 AM",
-                            "10:45 AM",
-                            "4:45 PM",
-                            "1:45 PM",
-                            "1:45 PM",
-                            "10:45 AM",
-                            "3:15 PM",
-                            "12:15 PM",
-                            "12:15 PM",
-                            "12:15 PM",
-                            "12:15 PM",
-                            "10:45 AM",
-                            "10:45 AM",
-                            "10:45 AM",
-                            "1:45 PM",
-                            "1:45 PM",
-                            "1:45 PM"
+                            "JD1538",
+                            "JD1104",
+                            "JD1104",
+                            "JD1104",
+                            "JD1600A",
+                            "JD1104",
+                            "JD1104"
+                        ]
+                    }
+                },
+                {
+                    "dept": "MATH",
+                    "prereqs": [
+                        "MATH 105",
+                        "MATH 102",
+                        "MATH 104",
+                        "MATH 150",
+                        "MATH 150L"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/math-150A",
+                    "number": "150A",
+                    "details": {
+                        "start_time": [
+                            "3:30 PM",
+                            "08:00 AM",
+                            "11:00 AM",
+                            "2:00 PM",
+                            "12:30 PM",
+                            "09:30 AM",
+                            "12:30 PM",
+                            "2:00 PM",
+                            "5:00 PM"
                         ],
                         "days": [
-                            "TR",
-                            "TR",
-                            "TR",
-                            "TR",
-                            "TR",
-                            "MW",
-                            "MW",
-                            "TR",
-                            "TR",
-                            "MW",
-                            "MW",
-                            "TR",
-                            "TR",
-                            "F",
-                            "F",
-                            "MW",
-                            "F",
-                            "F"
+                            "MTR",
+                            "MTWR",
+                            "MTWR",
+                            "MTR",
+                            "MTWR",
+                            "MTWR",
+                            "MWF",
+                            "MWF",
+                            "MTR"
+                        ],
+                        "end_time": [
+                            "4:55 PM",
+                            "09:05 AM",
+                            "12:05 PM",
+                            "3:25 PM",
+                            "1:35 PM",
+                            "10:35 AM",
+                            "1:55 PM",
+                            "3:25 PM",
+                            "6:25 PM"
+                        ],
+                        "details": [
+                            {
+                                "term": "Spring-2017",
+                                "catalog_number": "150A",
+                                "title": "Calculus I",
+                                "description": "Prerequisites: Listed in Table 1. Students who are Conditionally prepared or who transfer the equivalent of MATH 105 or both MATH 102 and 104 must have credit for or concurrently enroll in MATH 150AL. Limits derivatives applications of differentiation. Definite and indefinite integrals and the fundamental theorem of calculus. (Available for General Education Basic Skills Mathematics.)\n",
+                                "instructors": [
+                                    {
+                                        "instructor": "david.klein@csun.edu"
+                                    }
+                                ],
+                                "section_number": "09",
+                                "units": "5",
+                                "course_id": "4370",
+                                "class_number": "16526",
+                                "meetings": [
+                                    {
+                                        "days": "MTR",
+                                        "start_time": "1530h",
+                                        "meeting_number": "1",
+                                        "location": "CR5114",
+                                        "end_time": "1655h"
+                                    }
+                                ],
+                                "subject": "MATH"
+                            },
+                            {
+                                "term": "Spring-2017",
+                                "catalog_number": "150A",
+                                "title": "Calculus I",
+                                "description": "Prerequisites: Listed in Table 1. Students who are Conditionally prepared or who transfer the equivalent of MATH 105 or both MATH 102 and 104 must have credit for or concurrently enroll in MATH 150AL. Limits derivatives applications of differentiation. Definite and indefinite integrals and the fundamental theorem of calculus. (Available for General Education Basic Skills Mathematics.)\n",
+                                "instructors": [
+                                    {
+                                        "instructor": "khanik.kerobyan@csun.edu"
+                                    }
+                                ],
+                                "section_number": "01",
+                                "units": "5",
+                                "course_id": "4370",
+                                "class_number": "16651",
+                                "meetings": [
+                                    {
+                                        "days": "MTWR",
+                                        "start_time": "0800h",
+                                        "meeting_number": "1",
+                                        "location": "CR5208",
+                                        "end_time": "0905h"
+                                    }
+                                ],
+                                "subject": "MATH"
+                            },
+                            {
+                                "term": "Spring-2017",
+                                "catalog_number": "150A",
+                                "title": "Calculus I",
+                                "description": "Prerequisites: Listed in Table 1. Students who are Conditionally prepared or who transfer the equivalent of MATH 105 or both MATH 102 and 104 must have credit for or concurrently enroll in MATH 150AL. Limits derivatives applications of differentiation. Definite and indefinite integrals and the fundamental theorem of calculus. (Available for General Education Basic Skills Mathematics.)\n",
+                                "instructors": [
+                                    {
+                                        "instructor": "mehrdokht.rashidian@csun.edu"
+                                    }
+                                ],
+                                "section_number": "03",
+                                "units": "5",
+                                "course_id": "4370",
+                                "class_number": "16652",
+                                "meetings": [
+                                    {
+                                        "days": "MTWR",
+                                        "start_time": "1100h",
+                                        "meeting_number": "1",
+                                        "location": "CR5114",
+                                        "end_time": "1205h"
+                                    }
+                                ],
+                                "subject": "MATH"
+                            },
+                            {
+                                "term": "Spring-2017",
+                                "catalog_number": "150A",
+                                "title": "Calculus I",
+                                "description": "Prerequisites: Listed in Table 1. Students who are Conditionally prepared or who transfer the equivalent of MATH 105 or both MATH 102 and 104 must have credit for or concurrently enroll in MATH 150AL. Limits derivatives applications of differentiation. Definite and indefinite integrals and the fundamental theorem of calculus. (Available for General Education Basic Skills Mathematics.)\n",
+                                "instructors": [
+                                    {
+                                        "instructor": "alberto.candel@csun.edu"
+                                    }
+                                ],
+                                "section_number": "07",
+                                "units": "5",
+                                "course_id": "4370",
+                                "class_number": "16960",
+                                "meetings": [
+                                    {
+                                        "days": "MTR",
+                                        "start_time": "1400h",
+                                        "meeting_number": "1",
+                                        "location": "CR5123",
+                                        "end_time": "1525h"
+                                    }
+                                ],
+                                "subject": "MATH"
+                            },
+                            {
+                                "term": "Spring-2017",
+                                "catalog_number": "150A",
+                                "title": "Calculus I",
+                                "description": "Prerequisites: Listed in Table 1. Students who are Conditionally prepared or who transfer the equivalent of MATH 105 or both MATH 102 and 104 must have credit for or concurrently enroll in MATH 150AL. Limits derivatives applications of differentiation. Definite and indefinite integrals and the fundamental theorem of calculus. (Available for General Education Basic Skills Mathematics.)\n",
+                                "instructors": [
+                                    {
+                                        "instructor": "bozena.onzol@csun.edu"
+                                    }
+                                ],
+                                "section_number": "05",
+                                "units": "5",
+                                "course_id": "4370",
+                                "class_number": "17021",
+                                "meetings": [
+                                    {
+                                        "days": "MTWR",
+                                        "start_time": "1230h",
+                                        "meeting_number": "1",
+                                        "location": "CR5124",
+                                        "end_time": "1335h"
+                                    }
+                                ],
+                                "subject": "MATH"
+                            },
+                            {
+                                "term": "Spring-2017",
+                                "catalog_number": "150A",
+                                "title": "Calculus I",
+                                "description": "Prerequisites: Listed in Table 1. Students who are Conditionally prepared or who transfer the equivalent of MATH 105 or both MATH 102 and 104 must have credit for or concurrently enroll in MATH 150AL. Limits derivatives applications of differentiation. Definite and indefinite integrals and the fundamental theorem of calculus. (Available for General Education Basic Skills Mathematics.)\n",
+                                "instructors": [
+                                    {
+                                        "instructor": "mehrdokht.rashidian@csun.edu"
+                                    }
+                                ],
+                                "section_number": "02",
+                                "units": "5",
+                                "course_id": "4370",
+                                "class_number": "17388",
+                                "meetings": [
+                                    {
+                                        "days": "MTWR",
+                                        "start_time": "0930h",
+                                        "meeting_number": "1",
+                                        "location": "CR5208",
+                                        "end_time": "1035h"
+                                    }
+                                ],
+                                "subject": "MATH"
+                            },
+                            {
+                                "term": "Spring-2017",
+                                "catalog_number": "150A",
+                                "title": "Calculus I",
+                                "description": "Prerequisites: Listed in Table 1. Students who are Conditionally prepared or who transfer the equivalent of MATH 105 or both MATH 102 and 104 must have credit for or concurrently enroll in MATH 150AL. Limits derivatives applications of differentiation. Definite and indefinite integrals and the fundamental theorem of calculus. (Available for General Education Basic Skills Mathematics.)\n",
+                                "instructors": [
+                                    {
+                                        "instructor": "douraid.daly@csun.edu"
+                                    }
+                                ],
+                                "section_number": "06",
+                                "units": "5",
+                                "course_id": "4370",
+                                "class_number": "17390",
+                                "meetings": [
+                                    {
+                                        "days": "MWF",
+                                        "start_time": "1230h",
+                                        "meeting_number": "1",
+                                        "location": "CR5119",
+                                        "end_time": "1355h"
+                                    }
+                                ],
+                                "subject": "MATH"
+                            },
+                            {
+                                "term": "Spring-2017",
+                                "catalog_number": "150A",
+                                "title": "Calculus I",
+                                "description": "Prerequisites: Listed in Table 1. Students who are Conditionally prepared or who transfer the equivalent of MATH 105 or both MATH 102 and 104 must have credit for or concurrently enroll in MATH 150AL. Limits derivatives applications of differentiation. Definite and indefinite integrals and the fundamental theorem of calculus. (Available for General Education Basic Skills Mathematics.)\n",
+                                "instructors": [
+                                    {
+                                        "instructor": "douraid.daly@csun.edu"
+                                    }
+                                ],
+                                "section_number": "08",
+                                "units": "5",
+                                "course_id": "4370",
+                                "class_number": "17391",
+                                "meetings": [
+                                    {
+                                        "days": "MWF",
+                                        "start_time": "1400h",
+                                        "meeting_number": "1",
+                                        "location": "CR5119",
+                                        "end_time": "1525h"
+                                    }
+                                ],
+                                "subject": "MATH"
+                            },
+                            {
+                                "term": "Spring-2017",
+                                "catalog_number": "150A",
+                                "title": "Calculus I",
+                                "description": "Prerequisites: Listed in Table 1. Students who are Conditionally prepared or who transfer the equivalent of MATH 105 or both MATH 102 and 104 must have credit for or concurrently enroll in MATH 150AL. Limits derivatives applications of differentiation. Definite and indefinite integrals and the fundamental theorem of calculus. (Available for General Education Basic Skills Mathematics.)\n",
+                                "instructors": [
+                                    {
+                                        "instructor": "gregory.imhoff@csun.edu"
+                                    }
+                                ],
+                                "section_number": "10",
+                                "units": "5",
+                                "course_id": "4370",
+                                "class_number": "17392",
+                                "meetings": [
+                                    {
+                                        "days": "MTR",
+                                        "start_time": "1700h",
+                                        "meeting_number": "1",
+                                        "location": "CR5126",
+                                        "end_time": "1825h"
+                                    }
+                                ],
+                                "subject": "MATH"
+                            }
+                        ],
+                        "course_id": [
+                            "4370",
+                            "4370",
+                            "4370",
+                            "4370",
+                            "4370",
+                            "4370",
+                            "4370",
+                            "4370",
+                            "4370"
+                        ],
+                        "location": [
+                            "CR5114",
+                            "CR5208",
+                            "CR5114",
+                            "CR5123",
+                            "CR5124",
+                            "CR5208",
+                            "CR5119",
+                            "CR5119",
+                            "CR5126"
                         ]
                     }
                 },
@@ -236,63 +784,120 @@
                     "dept": "GE",
                     "prereqs": [],
                     "link": "",
-                    "number": "Natural Science ",
+                    "number": "Basic Skills: Written Communication",
                     "details": ""
                 },
                 {
-                    "dept": "GE",
+                    "dept": "Title",
                     "prereqs": [],
                     "link": "",
-                    "number": "Arts and Humanities",
+                    "number": "5 Requirement",
                     "details": ""
                 }
             ]
         },
         {
-            "semester": "Fall-2017",
+            "semester": "Spring-2162",
             "classes": [
                 {
-                    "dept": "SOM",
+                    "dept": "COMP",
                     "prereqs": [
-                        "MATH 103"
+                        "COMP 110",
+                        "COMP 110L",
+                        "MATH 103",
+                        "MATH 104",
+                        "MATH 105",
+                        "MATH 150A",
+                        "MATH 255A"
                     ],
-                    "link": "http://curriculum.ptg.csun.edu/classes/som-120",
-                    "number": "120",
+                    "link": "http://curriculum.ptg.csun.edu/classes/comp-122",
+                    "number": "122",
                     "details": ""
                 },
                 {
-                    "dept": "ENGL",
+                    "dept": "COMP",
                     "prereqs": [
-                        "AAS 113B",
-                        "AAS 114B",
-                        "AAS 115",
-                        "AFRS 113B",
-                        "AFRS 114B",
-                        "AFRS 115",
-                        "CHS 113B",
-                        "CHS 114B",
-                        "CHS 115",
-                        "ENGL 113B",
-                        "ENGL 114B",
-                        "ENGL 115",
-                        "QS 113B",
-                        "QS 114A",
-                        "QS 115",
-                        "AFRS 151",
-                        "CHS 151",
-                        "COMS 151",
-                        "COMS 151L",
-                        "COMP 100"
+                        "COMP 110",
+                        "COMP 110L",
+                        "MATH 103",
+                        "MATH 104",
+                        "MATH 105",
+                        "MATH 150A",
+                        "MATH 255A"
                     ],
-                    "link": "http://curriculum.ptg.csun.edu/classes/engl-205",
-                    "number": "205",
+                    "link": "http://curriculum.ptg.csun.edu/classes/comp-182",
+                    "number": "182",
                     "details": ""
                 },
                 {
-                    "dept": "GE",
-                    "prereqs": [],
-                    "link": "",
-                    "number": "Basic Skills: Critical Thinking",
+                    "dept": "MATH",
+                    "prereqs": [
+                        "MATH 150",
+                        "MATH 150L"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/math-150B",
+                    "number": "150B",
+                    "details": ""
+                },
+                {
+                    "dept": "PHIL",
+                    "prereqs": [
+                        "MATH 210"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/phil-230",
+                    "number": "230",
+                    "details": ""
+                }
+            ]
+        },
+        {
+            "semester": "Fall-2162",
+            "classes": [
+                {
+                    "dept": "COMP",
+                    "prereqs": [
+                        "COMP 122",
+                        "COMP 122L",
+                        "COMP 182",
+                        "COMP 182L"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/comp-222",
+                    "number": "222",
+                    "details": ""
+                },
+                {
+                    "dept": "COMP",
+                    "prereqs": [
+                        "COMP 182",
+                        "COMP 182L",
+                        "MATH 150A"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/comp-282",
+                    "number": "282",
+                    "details": ""
+                },
+                {
+                    "dept": "COMP",
+                    "prereqs": [
+                        "COMP 182",
+                        "COMP 182L",
+                        "MATH 150A",
+                        "PHIL 230"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/comp-256",
+                    "number": "256",
+                    "details": ""
+                },
+                {
+                    "dept": "COMP",
+                    "prereqs": [
+                        "COMP 182",
+                        "COMP 182L",
+                        "MATH 150A",
+                        "PHIL 230"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/comp-256L",
+                    "number": "256L",
                     "details": ""
                 },
                 {
@@ -312,73 +917,95 @@
             ]
         },
         {
-            "semester": "Spring-2018",
+            "semester": "Spring-2163",
             "classes": [
                 {
-                    "dept": "ACCT",
+                    "dept": "COMP",
                     "prereqs": [
-                        "MATH 103"
+                        "COMP 282"
                     ],
-                    "link": "http://curriculum.ptg.csun.edu/classes/acct-220",
-                    "number": "220",
+                    "link": "http://curriculum.ptg.csun.edu/classes/comp-333",
+                    "number": "333",
                     "details": ""
                 },
                 {
-                    "dept": "ECON",
-                    "prereqs": [],
-                    "link": "http://curriculum.ptg.csun.edu/classes/econ-160",
-                    "number": "160",
+                    "dept": "COMP",
+                    "prereqs": [
+                        "COMP 222",
+                        "ECE 422",
+                        "ECE 425",
+                        "ECE 425L"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/comp-322",
+                    "number": "322",
+                    "details": ""
+                },
+                {
+                    "dept": "COMP",
+                    "prereqs": [
+                        "COMP 222",
+                        "ECE 422",
+                        "ECE 425",
+                        "ECE 425L"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/comp-322L",
+                    "number": "322L",
                     "details": ""
                 },
                 {
                     "dept": "GE",
                     "prereqs": [],
                     "link": "",
-                    "number": "Natural Science ",
+                    "number": "Natural Science with lab",
                     "details": ""
                 },
                 {
-                    "dept": "GE",
-                    "prereqs": [],
-                    "link": "",
-                    "number": "Social Science",
-                    "details": ""
-                },
-                {
-                    "dept": "Title",
-                    "prereqs": [],
-                    "link": "",
-                    "number": "5 Requirement",
+                    "dept": "MATH",
+                    "prereqs": [
+                        "MATH 150B"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/math-262",
+                    "number": "262",
                     "details": ""
                 }
             ]
         },
         {
-            "semester": "Fall-2018",
+            "semester": "Fall-2163",
             "classes": [
                 {
-                    "dept": "ACCT",
+                    "dept": "COMP",
                     "prereqs": [
-                        "ACCT 220"
+                        "COMP 256",
+                        "COMP 256L"
                     ],
-                    "link": "http://curriculum.ptg.csun.edu/classes/acct-230",
-                    "number": "230",
+                    "link": "http://curriculum.ptg.csun.edu/classes/comp-310",
+                    "number": "310",
                     "details": ""
                 },
                 {
-                    "dept": "ECON",
+                    "dept": "COMP",
                     "prereqs": [
-                        "ECON 160"
+                        "COMP 282"
                     ],
-                    "link": "http://curriculum.ptg.csun.edu/classes/econ-161",
-                    "number": "161",
+                    "link": "http://curriculum.ptg.csun.edu/classes/comp-380",
+                    "number": "380",
                     "details": ""
                 },
                 {
-                    "dept": "BLAW",
+                    "dept": "COMP",
+                    "prereqs": [
+                        "COMP 282"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/comp-380L",
+                    "number": "380L",
+                    "details": ""
+                },
+                {
+                    "dept": "GE",
                     "prereqs": [],
-                    "link": "http://curriculum.ptg.csun.edu/classes/blaw-280",
-                    "number": "280",
+                    "link": "",
+                    "number": "Arts and Humanities",
                     "details": ""
                 },
                 {
@@ -391,132 +1018,64 @@
             ]
         },
         {
-            "semester": "Spring-2019",
+            "semester": "Spring-2164",
             "classes": [
                 {
-                    "dept": "BUS",
+                    "dept": "MATH",
                     "prereqs": [
-                        "ACCT 220",
-                        "ACCT 230",
-                        "BLAW 280",
-                        "COMP 100",
-                        "ECON 160",
-                        "ECON 161",
-                        "ENGL 205",
-                        "MATH 103",
-                        "MATH 140",
-                        "SOM 120"
+                        "MATH 150B"
                     ],
-                    "link": "http://curriculum.ptg.csun.edu/classes/bus-302",
-                    "number": "302",
+                    "link": "http://curriculum.ptg.csun.edu/classes/math-340",
+                    "number": "340",
                     "details": ""
                 },
                 {
-                    "dept": "ACCT",
-                    "prereqs": [
-                        "ACCT 220",
-                        "ENGL 205",
-                        "BUS 302",
-                        "BUS 30",
-                        "BUS 30L",
-                        "ACCT 351",
-                        "ACCT 351COM"
-                    ],
-                    "link": "http://curriculum.ptg.csun.edu/classes/acct-350",
-                    "number": "350",
-                    "details": ""
-                },
-                {
-                    "dept": "FIN",
-                    "prereqs": [
-                        "ACCT 220",
-                        "ECON 160",
-                        "SOM 120",
-                        "BUS 302",
-                        "BUS 30",
-                        "BUS 30L"
-                    ],
-                    "link": "http://curriculum.ptg.csun.edu/classes/fin-303",
-                    "number": "303",
-                    "details": ""
-                },
-                {
-                    "dept": "COMS",
+                    "dept": "GE",
                     "prereqs": [],
-                    "link": "http://curriculum.ptg.csun.edu/classes/coms-356",
-                    "number": "356",
+                    "link": "",
+                    "number": "Natural Science with lab",
                     "details": ""
                 },
                 {
-                    "dept": "RS",
+                    "dept": "GE",
                     "prereqs": [],
-                    "link": "http://curriculum.ptg.csun.edu/classes/rs-361",
-                    "number": "361",
+                    "link": "",
+                    "number": "Social Sciences",
                     "details": ""
                 }
             ]
         },
         {
-            "semester": "Fall-2019",
+            "semester": "Fall-2164",
             "classes": [
                 {
-                    "dept": "IS",
+                    "dept": "COMP",
                     "prereqs": [
-                        "ACCT 220"
+                        "COMP 380",
+                        "COMP 380L"
                     ],
-                    "link": "http://curriculum.ptg.csun.edu/classes/is-312",
-                    "number": "312",
+                    "link": "http://curriculum.ptg.csun.edu/classes/comp-490",
+                    "number": "490",
                     "details": ""
                 },
                 {
-                    "dept": "MGT",
+                    "dept": "COMP",
                     "prereqs": [
-                        "BUS 302",
-                        "BUS 30",
-                        "BUS 30L"
+                        "COMP 380",
+                        "COMP 380L"
                     ],
-                    "link": "http://curriculum.ptg.csun.edu/classes/mgt-360",
-                    "number": "360",
+                    "link": "http://curriculum.ptg.csun.edu/classes/comp-490L",
+                    "number": "490L",
                     "details": ""
                 },
                 {
-                    "dept": "ACCT",
+                    "dept": "MATH",
                     "prereqs": [
-                        "ACCT 350",
-                        "BUS 302",
-                        "BUS 30",
-                        "BUS 30L",
-                        "ACCT 351COM"
+                        "MATH 150B",
+                        "MATH 262"
                     ],
-                    "link": "http://curriculum.ptg.csun.edu/classes/acct-351",
-                    "number": "351",
-                    "details": ""
-                },
-                {
-                    "dept": "ACCT",
-                    "prereqs": [
-                        "ACCT 350",
-                        "BUS 302",
-                        "BUS 30",
-                        "BUS 30L",
-                        "ACCT 351"
-                    ],
-                    "link": "http://curriculum.ptg.csun.edu/classes/acct-351COM",
-                    "number": "351COM",
-                    "details": ""
-                },
-                {
-                    "dept": "ACCT",
-                    "prereqs": [
-                        "ACCT 350",
-                        "BUS 302",
-                        "BUS 30",
-                        "BUS 30L",
-                        "ACCT 351",
-                        "ACCT 351COM"
-                    ],
-                    "link": "http://curriculum.ptg.csun.edu/classes/acct-380",
-                    "number": "380",
+                    "link": "http://curriculum.ptg.csun.edu/classes/math-482",
+                    "number": "482",
                     "details": ""
                 },
                 {
@@ -529,145 +1088,30 @@
             ]
         },
         {
-            "semester": "Spring-2020",
+            "semester": "Spring-2165",
             "classes": [
                 {
-                    "dept": "MKT",
+                    "dept": "COMP",
                     "prereqs": [
-                        "ECON 160",
-                        "ECON 300",
-                        "ECON 160",
-                        "ECON 300",
-                        "BUS 104",
-                        "BUS 302",
-                        "BUS 30",
-                        "BUS 30L"
+                        "COMP 490",
+                        "COMP 490L"
                     ],
-                    "link": "http://curriculum.ptg.csun.edu/classes/mkt-304",
-                    "number": "304",
+                    "link": "http://curriculum.ptg.csun.edu/classes/comp-491L",
+                    "number": "491L",
                     "details": ""
                 },
                 {
-                    "dept": "BLAW",
-                    "prereqs": [
-                        "BLAW 280",
-                        "BUS 302",
-                        "BUS 30",
-                        "BUS 30L"
-                    ],
-                    "link": "http://curriculum.ptg.csun.edu/classes/blaw-308",
-                    "number": "308",
+                    "dept": "GE",
+                    "prereqs": [],
+                    "link": "",
+                    "number": "Upper Division Arts and Humanities",
                     "details": ""
                 },
                 {
-                    "dept": "ACCT",
-                    "prereqs": [
-                        "ACCT 351",
-                        "ACCT 351COM"
-                    ],
-                    "link": "http://curriculum.ptg.csun.edu/classes/acct-440",
-                    "number": "440",
-                    "details": ""
-                },
-                {
-                    "dept": "ACCT",
-                    "prereqs": [
-                        "ACCT 351",
-                        "ACCT 351COM"
-                    ],
-                    "link": "http://curriculum.ptg.csun.edu/classes/acct-352",
-                    "number": "352",
-                    "details": ""
-                },
-                {
-                    "dept": "ACCT",
-                    "prereqs": [
-                        "ACCT 351",
-                        "ACCT 351COM",
-                        "ACCT 352"
-                    ],
-                    "link": "http://curriculum.ptg.csun.edu/classes/acct-460",
-                    "number": "460",
-                    "details": ""
-                },
-                {
-                    "dept": "IS",
-                    "prereqs": [
-                        "IS 312",
-                        "BUS 302",
-                        "BUS 30",
-                        "BUS 30L"
-                    ],
-                    "link": "http://curriculum.ptg.csun.edu/classes/is-431",
-                    "number": "431",
-                    "details": ""
-                }
-            ]
-        },
-        {
-            "semester": "Fall-2020",
-            "classes": [
-                {
-                    "dept": "SOM",
-                    "prereqs": [
-                        "MATH 103",
-                        "SOM 120",
-                        "MATH 140",
-                        "BUS 302",
-                        "BUS 30",
-                        "BUS 30L"
-                    ],
-                    "link": "http://curriculum.ptg.csun.edu/classes/som-306",
-                    "number": "306",
-                    "details": ""
-                },
-                {
-                    "dept": "BUS",
-                    "prereqs": [
-                        "BUS 302",
-                        "BUS 30",
-                        "BUS 30L",
-                        "FIN 303",
-                        "MGT 360",
-                        "MKT 304"
-                    ],
-                    "link": "http://curriculum.ptg.csun.edu/classes/bus-497A",
-                    "number": "497A",
-                    "details": ""
-                },
-                {
-                    "dept": "ACCT",
-                    "prereqs": [
-                        "ACCT 352",
-                        "ACCT 440"
-                    ],
-                    "link": "http://curriculum.ptg.csun.edu/classes/acct-441",
-                    "number": "441",
-                    "details": ""
-                },
-                {
-                    "dept": "IS",
-                    "prereqs": [
-                        "IS 312",
-                        "BUS 302",
-                        "BUS 30",
-                        "BUS 30L"
-                    ],
-                    "link": "http://curriculum.ptg.csun.edu/classes/is-435",
-                    "number": "435",
-                    "details": ""
-                },
-                {
-                    "dept": "IS",
-                    "prereqs": [
-                        "IS 431",
-                        "IS 435",
-                        "BUS 302",
-                        "BUS 30",
-                        "BUS 30L"
-                    ],
-                    "link": "http://curriculum.ptg.csun.edu/classes/is-451",
-                    "number": "451",
+                    "dept": "GE",
+                    "prereqs": [],
+                    "link": "",
+                    "number": "Upper Division Comparative Cultures ",
                     "details": ""
                 }
             ]
