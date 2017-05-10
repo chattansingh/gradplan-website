@@ -108,7 +108,6 @@ def genplan(url):
 	  n = ''
           # check if the class has a lab associated with it
           # if so, add to separate classes to the semester (one lecture and one lab)
-          print num
           if '\L' in num or '/L' in num or '/L' in ''.join(num) or '\L' in ''.join(num):
 	    n = ''.join(num)[:len(num)-3]
 	    link.append(classurl + dept.lower() + '-' + n)
@@ -177,7 +176,6 @@ def getbaseplans():
           cl = sem[j]
           if cl['link'] != '' and i == 0:
             #p[i]['classes'][j]['details'] = getclasses(cl['link'])
-            print cl['link']
             if '/F' in cl['link']:
               cl['link'] = cl['link'][:len(cl['link'])-2] + cl['link'][len(cl['link'])-1]
             classes = getclasses(cl['link'])
@@ -190,7 +188,7 @@ def filtertimes(sem, busy):
   s = []
   for i in range(len(sem)):
     cl = sem[i]
-    if cl['dept'] != 'GE' or cl['dept'] != 'Title' and cl['link'] != u'':
+    if 'GE' not in cl['dept'] and  'Title' not in cl['dept'] and cl['link'] != u'':
       classes = getclasses(cl['link'])
       classes = suggested(classes, busy)
       clcopy = cl
@@ -286,7 +284,6 @@ def inrange(cl, s):
 #this function is supposed to determine compatability of a class
 #i.e. has the user taken this class and is it in their schedule range?
 def compatible(c, s):
-  print c
   if s == {} or c['start_time'] == '':
     return True
   if inrange([c['days'], c['start_time'], c['end_time']], [s['days'], s['times']]):
