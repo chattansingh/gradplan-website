@@ -1,0 +1,677 @@
+{
+    "major": "Accountancy, B.S.",
+    "plan": [
+        {
+            "semester": "Spring-2017",
+            "classes": [
+                {
+                    "dept": "MATH",
+                    "prereqs": [],
+                    "link": "http://curriculum.ptg.csun.edu/classes/math-103",
+                    "number": "103",
+                    "details": {
+                        "course_id": [
+                            "19832",
+                            "19832",
+                            "19832",
+                            "19832",
+                            "19832",
+                            "19832",
+                            "19832",
+                            "19832",
+                            "19832",
+                            "19832",
+                            "19832",
+                            "19832",
+                            "19832",
+                            "19832",
+                            "19832",
+                            "19832",
+                            "19832",
+                            "19832",
+                            "19832"
+                        ],
+                        "start_time": [
+                            "",
+                            "2:00 PM",
+                            "3:30 PM",
+                            "12:30 PM",
+                            "08:00 AM",
+                            "09:00 AM",
+                            "3:30 PM",
+                            "",
+                            "6:30 PM",
+                            "09:30 AM",
+                            "08:00 AM",
+                            "11:00 AM",
+                            "5:00 PM",
+                            "09:30 AM",
+                            "12:30 PM",
+                            "2:00 PM",
+                            "",
+                            "2:00 PM",
+                            "5:00 PM"
+                        ],
+                        "location": [
+                            [],
+                            "CR5127",
+                            "LO1328",
+                            "CR5123",
+                            "CR5127",
+                            "LO1219",
+                            "EH2132",
+                            [],
+                            "LO1328",
+                            "CR5118",
+                            "LO1219",
+                            "CR5127",
+                            "CR5127",
+                            "CR5127",
+                            "CR5127",
+                            "MZ130",
+                            [],
+                            "LO1127",
+                            "LO1127"
+                        ],
+                        "end_time": [
+                            "",
+                            "3:15 PM",
+                            "4:45 PM",
+                            "1:45 PM",
+                            "09:15 AM",
+                            "10:15 AM",
+                            "4:45 PM",
+                            "",
+                            "7:45 PM",
+                            "10:45 AM",
+                            "09:15 AM",
+                            "12:15 PM",
+                            "6:15 PM",
+                            "10:45 AM",
+                            "1:45 PM",
+                            "3:15 PM",
+                            "",
+                            "3:15 PM",
+                            "6:15 PM"
+                        ],
+                        "days": [
+                            [],
+                            "MW",
+                            "TR",
+                            "MW",
+                            "TR",
+                            "FS",
+                            "MW",
+                            [],
+                            "MW",
+                            "MW",
+                            "MW",
+                            "MW",
+                            "MW",
+                            "TR",
+                            "TR",
+                            "TR",
+                            [],
+                            "TR",
+                            "TR"
+                        ]
+                    }
+                },
+                {
+                    "dept": "GE",
+                    "prereqs": [],
+                    "link": "",
+                    "number": "Basic Skills: Written Communication ",
+                    "details": ""
+                },
+                {
+                    "dept": "COMP",
+                    "prereqs": [],
+                    "link": "http://curriculum.ptg.csun.edu/classes/comp-100",
+                    "number": "100",
+                    "details": {
+                        "course_id": [
+                            "10080",
+                            "10080",
+                            "10080",
+                            "10080",
+                            "10080",
+                            "10080",
+                            "10080",
+                            "10080",
+                            "10080",
+                            "10080",
+                            "10080",
+                            "10080",
+                            "10080",
+                            "10080",
+                            "10080",
+                            "10080",
+                            "10080",
+                            "10080"
+                        ],
+                        "start_time": [
+                            "12:30 PM",
+                            "09:30 AM",
+                            "09:30 AM",
+                            "3:30 PM",
+                            "12:30 PM",
+                            "12:30 PM",
+                            "09:30 AM",
+                            "2:00 PM",
+                            "11:00 AM",
+                            "11:00 AM",
+                            "11:00 AM",
+                            "11:00 AM",
+                            "09:30 AM",
+                            "08:00 AM",
+                            "08:00 AM",
+                            "12:30 PM",
+                            "11:00 AM",
+                            "11:00 AM"
+                        ],
+                        "location": [
+                            "JD1105",
+                            "JD1105",
+                            "JD2215",
+                            "JD1105",
+                            "JD1107",
+                            "JD1107",
+                            "JD1107",
+                            "JD1105",
+                            "JD1107",
+                            "JD1107",
+                            "JD1105",
+                            "JD1105",
+                            "JD1107",
+                            "JD1105",
+                            "JD1107",
+                            "JD1105",
+                            "JD1105",
+                            "JD1107"
+                        ],
+                        "end_time": [
+                            "1:45 PM",
+                            "10:45 AM",
+                            "10:45 AM",
+                            "4:45 PM",
+                            "1:45 PM",
+                            "1:45 PM",
+                            "10:45 AM",
+                            "3:15 PM",
+                            "12:15 PM",
+                            "12:15 PM",
+                            "12:15 PM",
+                            "12:15 PM",
+                            "10:45 AM",
+                            "10:45 AM",
+                            "10:45 AM",
+                            "1:45 PM",
+                            "1:45 PM",
+                            "1:45 PM"
+                        ],
+                        "days": [
+                            "TR",
+                            "TR",
+                            "TR",
+                            "TR",
+                            "TR",
+                            "MW",
+                            "MW",
+                            "TR",
+                            "TR",
+                            "MW",
+                            "MW",
+                            "TR",
+                            "TR",
+                            "F",
+                            "F",
+                            "MW",
+                            "F",
+                            "F"
+                        ]
+                    }
+                },
+                {
+                    "dept": "GE",
+                    "prereqs": [],
+                    "link": "",
+                    "number": "Natural Science ",
+                    "details": ""
+                },
+                {
+                    "dept": "GE",
+                    "prereqs": [],
+                    "link": "",
+                    "number": "Arts and Humanities",
+                    "details": ""
+                }
+            ]
+        },
+        {
+            "semester": "Fall-2017",
+            "classes": [
+                {
+                    "dept": "SOM",
+                    "prereqs": [
+                        "MATH 103"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/som-120",
+                    "number": "120",
+                    "details": ""
+                },
+                {
+                    "dept": "ENGL",
+                    "prereqs": [
+                        "AAS 113B",
+                        "AAS 114B",
+                        "AAS 115",
+                        "AFRS 113B",
+                        "AFRS 114B",
+                        "AFRS 115",
+                        "CHS 113B",
+                        "CHS 114B",
+                        "CHS 115",
+                        "ENGL 113B",
+                        "ENGL 114B",
+                        "ENGL 115",
+                        "QS 113B",
+                        "QS 114A",
+                        "QS 115",
+                        "AFRS 151",
+                        "CHS 151",
+                        "COMS 151",
+                        "COMS 151L",
+                        "COMP 100"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/engl-205",
+                    "number": "205",
+                    "details": ""
+                },
+                {
+                    "dept": "GE",
+                    "prereqs": [],
+                    "link": "",
+                    "number": "Basic Skills: Critical Thinking",
+                    "details": ""
+                },
+                {
+                    "dept": "GE",
+                    "prereqs": [],
+                    "link": "",
+                    "number": "Basic Skills: Oral Communication",
+                    "details": ""
+                },
+                {
+                    "dept": "Title",
+                    "prereqs": [],
+                    "link": "",
+                    "number": "5 Requirement",
+                    "details": ""
+                }
+            ]
+        },
+        {
+            "semester": "Spring-2018",
+            "classes": [
+                {
+                    "dept": "ACCT",
+                    "prereqs": [
+                        "MATH 103"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/acct-220",
+                    "number": "220",
+                    "details": ""
+                },
+                {
+                    "dept": "ECON",
+                    "prereqs": [],
+                    "link": "http://curriculum.ptg.csun.edu/classes/econ-160",
+                    "number": "160",
+                    "details": ""
+                },
+                {
+                    "dept": "GE",
+                    "prereqs": [],
+                    "link": "",
+                    "number": "Natural Science ",
+                    "details": ""
+                },
+                {
+                    "dept": "GE",
+                    "prereqs": [],
+                    "link": "",
+                    "number": "Social Science",
+                    "details": ""
+                },
+                {
+                    "dept": "Title",
+                    "prereqs": [],
+                    "link": "",
+                    "number": "5 Requirement",
+                    "details": ""
+                }
+            ]
+        },
+        {
+            "semester": "Fall-2018",
+            "classes": [
+                {
+                    "dept": "ACCT",
+                    "prereqs": [
+                        "ACCT 220"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/acct-230",
+                    "number": "230",
+                    "details": ""
+                },
+                {
+                    "dept": "ECON",
+                    "prereqs": [
+                        "ECON 160"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/econ-161",
+                    "number": "161",
+                    "details": ""
+                },
+                {
+                    "dept": "BLAW",
+                    "prereqs": [],
+                    "link": "http://curriculum.ptg.csun.edu/classes/blaw-280",
+                    "number": "280",
+                    "details": ""
+                },
+                {
+                    "dept": "GE",
+                    "prereqs": [],
+                    "link": "",
+                    "number": "Comparative Cultures",
+                    "details": ""
+                }
+            ]
+        },
+        {
+            "semester": "Spring-2019",
+            "classes": [
+                {
+                    "dept": "BUS",
+                    "prereqs": [
+                        "ACCT 220",
+                        "ACCT 230",
+                        "BLAW 280",
+                        "COMP 100",
+                        "ECON 160",
+                        "ECON 161",
+                        "ENGL 205",
+                        "MATH 103",
+                        "MATH 140",
+                        "SOM 120"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/bus-302",
+                    "number": "302",
+                    "details": ""
+                },
+                {
+                    "dept": "ACCT",
+                    "prereqs": [
+                        "ACCT 220",
+                        "ENGL 205",
+                        "BUS 302",
+                        "BUS 30",
+                        "BUS 30L",
+                        "ACCT 351",
+                        "ACCT 351COM"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/acct-350",
+                    "number": "350",
+                    "details": ""
+                },
+                {
+                    "dept": "FIN",
+                    "prereqs": [
+                        "ACCT 220",
+                        "ECON 160",
+                        "SOM 120",
+                        "BUS 302",
+                        "BUS 30",
+                        "BUS 30L"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/fin-303",
+                    "number": "303",
+                    "details": ""
+                },
+                {
+                    "dept": "COMS",
+                    "prereqs": [],
+                    "link": "http://curriculum.ptg.csun.edu/classes/coms-356",
+                    "number": "356",
+                    "details": ""
+                },
+                {
+                    "dept": "RS",
+                    "prereqs": [],
+                    "link": "http://curriculum.ptg.csun.edu/classes/rs-361",
+                    "number": "361",
+                    "details": ""
+                }
+            ]
+        },
+        {
+            "semester": "Fall-2019",
+            "classes": [
+                {
+                    "dept": "IS",
+                    "prereqs": [
+                        "ACCT 220"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/is-312",
+                    "number": "312",
+                    "details": ""
+                },
+                {
+                    "dept": "MGT",
+                    "prereqs": [
+                        "BUS 302",
+                        "BUS 30",
+                        "BUS 30L"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/mgt-360",
+                    "number": "360",
+                    "details": ""
+                },
+                {
+                    "dept": "ACCT",
+                    "prereqs": [
+                        "ACCT 350",
+                        "BUS 302",
+                        "BUS 30",
+                        "BUS 30L",
+                        "ACCT 351COM"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/acct-351",
+                    "number": "351",
+                    "details": ""
+                },
+                {
+                    "dept": "ACCT",
+                    "prereqs": [
+                        "ACCT 350",
+                        "BUS 302",
+                        "BUS 30",
+                        "BUS 30L",
+                        "ACCT 351"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/acct-351COM",
+                    "number": "351COM",
+                    "details": ""
+                },
+                {
+                    "dept": "ACCT",
+                    "prereqs": [
+                        "ACCT 350",
+                        "BUS 302",
+                        "BUS 30",
+                        "BUS 30L",
+                        "ACCT 351",
+                        "ACCT 351COM"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/acct-380",
+                    "number": "380",
+                    "details": ""
+                },
+                {
+                    "dept": "GE",
+                    "prereqs": [],
+                    "link": "",
+                    "number": "Upper Division Social Science",
+                    "details": ""
+                }
+            ]
+        },
+        {
+            "semester": "Spring-2020",
+            "classes": [
+                {
+                    "dept": "MKT",
+                    "prereqs": [
+                        "ECON 160",
+                        "ECON 300",
+                        "ECON 160",
+                        "ECON 300",
+                        "BUS 104",
+                        "BUS 302",
+                        "BUS 30",
+                        "BUS 30L"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/mkt-304",
+                    "number": "304",
+                    "details": ""
+                },
+                {
+                    "dept": "BLAW",
+                    "prereqs": [
+                        "BLAW 280",
+                        "BUS 302",
+                        "BUS 30",
+                        "BUS 30L"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/blaw-308",
+                    "number": "308",
+                    "details": ""
+                },
+                {
+                    "dept": "ACCT",
+                    "prereqs": [
+                        "ACCT 351",
+                        "ACCT 351COM"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/acct-440",
+                    "number": "440",
+                    "details": ""
+                },
+                {
+                    "dept": "ACCT",
+                    "prereqs": [
+                        "ACCT 351",
+                        "ACCT 351COM"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/acct-352",
+                    "number": "352",
+                    "details": ""
+                },
+                {
+                    "dept": "ACCT",
+                    "prereqs": [
+                        "ACCT 351",
+                        "ACCT 351COM",
+                        "ACCT 352"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/acct-460",
+                    "number": "460",
+                    "details": ""
+                },
+                {
+                    "dept": "IS",
+                    "prereqs": [
+                        "IS 312",
+                        "BUS 302",
+                        "BUS 30",
+                        "BUS 30L"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/is-431",
+                    "number": "431",
+                    "details": ""
+                }
+            ]
+        },
+        {
+            "semester": "Fall-2020",
+            "classes": [
+                {
+                    "dept": "SOM",
+                    "prereqs": [
+                        "MATH 103",
+                        "SOM 120",
+                        "MATH 140",
+                        "BUS 302",
+                        "BUS 30",
+                        "BUS 30L"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/som-306",
+                    "number": "306",
+                    "details": ""
+                },
+                {
+                    "dept": "BUS",
+                    "prereqs": [
+                        "BUS 302",
+                        "BUS 30",
+                        "BUS 30L",
+                        "FIN 303",
+                        "MGT 360",
+                        "MKT 304"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/bus-497A",
+                    "number": "497A",
+                    "details": ""
+                },
+                {
+                    "dept": "ACCT",
+                    "prereqs": [
+                        "ACCT 352",
+                        "ACCT 440"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/acct-441",
+                    "number": "441",
+                    "details": ""
+                },
+                {
+                    "dept": "IS",
+                    "prereqs": [
+                        "IS 312",
+                        "BUS 302",
+                        "BUS 30",
+                        "BUS 30L"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/is-435",
+                    "number": "435",
+                    "details": ""
+                },
+                {
+                    "dept": "IS",
+                    "prereqs": [
+                        "IS 431",
+                        "IS 435",
+                        "BUS 302",
+                        "BUS 30",
+                        "BUS 30L"
+                    ],
+                    "link": "http://curriculum.ptg.csun.edu/classes/is-451",
+                    "number": "451",
+                    "details": ""
+                }
+            ]
+        }
+    ]
+}
+

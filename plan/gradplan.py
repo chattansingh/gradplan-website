@@ -9,6 +9,7 @@ import re
 import json
 import urllib2 as ul
 import requests
+import datetime
 from bs4 import BeautifulSoup
 
 classurl = 'http://curriculum.ptg.csun.edu/classes/'
@@ -49,6 +50,23 @@ def getroadmaplinks(url):
       maplinks.append({'major': i['title'][20:], 'link': i['href']})
   return maplinks
 
+def getprereqs(url):
+  data = getpage(url)
+  em = data.find_all('em')
+  prereqs = []
+  for e in em:
+    a = e.find_all('a', {'title':True})
+    for i in a:
+      title = i['title'].split('.')
+      if len(title) > 1:
+        num = title[0].split(' ')[1]
+        if 'L' in num:
+          prereqs.append(title[0][:len(title[0])-2])
+          prereqs.append(title[0][:len(title[0])-2]+'L')
+        else:
+          prereqs.append(title[0])
+  return prereqs
+
 """The function below generates a basic plan (no modifications) to store
    in a database for future reference. The plan is an array of semesters,
    each semester has a field called "classes". Each classes field is an
@@ -56,10 +74,10 @@ def getroadmaplinks(url):
    number and prereqs. The plan structure looks as follows:
    [
      { 'classes': [
-	{ 'dept'    : "COMP",
+	 {'dept'    : "COMP",
 	  'number'  : "110",
           'prereqs' : [ "MATH 150", "COMP 108"]
-        }
+         }
         ]
      }
    ]
@@ -69,6 +87,7 @@ def genplan(url):
   data = getpage(url)
   tables = data.find_all('table', {'summary': True})
   plan = []
+  first = True
 
   for t in tables:
 
@@ -85,12 +104,13 @@ def genplan(url):
 	prereqs = []
 
 	if dept != 'GE' and dept != 'Title':
-
+          prereqs = getprereqs(c['href'])
 	  n = ''
           # check if the class has a lab associated with it
           # if so, add to separate classes to the semester (one lecture and one lab)
-          if '\L' in num:
-	    n = num[0][:len(num)-2]
+          print num
+          if '\L' in num or '/L' in num or '/L' in ''.join(num) or '\L' in ''.join(num):
+	    n = ''.join(num)[:len(num)-3]
 	    link.append(classurl + dept.lower() + '-' + n)
 	    link.append(classurl + dept.lower() + '-' + n + 'L')
           else:
@@ -98,30 +118,87 @@ def genplan(url):
 
           if len(link) > 1:
             #add lecture and lab to semester instead of just lecture
-            cl = {'dept': dept, 'number': num[:len(num)-2], 'prereqs': prereqs}
+            cl = {'dept': dept, 'number': ''.join(num)[:len(num)-3], 'prereqs': prereqs, 'link': link[0], 'details': ''}
+            if first:
+              cl['details'] = getclasses(link[0])
 	    sem['classes'].append(cl)
-	    cl = {'dept': dept, 'number': num[:len(num)-2]+'L', 'prereqs': prereqs}
+	    cl = {'dept': dept, 'number': ''.join(num)[:len(num)-3]+'L', 'prereqs': prereqs, 'link': link[1], 'details': ''}
+            if first:
+              cl['details'] = getclasses(link[1])
 	    sem['classes'].append(cl)
 
           if len(link) == 1:
-	    cl = {'dept': dept, 'number': num, 'prereqs': prereqs}
+	    cl = {'dept': dept, 'number': ''.join(num), 'prereqs': prereqs, 'link': link[0], 'details': ''}
+            if first:
+              cl['details'] = getclasses(link[0])
 	    sem['classes'].append(cl)
         else:
-          cl = {'dept': dept, 'number': num, 'prereqs': []}
+          #we dont append a link here because it is a GE or title 5 class
+          cl = {'dept': dept, 'number': ' '.join(num), 'prereqs': [], 'link': '', 'details': ''}
           sem['classes'].append(cl)
+      if first:
+        first = False
 
     plan.append(sem)
   return plan
 	  
-
 def getbaseplans():
+  busy = {}
+  now = datetime.datetime.now()
+  #p = json.loads(plan['plan'])
+  first = 0
+  month, year = getSem()
+  season = ''
+  if month < 6:
+    season = 'Spring'
+  else:
+    season = 'Fall'
   majors = getmajors()
   plans = []
   for m in majors:
     roadmaplink = getroadmaplinks(m['link'])
     if len(roadmaplink) > 0:
       roadmaplink = roadmaplink[0]['link']
-      plans.append(genplan(roadmaplink))
+      #plans.append({'major': m['major'], 'plan': json.dumps(genplan(roadmaplink))})
+      p = genplan(roadmaplink)
+      for i in range(len(p)):
+        sem = p[i]['classes']
+        if first == 0:
+          first += 1
+          p[i]['semester'] = season + '-' + str(year)
+        else:
+          if season == 'Fall':
+            season = 'Spring'
+            year += 1
+          else:
+            season = 'Fall'
+          p[i]['semester'] = season + '-' + str(year)
+        for j in range(len(sem)):
+          cl = sem[j]
+          if cl['link'] != '' and i == 0:
+            #p[i]['classes'][j]['details'] = getclasses(cl['link'])
+            print cl['link']
+            if '/F' in cl['link']:
+              cl['link'] = cl['link'][:len(cl['link'])-2] + cl['link'][len(cl['link'])-1]
+            classes = getclasses(cl['link'])
+            classes = suggested(classes, busy)
+            p[i]['classes'][j]['details'] = classes
+      plans.append({'major': m['major'], 'plan': p})
+  return plans
+
+def filtertimes(sem, busy):
+  s = []
+  for i in range(len(sem)):
+    cl = sem[i]
+    if cl['dept'] != 'GE' or cl['dept'] != 'Title' and cl['link'] != u'':
+      classes = getclasses(cl['link'])
+      classes = suggested(classes, busy)
+      clcopy = cl
+      clcopy['details'] = classes
+      s.append(clcopy)
+    else:
+      s.append(cl)
+  return s
 
 def timeconvert(t):
   hour = t[:2]
@@ -167,8 +244,9 @@ def checktime(cl, day):
 def inrange(cl, s):
   if s[0] == []:
     return False
+  print cl
   c1 = cl[0]
-  c1 = cl[1]
+  #c1 = cl[1]
   c2 = '    '
   if len(cl[0]) > 2:
     c2 = cl[0]
@@ -176,14 +254,26 @@ def inrange(cl, s):
   s1 = s[0][0][:2]
   s2 = s[0][0][2:]
 
-  if c1 == 'T':
+  if 'Mo' not in c1 and 'Tu' not in c1 and 'Th' not in c1 and 'We' not in c1 and 'S' not in c1 and 'F' not in c1:
+    c1 = c1.replace('M', 'Mo')
+    c1 = c1.replace('T', 'Tu')
+    c1 = c1.replace('R', 'Th')
+    c1 = c1.replace('W', 'We')
+    c2 = c1[2:]
+    c1 = c1[:2]
+  else:
+    if 'S' not in c1 and 'F' not in c1:
+      c2 = c1[2:]
+      c1 = c1[:2]
+  """if c1 == 'T':
     c1 = 'Tu'
   if c1 == 'M':
     c1 = 'Mo'
   if c2 == 'R':
     c2 = 'Th'
   if c2 == 'W':
-    c2 = 'We'
+    c2 = 'We'"""
+
 
   if c1 in s[0]:
     day = s[0].index(c1)
@@ -199,20 +289,27 @@ def inrange(cl, s):
 #this function is supposed to determine compatability of a class
 #i.e. has the user taken this class and is it in their schedule range?
 def compatible(c, s):
+  print c
+  if s == {} or c['start_time'] == '':
+    return True
   if inrange([c['days'], c['start_time'], c['end_time']], [s['days'], s['times']]):
     return False
   else:
     return True
 
 def filter(cl):
-  meetings = cl['meetings'][0]
-  start = timeconvert(meetings[u'start_time'])
-  end = timeconvert(meetings['end_time'])
+  meetings = {'days': [], 'location': []}
+  start = ''
+  end = ''
+  if len(cl['meetings']) > 0:
+    meetings = cl['meetings'][0]
+    start = timeconvert(meetings[u'start_time'])
+    end = timeconvert(meetings['end_time'])
   result = {'course_id': cl['course_id'], 'start_time': start, 'end_time': end, 'days': meetings['days'], 'location': meetings['location']}
   return result
 
 def suggested(data, schedule):
-  s = {'course_id': [], 'start_time': [], 'end_time': [], 'days': [], 'location': []}
+  s = {'course_id': [], 'start_time': [], 'end_time': [], 'days': [], 'location': [], 'details': data}
   for c in data:
     temp = filter(c)
     if compatible(temp, schedule):
@@ -222,6 +319,51 @@ def suggested(data, schedule):
       s['location'].append(temp['location'])
       s['days'].append(temp['days'])
   return s
+
+def getSem():
+  now = datetime.datetime.now()
+  return now.month, now.year
+
+def meetsPrereqs(taken, cl):
+  if cl['prereqs'] == []:
+    return True
+  for c in cl['prereqs']:
+    if c not in taken:
+      return False
+  return True
+
+# we pass in a plan to this func. it then gives suggested classes
+# based off already taken classes and schedule
+def changeplan(plan, taken):
+  now = datetime.datetime.now()
+  p = plan['plan']
+  #plan['plan'] = p
+  for i in range(len(p)):
+    for j in p[i]['classes']:
+      #check if class has been taken
+      #find next class and replace it if so
+      #be sure to replace the classes moved
+      name = j['dept'] + ' ' + j['number']
+      if name in taken:
+        nextclass = {}
+        for k in range(i, len(p)):
+          s = len(p[k]['classes'])
+          for h in p[k]['classes']:
+            if meetsPrereqs(taken, h): #p[k]['classes'][h]):
+              nextclass = h
+              ind = -1
+              for x in range(len(p[i]['classes'])):
+                n = p[i]['classes'][x]['dept'] + ' ' + p[i]['classes'][x]['number']
+                if name == n:
+                  ind = x
+              p[k]['classes'].remove(h)
+              if nextclass != {}:
+                p[i]['classes'][ind] = nextclass
+              else:
+                p[i]['classes'].remove(p[i]['classes'][ind])
+                s -= 1
+  #plan['plan'] = json.dumps(p)
+  return p
 
 """
 the following function expects a url to the catalog majro page and
@@ -318,14 +460,12 @@ def get_major_url(major):
   elif major == 'Math (General)':
     return'http://catalog.csun.edu/academics/math/programs/ba-mathematics-i/general/'
   else:
-<<<<<<< HEAD
     return 'http://catalog.csun.edu/academics/ece/programs/bs-electrical-engineering/'"""
   m = getmajors()
   for i in m:
     if i['major'] == major:
       return i['link']
-
-    return 'http://catalog.csun.edu/academics/ece/programs/bs-electrical-engineering/'
+    #return 'http://catalog.csun.edu/academics/ece/programs/bs-electrical-engineering/'
 
 def format_gradplan(road_map):
     counter = 1
@@ -347,11 +487,8 @@ def format_gradplan(road_map):
 
     return {'year1':year1, 'year2':year2,'year3':year3, 'year4':year4}
 
-def filter_gradplan(class_form, time_form):
-    filtered_dictionary = {'days': [], 'times': [], 'taken': []}
-
-    class_fliter = class_form.cleaned_data['class_list']
-    filtered_dictionary['taken'] = [str(c) for c in class_fliter]
+def filtered_time(time_form):
+    filtered_dictionary = {'days': [], 'times': []}
 
     # Time and Day filter
     monday = time_form.cleaned_data['monday']
@@ -362,28 +499,27 @@ def filter_gradplan(class_form, time_form):
     saturday = time_form.cleaned_data['saturday']
 
     if monday:
-        filtered_dictionary['days'] = 'Mo'
+        filtered_dictionary['days'].append('Mo')
         filtered_dictionary['times'].append([str(t) for t in monday])
     if tuesday:
-        filtered_dictionary['days'] = 'Tu'
+        filtered_dictionary['days'].append('Tu')
         filtered_dictionary['times'].append([str(t) for t in tuesday])
     if wednesday:
-        filtered_dictionary['days'] = 'We'
+        filtered_dictionary['days'].append('We')
         filtered_dictionary['times'].append([str(t) for t in wednesday])
     if thursday:
-        filtered_dictionary['days'] = 'Th'
+        filtered_dictionary['days'].append('Th')
         filtered_dictionary['times'].append([str(t) for t in thursday])
     if friday:
-        filtered_dictionary['days'] = 'Fr'
+        filtered_dictionary['days'].append('Fr')
         filtered_dictionary['times'].append([str(t) for t in friday])
     if saturday:
-        filtered_dictionary['days'] = 'Sa'
+        filtered_dictionary['days'].append('Sa')
         filtered_dictionary['times'].append([str(t) for t in saturday])
 
     return filtered_dictionary
 
-#uncomment lines below to see example output for CS
-#e = { 'days': ['Tu','Th'], 'times':[['09:00 AM'], ['09:00 AM']], 'taken':['MATH 150A']}
-# e = {'days':[], 'times':[], 'taken': []}
-# a = getroadmap('http://catalog.csun.edu/academics/comp/programs/bs-computer-science/', e)
-# print a
+
+def get_class_info(url):
+  response = ul.urlopen(url)
+  return json.loads(response.read())

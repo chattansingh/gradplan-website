@@ -1,4 +1,5 @@
 
+{% load static %}
 <!DOCTYPE html> 
     <html lang="en"> 
     <head> 
@@ -21,7 +22,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<link rel="stylesheet" href= "css/registration.css">  
+<link rel="stylesheet" href= "{% static 'css/base.css' %}">
 
 <!-- Google Font-->
 <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
@@ -30,20 +31,20 @@
 	 <div class="container">
 	 <div class="jumbotron csunStyle">
 	 
-	 <h1>Registration Complete</h1>
-        <p>You are now registered</p>
+	 <h1 class="text-center red-text">Registration Form</h1>
+
 	 
 	 </div>
 	 </div>
 	 <div class="container">
 	 <div class="row">
-	 <div class="col-md-3 col-offset-md-6">
+	 <div class="col-md-3 col-md-offset-4">
 
 {% block content %}
 <form method="post" action=".">
   {% csrf_token %}
   {{ form.as_p }}
-  <input type="submit" value="register" />
+  <input type="submit" value="register" id="register"/>
 </form>
     <p>Already registered?
         <a href="{% url "login" %}">Sign in here.</a></p>

@@ -1,28 +1,92 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{{ professor.last_name }}, {{ professor.first_name }}</title>
-</head>
-<body>
-<h1>{{ professor.last_name }}, {{ professor.first_name }} {{ class_name }}</h1>
-{#We can beautify this or even make it more accurate with float if we need to! It should show up as stars#}
-<h2>Average Rating (out of 5): {{ professor.average_rating }}</h2>
-{% if has_ratings %}
-    <h3>Current ratings:</h3>
-    {% for rating in class_ratings %}
-        <div>
-            <p>{{ rating.rating }}</p><br>
-        </div>
-    {% endfor %}
-{% endif %}
 
-<h3>Leave your own experience</h3>
+  <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+
+    <link rel="stylesheet" href= "{% static 'css/base.css' %}">
+    <!-- Google Font-->
+
+
+</head>
+<script>
+
+function copyStar()
+{
+    var total_stars= parseInt({{ professor.average_rating }});
+    var star=document.getElementById("gold").src;
+   ;
+    var star_array=[];
+
+    for(var x=0;x<total_stars;x++)
+    {
+        var element=document.createElement('img');
+    element.src=star;
+    element.style.height='100px';
+    element.style.width='100px';
+        star_array[x]=element;
+    }
+
+    for(var i=0;i<total_stars;i++) {
+
+    if(total_stars == 0)
+
+    {
+        return;
+    }
+        document.getElementById('stars').appendChild(star_array[i]);
+    }
+
+}
+
+window.onload=copyStar;
+
+</script>
+<body>
+<div class="container">
+<div class="row">
+<div class="col-md-offset-4">
+<h1 >{{ professor.last_name }}, {{ professor.first_name }} {{ class_name }}</h1>
+<h4 ><a  href="{{ professor.rmp_url }}"onClick="return confirm('Warning, this is an external site. Do you wish to continue?')">Check out more details on Rate My Professor</a></h4>
+{#We can beautify this or even make it more accurate with float if we need to! It should show up as stars#}
+<img   id="gold"  style="display: none;"class="img-responsive" style="width: 100px" style="height: 100px" src="{%  static "img/Star.png"%}" alt="Star"/>
+<div id="stars"></div>
+
+    <h3 >Average Rating (out of 6): {{ professor.average_rating }}</h3>
+
+
+
+
+<h3 class=text-center">Leave your own experience</h3>
 <form action="{% url 'rate_professor' last_name=professor.last_name first_name=professor.first_name class_name=class_name %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Save" class="btn-save">
-</form>
 
+</form>
+    {% if has_ratings %}
+    <h3 class=text-center">Current ratings:</h3>
+    {% for rating in class_ratings %}
+        <div>
+            <p class=text-center">{{ rating.rating }}</p><br>
+        </div>
+    {% endfor %}
+{% endif %}
+</div>
+</div>
+</div>
 </body>
 </html>

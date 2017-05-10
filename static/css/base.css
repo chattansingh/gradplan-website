@@ -126,6 +126,13 @@ background-image:url(../img/Library.jpg);
 
 }
 
+
+.year
+{
+    height:400px;
+    width:100%;
+}
+
 div#Title-div h1,div#Title-div h2
 {
 font-family: 'Fjalla One', sans-serif;
@@ -294,7 +301,10 @@ color:white;
 {
 background-color#d22030;
 color:white;
+    padding-top: 20px;
+    padding-bottom:20px;
 }
+
 
 section#login
 {
@@ -305,7 +315,10 @@ section#login
 
 }
 
-
+.red-text
+{
+    color:#d22030;
+}
 
 
 
@@ -482,14 +495,20 @@ color:black;
 font-family: 'Fjalla One', sans-serif;
 }
 
+div#jobInformation
+{
+    height:200px;
+    background-color: white;
+    padding-top: 20px;
+    padding-bottom:20px;
+
+}
 
 
-
-
-
-
-
-
+#black
+{
+    color:black;
+}
 
 
 

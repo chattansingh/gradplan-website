@@ -1,4 +1,5 @@
-<!DOCTYPE html> 
+{% load static %}
+<!DOCTYPE html>
     <html lang="en"> 
     <head> 
         <meta charset="utf-8"> 
@@ -20,28 +21,27 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<link rel="stylesheet" href= "css/registration.css">  
-
+ <link rel="stylesheet" href= "{% static 'css/base.css' %}">
 <!-- Google Font-->
 <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
      </head>
-	<body> 
-	 <div class="container">
-	 <div class="jumbotron csunStyle">
+	<body >
+
+	 <div id="chooseMajors">
 	 
-	 <h1>Choose Major</h1>
+	 <h1 class="text-center">Choose Major</h1>
         
-	 
-	 </div>
+
 	 </div>
 	 <div class="container">
 	 <div class="row">
-	 <div class="col-md-3 col-offset-md-6">
+	 <div class="col-md-3 col-offset-md-4">
     <div class="container">
       <div class="row">
         <form action="{% url 'choose_a_major' %}" method="post">
+            {% csrf_token %}
             {{ form.as_p }}
-            <input type="submit" value="Select" class="btn-save">
+            <input type="submit" value="Select" class="btn-save" id="select">
         </form>
           <h3><a href="{% url 'suggest_major' %}" >Not sure? Click here to have a Major Suggested</a></h3>
           <h3><a href="{% url 'view_major_job_salaries' %}">Or Click to see different Major's Jobs/Salaries</a> </h3>
