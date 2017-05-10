@@ -304,7 +304,6 @@ def common_classes(request):
         if form.is_valid():
             majors_chosen = form.cleaned_data['choose_multiple_majors']
             road_maps = [MajorRoadMaps.objects.get(major=major).road_map for major in majors_chosen]
-
             context = {'detail_sem': get_common_classes(road_maps)}
             return render(request, 'plan/common_classes.html', context)
         else:
