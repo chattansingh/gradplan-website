@@ -30,9 +30,10 @@
 </head>
 <body>
 
-    <div id="chooseMajor>
+<div id="chooseMajor>
 
-        <h1 class="text-center">Choose Semester</h1>
+        <h1 class=" text-center
+">Choose Semester</h1>
 
 
 </div>
@@ -42,7 +43,8 @@
             <div class="container">
                 {% if filter_time %}
                     <div class="row">
-                    <h2>Choose the times you are not available for classes.  Leave blank if available for all times.</h2>
+                        <h2>Choose the times you are not available for classes. Leave blank if available for all
+                            times.</h2>
                         <form action="{% url 'choose_semester' %}" method="post">
                             {% csrf_token %}
                             {{ time_filter_form.as_p }}
@@ -68,6 +70,7 @@
                     </div>
                 {% endif %}
                 <p><a href="{% url 'index' %}">Home</a></p>
+                <p><a href="{% url 'user_profile' %}">Profile</a></p>
                 <p><a href="{% url 'logout' %}">Logout</a></p>
                 <p><a href="{% url 'login' %}">Login</a></p>
             </div>

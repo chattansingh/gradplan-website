@@ -21,6 +21,7 @@ class Profile(models.Model):
     classes_taken = JSONField(blank=True, null=True)
     subject_interests = models.ManyToManyField(SubjectInterests, blank=True)
     progress = models.IntegerField(blank=True, default=0)
+    common_classes = JSONField(blank=True, null=True)
 
 
 @receiver(post_save, sender=User)
