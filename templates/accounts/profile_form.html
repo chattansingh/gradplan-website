@@ -47,8 +47,8 @@
             <h1>{{ request.user.username }}'s Profile</h1>
             <div class="container">
                 <div class="row">
-                    <h2>Current Classes Taken</h2>
-                    <a href="{% url 'edit_classes' %}"><h2>Click to Remove</h2></a>
+                    <h3>Current Classes Taken</h3>
+                    <a href="{% url 'edit_classes' %}"><h3>Click to Remove Classes</h3></a>
                     <table>
                         {% for taken in classes_taken %}
                             <tr>
@@ -59,6 +59,7 @@
                         {% endfor %}
                     </table>
                     <br>
+                <h3><a href="{% url 'current_semester' %}">View your Current Semester Classes</a> </h3>
                     <form action="{% url 'user_profile' %}" method="post">
                         {% csrf_token %}
                         {{ form.as_p }}

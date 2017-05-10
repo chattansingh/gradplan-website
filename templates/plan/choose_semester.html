@@ -42,7 +42,7 @@
             <div class="container">
                 {% if filter_time %}
                     <div class="row">
-                    <h2>Choose the times you are available for classes.  Leave blank if available for all times.</h2>
+                    <h2>Choose the times you are not available for classes.  Leave blank if available for all times.</h2>
                         <form action="{% url 'choose_semester' %}" method="post">
                             {% csrf_token %}
                             {{ time_filter_form.as_p }}
