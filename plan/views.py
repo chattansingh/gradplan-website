@@ -19,6 +19,7 @@ def grad_road_map(request):
         # get the current graduation plan that the user has selected
         road_map = current_user.current_graduation_plan
         major = current_user.current_major
+        filter_input = {'major': major,'plan':road_map}
         progress = current_user.progress
         if progress < 0:
             progress = 0
@@ -43,6 +44,13 @@ def grad_road_map(request):
     # print dic['remaining_sem']
 
     context = {'major': major, 'has_major': has_major, 'progress': progress}
+
+    if current_user.classes_taken:
+        c = [cl[:-2] for cl in current_user.classes_taken]
+        road_map = changeplan(filter_input, c)
+        current_user.current_graduation_plan = road_map
+        current_user.save()
+
     dictionary = get_semester(road_map)
     context.update(dictionary)
     template = 'plan/Plans.html'
@@ -81,7 +89,7 @@ def choose_a_major(request):
                 # annon user
                 major = maj_obj.major
                 road_map = maj_obj.road_map
-
+            filter_input = {'major': major, 'plan': road_map}
             # empty_filter = {'days': [], 'times': [], 'taken': []}
             # road_map = getroadmap(get_major_url(major_choice), empty_filter)
             # road_map = {}
@@ -95,6 +103,11 @@ def choose_a_major(request):
             # update it with split up semesters to more easily display it
             # keys are 'detail_sem' and 'remaining_sem'
             print 'processing web page....'
+            if current_user.classes_taken:
+                c = [cl[:-2] for cl in current_user.classes_taken]
+                road_map = changeplan(filter_input, c)
+                current_user.current_graduation_plan = road_map
+                current_user.save()
             context.update(get_semester(road_map))
             return render(request, template, context)
         else:
@@ -207,14 +220,19 @@ def current_semester(request):
     current_user = get_object_or_404(Profile, user=request.user)
     current_semester = current_user.current_semester
 
-    if current_semester:
-
-        context = {'classes': current_semester}
-        template = 'plan/current_semester.html'
+    if request.method == 'POST':
+        current_user.current_semester = []
+        current_user.save()
+        return redirect('/roadmap/choosesemester')
     else:
-        return redirect('/plan/choosesemester')
+        if current_semester:
 
-    return render(request, template, context)
+            context = {'classes': current_semester}
+            template = 'plan/current_semester.html'
+        else:
+            return redirect('/plan/choosesemester')
+
+        return render(request, template, context)
 
 
 @login_required
@@ -248,29 +266,34 @@ def choose_semester(request):
             if classes_chosen.is_valid():
                 classes = []
                 for key in classes_chosen.data:
-                    if key != 'csrfmiddlewaretoken':
+                    if key != 'csrfmiddlewaretoken' and key != 'classes':
                         classes.append(classes_chosen.data[key])
 
                 current_user.current_semester = classes
                 current_user.save()
 
-        return render(request, 'plan/current_semester.html', {'classes': classes})
+        # return render(request, 'plan/current_semester.html', {'classes': classes})
+                return redirect('/roadmap/currentsemester')
     else:
-        filter_time = True
-        choose_classes = False
-        time_filter_form = TimeFilter()
 
-        # create a form for each class
-        # forms = {}
-        # count = 0
-        # for sem in semester:
-        #     count += 1
-        #     key = 'class_form_' + count
-        #     forms.update({key : SemesterClass(sem_class=sem)})
+        if current_user.current_semester:
+            return redirect('/roadmap/currentsemester')
+        else:
+            filter_time = True
+            choose_classes = False
+            time_filter_form = TimeFilter()
 
-        template = 'plan/choose_semester.html'
+            # create a form for each class
+            # forms = {}
+            # count = 0
+            # for sem in semester:
+            #     count += 1
+            #     key = 'class_form_' + count
+            #     forms.update({key : SemesterClass(sem_class=sem)})
 
-        return render(request, template, {'time_filter_form': time_filter_form, 'filter_time': filter_time, 'choose_classes': choose_classes})
+            template = 'plan/choose_semester.html'
+
+            return render(request, template, {'time_filter_form': time_filter_form, 'filter_time': filter_time, 'choose_classes': choose_classes})
 
 
 @login_required

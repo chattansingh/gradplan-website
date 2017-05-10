@@ -75,7 +75,10 @@
     <div class="col-md-6 col-md-offset-3" id="SemesterView">
 	<h1 class="text-center">Classes by Semester</h1>
     <h2 class="text-center"><a href={% url 'modify_grad_plan' %}>Taken some of these already? Click to Remove Them</a></h2>
-    <h1>{{ progress }}</h1>
+        <h2 class="text-center"><a href={% url 'choose_semester' %}>Choose your Semester Classes or View your chosen Semester Classes</a></h2>
+        <p><a href="{% url 'index' %}">Home</a></p>
+        <p><a href="{% url 'logout' %}">Logout</a></p>
+    <h1 align="center">Units Taken</h1>
     <div class="progress">
   <div  id="pbar" class="progress-bar progress-bar-striped active" role="progressbar"
   aria-valuenow="0" aria-valuemin="0" aria-valuemax="120" style="width:0%">
@@ -87,7 +90,7 @@
             <div>
 
                 <h3>{{ sem.dept }} {{ sem.number }}</h3>
-             <button type="button"  class="btn btn-default" data-target="#{{ sem.dept }}{{ sem.number }}Prof" data-toggle="collapse"> {{ sem.dept }} {{ sem.number }} Prof</button>
+             <button type="button"  class="btn btn-default" data-target="#{{ sem.dept }}{{ sem.number }}Prof" data-toggle="collapse"> {{ sem.dept }} {{ sem.number }} Class Details</button>
                 <div id="{{ sem.dept }}{{ sem.number }}Prof" class="collapse">
                 <div id="table-container">
                     <table class="classes" id="{{ sem.dept }} {{ sem.number }}">
@@ -146,7 +149,7 @@
     <h1 class="text-center">Remaining Semesters<h1/>
                 {% for sem in remaining_sem %}
             {#sem is a list of the classes#}
-            <h2>Separating Semesters: Semester {{ forloop.counter }}</h2>
+            <h2>Semester {{ forloop.counter|add:"1" }}</h2>
             {% for class in sem %}
                 <h3>{{ class.dept }} {{ class.number }}</h3>
             {% endfor %}
