@@ -279,24 +279,32 @@ def inrange(cl, s):
   if c2 == 'W':
     c2 = 'We'"""
 
-  result = True
+  result = False
 
   if c1 in s[0]:
     day = s[0].index(c1)
     busy = s[1][day]
     result =  checktime(cl, busy)
+  if result:
+    return result
   if c2 in s[0]:
     day = s[0].index(c2)
     busy = s[1][day]
     result = checktime(cl, busy)
+  if result:
+    return result
   if c3 in s[0]:
     day = s[0].index(c3)
     busy = s[1][day]
     result = checktime(cl, busy)
+  if result:
+    return result
   if c4 in s[0]:
     day = s[0].index(c4)
     busy = s[1][day]
     result = checktime(cl, busy)
+  if result:
+    return result
   if c5 in s[0]:
     day = s[0].index(c5)
     busy = s[1][day]
