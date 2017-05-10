@@ -241,13 +241,23 @@ def inrange(cl, s):
     return False
   c1 = cl[0][0]
   c2 = '    '
+  c3 = '  '
+  c4 = '  '
+  c5 = '  '
+  c6 = '  '
   #print c1
   if len(cl[0]) > 1:
     c2 = cl[0]
     c2 = c2[1]
   #print c2
-  s1 = s[0][0][:2]
-  s2 = s[0][0][2:]
+  s1 = s[0][0]#[:2]
+  s2 = s[0][0]#[2:]
+  if len(cl[0]) > 2:
+    c3 = cl[0][2]
+  if len(cl[0]) > 3:
+    c4 = cl[0][3]
+  if len(cl[0]) > 4:
+    c5 = cl[0][4]
 
   """if 'Mo' not in c1 and 'Tu' not in c1 and 'Th' not in c1 and 'We' not in c1 and 'S' not in c1 and 'F' not in c1:
     c1 = c1.replace('M', 'Mo')
@@ -269,17 +279,29 @@ def inrange(cl, s):
   if c2 == 'W':
     c2 = 'We'"""
 
+  result = True
 
   if c1 in s[0]:
     day = s[0].index(c1)
     busy = s[1][day]
-    return checktime(cl, busy)
-  elif c2 in s[0]:
+    result =  checktime(cl, busy)
+  if c2 in s[0]:
     day = s[0].index(c2)
     busy = s[1][day]
-    return checktime(cl, busy)
-  else:
-    return False
+    result = checktime(cl, busy)
+  if c3 in s[0]:
+    day = s[0].index(c3)
+    busy = s[1][day]
+    result = checktime(cl, busy)
+  if c4 in s[0]:
+    day = s[0].index(c4)
+    busy = s[1][day]
+    result = checktime(cl, busy)
+  if c5 in s[0]:
+    day = s[0].index(c5)
+    busy = s[1][day]
+    result = checktime(cl, busy)
+  return result
 
 #this function is supposed to determine compatability of a class
 #i.e. has the user taken this class and is it in their schedule range?
