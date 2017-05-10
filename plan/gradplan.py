@@ -201,13 +201,13 @@ def filtertimes(sem, busy):
 def timeconvert(t):
   hour = t[:2]
   minutes = t[2:4]
-  setting = 'AM'
-  if hour == '12':
+  setting = 'h'
+  """if hour == '12':
     setting = 'PM'
   if int(hour) > 12:
     setting = 'PM'
-    hour = str(int(hour) - 12)
-  return hour + ':' + minutes + ' ' + setting
+    hour = str(int(hour) - 12)"""
+  return hour + minutes + setting
 
 def splittime(t):
   h = t[:2]
@@ -216,10 +216,10 @@ def splittime(t):
   return [h, m, setting]
 
 def check(t1, t2):
-  """print t1[0] + '==' + t2[0]
+  print t1[0] + '==' + t2[0]
   print t1[0] == t2[0]
   print t1[2] + '==' + t2[2]
-  print t1[2] == t2[2]"""
+  print t1[2] == t2[2]
   if t1[0] == t2[0] and t1[2] == t2[2]:
     return True
   else:
@@ -231,9 +231,10 @@ def checktime(cl, day):
     start = splittime(cl[1])
     end = splittime(cl[2])
     busy = splittime(t)
-    #print cl[1] + '-' + cl[2] + ' ' + t
+    print cl[1] + '-' + cl[2] + ' ' + t
     if check(start, busy) or check(end, busy):
       result = True
+      print result
 
   return result
 
@@ -241,15 +242,15 @@ def inrange(cl, s):
   if s[0] == []:
     return False
   c1 = cl[0]
-  #c1 = cl[1]
   c2 = '    '
-  if len(cl[0]) > 2:
+  print cl
+  if len(cl[0]) > 1:
     c2 = cl[0]
     c2 = c2[1]
   s1 = s[0][0][:2]
   s2 = s[0][0][2:]
 
-  if 'Mo' not in c1 and 'Tu' not in c1 and 'Th' not in c1 and 'We' not in c1 and 'S' not in c1 and 'F' not in c1:
+  """if 'Mo' not in c1 and 'Tu' not in c1 and 'Th' not in c1 and 'We' not in c1 and 'S' not in c1 and 'F' not in c1:
     c1 = c1.replace('M', 'Mo')
     c1 = c1.replace('T', 'Tu')
     c1 = c1.replace('R', 'Th')
@@ -259,7 +260,7 @@ def inrange(cl, s):
   else:
     if 'S' not in c1 and 'F' not in c1:
       c2 = c1[2:]
-      c1 = c1[:2]
+      c1 = c1[:2]"""
   """if c1 == 'T':
     c1 = 'Tu'
   if c1 == 'M':
@@ -299,6 +300,9 @@ def filter(cl):
     meetings = cl['meetings'][0]
     start = timeconvert(meetings[u'start_time'])
     end = timeconvert(meetings['end_time'])
+    print start
+    print end
+    print ''
   result = {'course_id': cl['course_id'], 'start_time': start, 'end_time': end, 'days': meetings['days'], 'location': meetings['location'], 'units': cl['units']}
   return result
 

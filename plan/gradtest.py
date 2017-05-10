@@ -6,7 +6,7 @@ import json
 #print json.dumps(plans[0]['plan'], indent=4)
 #e = { 'days': ['Tu','Th'], 'times':[['09:00 AM'], ['09:00 AM']], 'taken':['MATH 150A']}
 plan = json.loads(plan)
-plan['plan'] =  changeplan(plan, ['MATH 150A', 'MATH 150B', 'COMP 110', 'COMP 110L', 'Title 5 Requirement'])
+#plan['plan'] =  changeplan(plan, ['COMP 110', 'COMP 110L'])
 #uncomment lines below to see example output for CS 
 #print json.dumps(plan['plan'], indent=4)
 e = { 'days': ['Tu','Th'], 'times':[['09:00 AM'], ['09:00 AM']], 'taken':['MATH 150A']}
