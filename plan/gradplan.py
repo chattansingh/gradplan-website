@@ -542,22 +542,22 @@ def filtered_time(time_form):
     saturday = time_form.cleaned_data['saturday']
 
     if monday:
-        filtered_dictionary['days'].append('Mo')
+        filtered_dictionary['days'].append('M')
         filtered_dictionary['times'].append([str(t) for t in monday])
     if tuesday:
-        filtered_dictionary['days'].append('Tu')
+        filtered_dictionary['days'].append('T')
         filtered_dictionary['times'].append([str(t) for t in tuesday])
     if wednesday:
-        filtered_dictionary['days'].append('We')
+        filtered_dictionary['days'].append('W')
         filtered_dictionary['times'].append([str(t) for t in wednesday])
     if thursday:
-        filtered_dictionary['days'].append('Th')
+        filtered_dictionary['days'].append('R')
         filtered_dictionary['times'].append([str(t) for t in thursday])
     if friday:
-        filtered_dictionary['days'].append('Fr')
+        filtered_dictionary['days'].append('F')
         filtered_dictionary['times'].append([str(t) for t in friday])
     if saturday:
-        filtered_dictionary['days'].append('Sa')
+        filtered_dictionary['days'].append('S')
         filtered_dictionary['times'].append([str(t) for t in saturday])
 
     return filtered_dictionary
