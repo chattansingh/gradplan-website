@@ -175,7 +175,10 @@ def modify_gradplan(request):
                 # append the classes that they have already taken
                 classes_taken = class_form.cleaned_data['class_list']
                 current_user.classes_taken += classes_taken
-                current_user.progress = units_taken
+                if current_user.progress:
+                    current_user.progress += units_taken
+                else:
+                    current_user.progress = units_taken
                 current_user.save()
             else:
                 # user has not taken any other classes
