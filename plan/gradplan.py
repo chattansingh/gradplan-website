@@ -528,11 +528,8 @@ def format_gradplan(road_map):
 
     return {'year1':year1, 'year2':year2,'year3':year3, 'year4':year4}
 
-def filter_gradplan(class_form, time_form):
-    filtered_dictionary = {'days': [], 'times': [], 'taken': []}
-
-    class_fliter = class_form.cleaned_data['class_list']
-    filtered_dictionary['taken'] = [str(c) for c in class_fliter]
+def filtered_time(time_form):
+    filtered_dictionary = {'days': [], 'times': []}
 
     # Time and Day filter
     monday = time_form.cleaned_data['monday']
@@ -543,22 +540,22 @@ def filter_gradplan(class_form, time_form):
     saturday = time_form.cleaned_data['saturday']
 
     if monday:
-        filtered_dictionary['days'] = 'Mo'
+        filtered_dictionary['days'].append('Mo')
         filtered_dictionary['times'].append([str(t) for t in monday])
     if tuesday:
-        filtered_dictionary['days'] = 'Tu'
+        filtered_dictionary['days'].append('Tu')
         filtered_dictionary['times'].append([str(t) for t in tuesday])
     if wednesday:
-        filtered_dictionary['days'] = 'We'
+        filtered_dictionary['days'].append('We')
         filtered_dictionary['times'].append([str(t) for t in wednesday])
     if thursday:
-        filtered_dictionary['days'] = 'Th'
+        filtered_dictionary['days'].append('Th')
         filtered_dictionary['times'].append([str(t) for t in thursday])
     if friday:
-        filtered_dictionary['days'] = 'Fr'
+        filtered_dictionary['days'].append('Fr')
         filtered_dictionary['times'].append([str(t) for t in friday])
     if saturday:
-        filtered_dictionary['days'] = 'Sa'
+        filtered_dictionary['days'].append('Sa')
         filtered_dictionary['times'].append([str(t) for t in saturday])
 
     return filtered_dictionary

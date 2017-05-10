@@ -6,12 +6,36 @@ body
 {
 position:relative;
 font-family: 'Fjalla One', sans-serif;
+    background-color: #d22030;
 }
 #Max-Width
 {
 width:100%;
 }
 
+
+
+.red
+{
+ background-color: #d22030;
+}
+
+.profileForm
+{
+    background-color:white;
+    padding-top:20px;
+    padding-bottom:20px;
+}
+
+.profileForm h1
+{
+    color:#d22030;
+}
+
+.profileForm h2
+{
+    color:#d22030;
+}
 
 #nav-options {
   margin: 0.5em;
@@ -23,12 +47,34 @@ width:100%;
   padding: 0;
 }
 
+.year
+{
+
+    height:400px;
+    width:100%;
+}
+
 #nav-options img {
   max-height: 2.3em;
   border-radius: 0.3em;
 }
 
+input
+{
+    background-color: #d22030;
+    border-style:solid;
+    border-radius:5px;
 
+}
+button
+{
+    background-color: white;
+}
+select
+{
+    background-color: white;
+    color:#d22030;
+}
 
 #shadow
 {
@@ -73,7 +119,7 @@ div#Classes-Div
 {
 height:200px;
 background-color:#D22030;
-width:max;
+width:100%;
 }
 
 div#Soon
@@ -90,10 +136,15 @@ background-color:white;
 border-style:solid;
 border-color:black;
 
-
 }
-
-
+li
+{
+    color:white;
+}
+div h2
+{
+    color:white;
+}
 
 
 div#Class h2
@@ -202,7 +253,9 @@ text-align:center;
 h2
 {
 text-indent:50px;
+
 }
+
 
 
 h1,h2,h3,a,p,h4,h5
@@ -289,12 +342,7 @@ color:white;
 
 }
 
-.csunStyle
-.csunStyle>h1
-{
-background-color#d22030;
-color:white;
-}
+.
 
 section#login
 {
@@ -431,9 +479,115 @@ background-color:#d22030;
 div#GraduationPlan
 {
 background-color:white;
+    padding-top: 20px;
+    padding-bottom: 20px;
 
 }
 
+div#modify
+{
+    background-color: white;
+    padding-top: 20px;
+    padding-bottom:20px;
+}
+
+div#modify h1,h2
+{
+    color:#d22030;
+}
+
+
+div#suggestMajor
+{
+    background-color: white;
+    padding-top: 20px;
+    padding-bottom:20px;
+}
+
+div#suggestMajor h1
+{
+    color:#d22030;
+}
+
+div#suggestMajor h2
+{
+    color:#d22030;
+}
+
+
+div#chooseMajor
+{
+    background-color: white;
+    padding-top: 20px;
+    padding-bottom:20px;
+}
+div#chooseMajor h1,h2
+{
+    color:#d22030;
+}
+
+div#jobInformation
+{
+     background-color: white;
+    padding-top: 20px;
+    padding-bottom:20px;
+}
+
+div#jobInformation h1
+{
+    color:#d22030;
+}
+div#jobInformation h2
+{
+    color:#d22030;
+}
+.btn-default
+{
+    color:#d22030;
+}
+
+ul.navbar
+{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+
+li.navbar
+{
+    float:left;
+}
+
+a.navbar{
+
+    display:block;
+    padding:8px;
+    background-color:#d22030;
+}
+
+h4.navbar a.navbar
+{
+    text-decoration: none;
+}
+li.navbar a.navbar
+{
+
+    display:block;
+    text-decoration: none;
+
+}
+
+li.navbar a.navbar:hover
+{
+    background-color: white;
+    color:#d22030;
+     text-decoration: none;
+    -webkit-transition: all 150ms ease-in-out;
+  -moz-transition: all 150ms ease-in-out;
+  -ms-transition: all 150ms ease-in-out;
+  -o-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+}
 div#GraduationPlan h1,h3,h4
 {
 color:#d22030;
@@ -482,14 +636,185 @@ color:black;
 font-family: 'Fjalla One', sans-serif;
 }
 
+.bar-red
+{
+  background-color: #d22030;
+}
+
+.button-red
+{
+     background-color: #d22030;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+.row
+{
+    padding-bottom: 20px;
+    padding-top:20px;
+}
+
+.button-red:hover {
+    background-color:white; /* Green */
+    color: #d22030;
+}
 
 
 
+@keyframes myChange {
+  from {
+      height: 100px;
+  } to {
+      height:0px;
+  }
+}
+
+div#professor {
+  height: 100px;
+  background-color:black;
+}
+
+div.ng-hide {
+  animation: 0.5s myChange;
+
+}
+
+label
+{
+    color:white;
+}
+
+div#loggedOut
+{
+    background-color:white;
+    padding-top:20px;
+    padding-bottom:20px;
+}
+
+div#loggedOut h1
+{
+    color:#d22030;
+}
+div#gradLogin
+
+{
+background-color:white;
+ padding-top:20px;
+ padding-bottom:20px;
+}
+
+div#gradLogin h1
+{
+    color:#d22030;
+}
+
+div#registration
+{
+    background-color:white;
+    padding-top:20px;
+    padding-bottom:20px;
+}
+
+div#registration h1
+{
+    color: #d22030;
+}
+
+div#registration p
+{
+    color:#d22030;
+}
+
+.white
+{
+    background-color: white;
+    color:#d22030;
+}
+
+input#id_username,input#id_email,input#id_password1,input#id_password2
+{
+    background-color:white;
+    color:#d22030;
+}
 
 
 
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
+}
+
+input.btn-save
+{
+    background-color: white;
+    color:#d22030;
+}
+
+ul#custom
+{
+    list-sytle-type:none;
+    margin:0;
+    padding:0;
+    background-color:#d22030;
+}
+
+li#custom
+{
+    display:inline;
+    float:left;
+}
+
+li#custom a
+{
+    display:block;
+    color:white;
+    text-align:center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li#custom a:hover
+{
+    background-color:white;
+    color:#d22030;
+}
+
+input
+{
+    background-color: white;
+    color: #d22030;
+}
 
 
+div#chooseMajors
+{
+    height:200px;
+    background-color: white;
+    padding-top: 20px;
+    padding-bottom:20px;
+}
 
+div#chooseMajors h1
+{
+   color:#d22030;
+}
 
+h3
+{
+    color:black;
+}
 
+img#gold
+{
+    visibility: hidden;
+}

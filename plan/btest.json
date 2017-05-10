@@ -1,0 +1,847 @@
+{
+    u 'semester': u 'Spring-2017', u 'classes': [{
+        u 'dept': u 'MATH',
+        u 'prereqs': [],
+        u 'link': u 'http://curriculum.ptg.csun.edu/classes/math-103',
+        u 'number': u '103',
+        u 'details': {
+            u 'start_time': [u '', u '2:00 PM', u '3:30 PM', u '12:30 PM', u '08:00 AM', u '09:00 AM', u '3:30 PM', u '', u '6:30 PM', u '09:30 AM', u '08:00 AM', u '11:00 AM', u '5:00 PM', u '09:30 AM', u '12:30 PM', u '2:00 PM', u '', u '2:00 PM', u '5:00 PM'],
+            u 'days': [
+                [], u 'MW', u 'TR', u 'MW', u 'TR', u 'FS', u 'MW', [], u 'MW', u 'MW', u 'MW', u 'MW', u 'MW', u 'TR', u 'TR', u 'TR', [], u 'TR', u 'TR'
+            ],
+            u 'location': [
+                [], u 'CR5127', u 'LO1328', u 'CR5123', u 'CR5127', u 'LO1219', u 'EH2132', [], u 'LO1328', u 'CR5118', u 'LO1219', u 'CR5127', u 'CR5127', u 'CR5127', u 'CR5127', u 'MZ130', [], u 'LO1127', u 'LO1127'
+            ],
+            u 'course_id': [u '19832', u '19832', u '19832', u '19832', u '19832', u '19832', u '19832', u '19832', u '19832', u '19832', u '19832', u '19832', u '19832', u '19832', u '19832', u '19832', u '19832', u '19832', u '19832'],
+            u 'details': [{
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Prerequisites: Passing score on or exemption from the ELM Exam or credit in MATH 093; Passing score on the Mathematics Placement Test Part I or credit or concurrent enrollment in MATH 103L. Concepts and applications of algebra and calculus to business. Topics include functions systems of equations matrices the derivative and business-related topics in calculus. (Available for General Education Basic Skills Mathematics.)\n',
+                u 'title': u 'Mathematical Methods for Business',
+                u 'meetings': [],
+                u 'instructors': [{
+                    'last_name': u 'Khawaja',
+                    'first_name': u 'Nazimuddin',
+                    u 'instructor': u 'nazimuddin.khawaja@csun.edu'
+                }],
+                u 'section_number': u '17',
+                u 'course_id': u '19832',
+                u 'units': u '3',
+                u 'catalog_number': u '103',
+                u 'class_number': u '16776',
+                u 'subject': u 'MATH'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Prerequisites: Passing score on or exemption from the ELM Exam or credit in MATH 093; Passing score on the Mathematics Placement Test Part I or credit or concurrent enrollment in MATH 103L. Concepts and applications of algebra and calculus to business. Topics include functions systems of equations matrices the derivative and business-related topics in calculus. (Available for General Education Basic Skills Mathematics.)\n',
+                u 'title': u 'Mathematical Methods for Business',
+                u 'meetings': [{
+                    u 'start_time': u '1400h',
+                    u 'location': u 'CR5127',
+                    u 'days': u 'MW',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1515h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Reyes',
+                    'first_name': u 'Claudia',
+                    u 'instructor': u 'claudia.reyes@csun.edu'
+                }],
+                u 'section_number': u '19',
+                u 'course_id': u '19832',
+                u 'units': u '3',
+                u 'catalog_number': u '103',
+                u 'class_number': u '16777',
+                u 'subject': u 'MATH'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Prerequisites: Passing score on or exemption from the ELM Exam or credit in MATH 093; Passing score on the Mathematics Placement Test Part I or credit or concurrent enrollment in MATH 103L. Concepts and applications of algebra and calculus to business. Topics include functions systems of equations matrices the derivative and business-related topics in calculus. (Available for General Education Basic Skills Mathematics.)\n',
+                u 'title': u 'Mathematical Methods for Business',
+                u 'meetings': [{
+                    u 'start_time': u '1530h',
+                    u 'location': u 'LO1328',
+                    u 'days': u 'TR',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1645h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Shamash',
+                    'first_name': u 'Ellis',
+                    u 'instructor': u 'ellis.shamash@csun.edu'
+                }],
+                u 'section_number': u '25',
+                u 'course_id': u '19832',
+                u 'units': u '3',
+                u 'catalog_number': u '103',
+                u 'class_number': u '16829',
+                u 'subject': u 'MATH'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Prerequisites: Passing score on or exemption from the ELM Exam or credit in MATH 093; Passing score on the Mathematics Placement Test Part I or credit or concurrent enrollment in MATH 103L. Concepts and applications of algebra and calculus to business. Topics include functions systems of equations matrices the derivative and business-related topics in calculus. (Available for General Education Basic Skills Mathematics.)\n',
+                u 'title': u 'Mathematical Methods for Business',
+                u 'meetings': [{
+                    u 'start_time': u '1230h',
+                    u 'location': u 'CR5123',
+                    u 'days': u 'MW',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1345h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Nalbandyan',
+                    'first_name': u 'Zorayr',
+                    u 'instructor': u 'zorayr.nalbandyan@csun.edu'
+                }],
+                u 'section_number': u '03',
+                u 'course_id': u '19832',
+                u 'units': u '3',
+                u 'catalog_number': u '103',
+                u 'class_number': u '16948',
+                u 'subject': u 'MATH'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Prerequisites: Passing score on or exemption from the ELM Exam or credit in MATH 093; Passing score on the Mathematics Placement Test Part I or credit or concurrent enrollment in MATH 103L. Concepts and applications of algebra and calculus to business. Topics include functions systems of equations matrices the derivative and business-related topics in calculus. (Available for General Education Basic Skills Mathematics.)\n',
+                u 'title': u 'Mathematical Methods for Business',
+                u 'meetings': [{
+                    u 'start_time': u '0800h',
+                    u 'location': u 'CR5127',
+                    u 'days': u 'TR',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '0915h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Khawaja',
+                    'first_name': u 'Nazimuddin',
+                    u 'instructor': u 'nazimuddin.khawaja@csun.edu'
+                }],
+                u 'section_number': u '21',
+                u 'course_id': u '19832',
+                u 'units': u '3',
+                u 'catalog_number': u '103',
+                u 'class_number': u '16950',
+                u 'subject': u 'MATH'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Prerequisites: Passing score on or exemption from the ELM Exam or credit in MATH 093; Passing score on the Mathematics Placement Test Part I or credit or concurrent enrollment in MATH 103L. Concepts and applications of algebra and calculus to business. Topics include functions systems of equations matrices the derivative and business-related topics in calculus. (Available for General Education Basic Skills Mathematics.)\n',
+                u 'title': u 'Mathematical Methods for Business',
+                u 'meetings': [{
+                    u 'start_time': u '0900h',
+                    u 'location': u 'LO1219',
+                    u 'days': u 'FS',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1015h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Nalbandyan',
+                    'first_name': u 'Zorayr',
+                    u 'instructor': u 'zorayr.nalbandyan@csun.edu'
+                }],
+                u 'section_number': u '27',
+                u 'course_id': u '19832',
+                u 'units': u '3',
+                u 'catalog_number': u '103',
+                u 'class_number': u '17091',
+                u 'subject': u 'MATH'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Prerequisites: Passing score on or exemption from the ELM Exam or credit in MATH 093; Passing score on the Mathematics Placement Test Part I or credit or concurrent enrollment in MATH 103L. Concepts and applications of algebra and calculus to business. Topics include functions systems of equations matrices the derivative and business-related topics in calculus. (Available for General Education Basic Skills Mathematics.)\n',
+                u 'title': u 'Mathematical Methods for Business',
+                u 'meetings': [{
+                    u 'start_time': u '1530h',
+                    u 'location': u 'EH2132',
+                    u 'days': u 'MW',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1645h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Lopez',
+                    'first_name': u 'Eloy',
+                    u 'instructor': u 'eloy.lopez@csun.edu'
+                }],
+                u 'section_number': u '29',
+                u 'course_id': u '19832',
+                u 'units': u '3',
+                u 'catalog_number': u '103',
+                u 'class_number': u '17092',
+                u 'subject': u 'MATH'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Prerequisites: Passing score on or exemption from the ELM Exam or credit in MATH 093; Passing score on the Mathematics Placement Test Part I or credit or concurrent enrollment in MATH 103L. Concepts and applications of algebra and calculus to business. Topics include functions systems of equations matrices the derivative and business-related topics in calculus. (Available for General Education Basic Skills Mathematics.)\n',
+                u 'title': u 'Mathematical Methods for Business',
+                u 'meetings': [],
+                u 'instructors': [{
+                    'last_name': u 'Bojkov',
+                    'first_name': u 'Alexander',
+                    u 'instructor': u 'alexander.bojkov.50@csun.edu'
+                }],
+                u 'section_number': u '31',
+                u 'course_id': u '19832',
+                u 'units': u '3',
+                u 'catalog_number': u '103',
+                u 'class_number': u '17093',
+                u 'subject': u 'MATH'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Prerequisites: Passing score on or exemption from the ELM Exam or credit in MATH 093; Passing score on the Mathematics Placement Test Part I or credit or concurrent enrollment in MATH 103L. Concepts and applications of algebra and calculus to business. Topics include functions systems of equations matrices the derivative and business-related topics in calculus. (Available for General Education Basic Skills Mathematics.)\n',
+                u 'title': u 'Mathematical Methods for Business',
+                u 'meetings': [{
+                    u 'start_time': u '1830h',
+                    u 'location': u 'LO1328',
+                    u 'days': u 'MW',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1945h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Petrosians',
+                    'first_name': u 'Sevana',
+                    u 'instructor': u 'sevana.petrosians.555@my.csun.edu'
+                }],
+                u 'section_number': u '26',
+                u 'course_id': u '19832',
+                u 'units': u '3',
+                u 'catalog_number': u '103',
+                u 'class_number': u '17169',
+                u 'subject': u 'MATH'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Prerequisites: Passing score on or exemption from the ELM Exam or credit in MATH 093; Passing score on the Mathematics Placement Test Part I or credit or concurrent enrollment in MATH 103L. Concepts and applications of algebra and calculus to business. Topics include functions systems of equations matrices the derivative and business-related topics in calculus. (Available for General Education Basic Skills Mathematics.)\n',
+                u 'title': u 'Mathematical Methods for Business',
+                u 'meetings': [{
+                    u 'start_time': u '0930h',
+                    u 'location': u 'CR5118',
+                    u 'days': u 'MW',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1045h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Li',
+                    'first_name': u 'Jing',
+                    u 'instructor': u 'jing.li@csun.edu'
+                }],
+                u 'section_number': u '02',
+                u 'course_id': u '19832',
+                u 'units': u '3',
+                u 'catalog_number': u '103',
+                u 'class_number': u '17273',
+                u 'subject': u 'MATH'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Prerequisites: Passing score on or exemption from the ELM Exam or credit in MATH 093; Passing score on the Mathematics Placement Test Part I or credit or concurrent enrollment in MATH 103L. Concepts and applications of algebra and calculus to business. Topics include functions systems of equations matrices the derivative and business-related topics in calculus. (Available for General Education Basic Skills Mathematics.)\n',
+                u 'title': u 'Mathematical Methods for Business',
+                u 'meetings': [{
+                    u 'start_time': u '0800h',
+                    u 'location': u 'LO1219',
+                    u 'days': u 'MW',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '0915h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Ciuca',
+                    'first_name': u 'Razvan',
+                    u 'instructor': u 'razvan.ciuca@csun.edu'
+                }],
+                u 'section_number': u '16',
+                u 'course_id': u '19832',
+                u 'units': u '3',
+                u 'catalog_number': u '103',
+                u 'class_number': u '17280',
+                u 'subject': u 'MATH'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Prerequisites: Passing score on or exemption from the ELM Exam or credit in MATH 093; Passing score on the Mathematics Placement Test Part I or credit or concurrent enrollment in MATH 103L. Concepts and applications of algebra and calculus to business. Topics include functions systems of equations matrices the derivative and business-related topics in calculus. (Available for General Education Basic Skills Mathematics.)\n',
+                u 'title': u 'Mathematical Methods for Business',
+                u 'meetings': [{
+                    u 'start_time': u '1100h',
+                    u 'location': u 'CR5127',
+                    u 'days': u 'MW',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1215h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Khawaja',
+                    'first_name': u 'Nazimuddin',
+                    u 'instructor': u 'nazimuddin.khawaja@csun.edu'
+                }],
+                u 'section_number': u '18',
+                u 'course_id': u '19832',
+                u 'units': u '3',
+                u 'catalog_number': u '103',
+                u 'class_number': u '17281',
+                u 'subject': u 'MATH'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Prerequisites: Passing score on or exemption from the ELM Exam or credit in MATH 093; Passing score on the Mathematics Placement Test Part I or credit or concurrent enrollment in MATH 103L. Concepts and applications of algebra and calculus to business. Topics include functions systems of equations matrices the derivative and business-related topics in calculus. (Available for General Education Basic Skills Mathematics.)\n',
+                u 'title': u 'Mathematical Methods for Business',
+                u 'meetings': [{
+                    u 'start_time': u '1700h',
+                    u 'location': u 'CR5127',
+                    u 'days': u 'MW',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1815h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Petrosians',
+                    'first_name': u 'Sevana',
+                    u 'instructor': u 'sevana.petrosians.555@my.csun.edu'
+                }],
+                u 'section_number': u '20',
+                u 'course_id': u '19832',
+                u 'units': u '3',
+                u 'catalog_number': u '103',
+                u 'class_number': u '17282',
+                u 'subject': u 'MATH'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Prerequisites: Passing score on or exemption from the ELM Exam or credit in MATH 093; Passing score on the Mathematics Placement Test Part I or credit or concurrent enrollment in MATH 103L. Concepts and applications of algebra and calculus to business. Topics include functions systems of equations matrices the derivative and business-related topics in calculus. (Available for General Education Basic Skills Mathematics.)\n',
+                u 'title': u 'Mathematical Methods for Business',
+                u 'meetings': [{
+                    u 'start_time': u '0930h',
+                    u 'location': u 'CR5127',
+                    u 'days': u 'TR',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1045h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Soule',
+                    'first_name': u 'Malcolm',
+                    u 'instructor': u 'malcolm.soule@csun.edu'
+                }],
+                u 'section_number': u '22',
+                u 'course_id': u '19832',
+                u 'units': u '3',
+                u 'catalog_number': u '103',
+                u 'class_number': u '17283',
+                u 'subject': u 'MATH'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Prerequisites: Passing score on or exemption from the ELM Exam or credit in MATH 093; Passing score on the Mathematics Placement Test Part I or credit or concurrent enrollment in MATH 103L. Concepts and applications of algebra and calculus to business. Topics include functions systems of equations matrices the derivative and business-related topics in calculus. (Available for General Education Basic Skills Mathematics.)\n',
+                u 'title': u 'Mathematical Methods for Business',
+                u 'meetings': [{
+                    u 'start_time': u '1230h',
+                    u 'location': u 'CR5127',
+                    u 'days': u 'TR',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1345h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Soule',
+                    'first_name': u 'Malcolm',
+                    u 'instructor': u 'malcolm.soule@csun.edu'
+                }],
+                u 'section_number': u '24',
+                u 'course_id': u '19832',
+                u 'units': u '3',
+                u 'catalog_number': u '103',
+                u 'class_number': u '17285',
+                u 'subject': u 'MATH'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Prerequisites: Passing score on or exemption from the ELM Exam or credit in MATH 093; Passing score on the Mathematics Placement Test Part I or credit or concurrent enrollment in MATH 103L. Concepts and applications of algebra and calculus to business. Topics include functions systems of equations matrices the derivative and business-related topics in calculus. (Available for General Education Basic Skills Mathematics.)\n',
+                u 'title': u 'Mathematical Methods for Business',
+                u 'meetings': [{
+                    u 'start_time': u '1400h',
+                    u 'location': u 'MZ130',
+                    u 'days': u 'TR',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1515h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Reyes',
+                    'first_name': u 'Claudia',
+                    u 'instructor': u 'claudia.reyes@csun.edu'
+                }],
+                u 'section_number': u '30',
+                u 'course_id': u '19832',
+                u 'units': u '3',
+                u 'catalog_number': u '103',
+                u 'class_number': u '17287',
+                u 'subject': u 'MATH'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Prerequisites: Passing score on or exemption from the ELM Exam or credit in MATH 093; Passing score on the Mathematics Placement Test Part I or credit or concurrent enrollment in MATH 103L. Concepts and applications of algebra and calculus to business. Topics include functions systems of equations matrices the derivative and business-related topics in calculus. (Available for General Education Basic Skills Mathematics.)\n',
+                u 'title': u 'Mathematical Methods for Business',
+                u 'meetings': [],
+                u 'instructors': [{
+                    'last_name': u 'Kelkar',
+                    'first_name': u 'Asawari',
+                    u 'instructor': u 'asawari.kelkar@csun.edu'
+                }],
+                u 'section_number': u '33',
+                u 'course_id': u '19832',
+                u 'units': u '3',
+                u 'catalog_number': u '103',
+                u 'class_number': u '20155',
+                u 'subject': u 'MATH'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Prerequisites: Passing score on or exemption from the ELM Exam or credit in MATH 093; Passing score on the Mathematics Placement Test Part I or credit or concurrent enrollment in MATH 103L. Concepts and applications of algebra and calculus to business. Topics include functions systems of equations matrices the derivative and business-related topics in calculus. (Available for General Education Basic Skills Mathematics.)\n',
+                u 'title': u 'Mathematical Methods for Business',
+                u 'meetings': [{
+                    u 'start_time': u '1400h',
+                    u 'location': u 'LO1127',
+                    u 'days': u 'TR',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1515h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Khawaja',
+                    'first_name': u 'Nazimuddin',
+                    u 'instructor': u 'nazimuddin.khawaja@csun.edu'
+                }],
+                u 'section_number': u '34',
+                u 'course_id': u '19832',
+                u 'units': u '3',
+                u 'catalog_number': u '103',
+                u 'class_number': u '20156',
+                u 'subject': u 'MATH'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Prerequisites: Passing score on or exemption from the ELM Exam or credit in MATH 093; Passing score on the Mathematics Placement Test Part I or credit or concurrent enrollment in MATH 103L. Concepts and applications of algebra and calculus to business. Topics include functions systems of equations matrices the derivative and business-related topics in calculus. (Available for General Education Basic Skills Mathematics.)\n',
+                u 'title': u 'Mathematical Methods for Business',
+                u 'meetings': [{
+                    u 'start_time': u '1700h',
+                    u 'location': u 'LO1127',
+                    u 'days': u 'TR',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1815h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Lopez',
+                    'first_name': u 'Eloy',
+                    u 'instructor': u 'eloy.lopez@csun.edu'
+                }],
+                u 'section_number': u '35',
+                u 'course_id': u '19832',
+                u 'units': u '3',
+                u 'catalog_number': u '103',
+                u 'class_number': u '20157',
+                u 'subject': u 'MATH'
+            }],
+            u 'end_time': [u '', u '3:15 PM', u '4:45 PM', u '1:45 PM', u '09:15 AM', u '10:15 AM', u '4:45 PM', u '', u '7:45 PM', u '10:45 AM', u '09:15 AM', u '12:15 PM', u '6:15 PM', u '10:45 AM', u '1:45 PM', u '3:15 PM', u '', u '3:15 PM', u '6:15 PM']
+        }
+    }, {
+        u 'dept': u 'GE',
+        u 'prereqs': [],
+        u 'link': u '',
+        u 'number': u 'Basic Skills: Written Communication ',
+        u 'details': u ''
+    }, {
+        u 'dept': u 'COMP',
+        u 'prereqs': [],
+        u 'link': u 'http://curriculum.ptg.csun.edu/classes/comp-100',
+        u 'number': u '100',
+        u 'details': {
+            u 'start_time': [u '12:30 PM', u '09:30 AM', u '09:30 AM', u '3:30 PM', u '12:30 PM', u '12:30 PM', u '09:30 AM', u '2:00 PM', u '11:00 AM', u '11:00 AM', u '11:00 AM', u '11:00 AM', u '09:30 AM', u '08:00 AM', u '08:00 AM', u '12:30 PM', u '11:00 AM', u '11:00 AM'],
+            u 'days': [u 'TR', u 'TR', u 'TR', u 'TR', u 'TR', u 'MW', u 'MW', u 'TR', u 'TR', u 'MW', u 'MW', u 'TR', u 'TR', u 'F', u 'F', u 'MW', u 'F', u 'F'],
+            u 'location': [u 'JD1105', u 'JD1105', u 'JD2215', u 'JD1105', u 'JD1107', u 'JD1107', u 'JD1107', u 'JD1105', u 'JD1107', u 'JD1107', u 'JD1105', u 'JD1105', u 'JD1107', u 'JD1105', u 'JD1107', u 'JD1105', u 'JD1105', u 'JD1107'],
+            u 'course_id': [u '10080', u '10080', u '10080', u '10080', u '10080', u '10080', u '10080', u '10080', u '10080', u '10080', u '10080', u '10080', u '10080', u '10080', u '10080', u '10080', u '10080', u '10080'],
+            u 'details': [{
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Not open to Computer Science majors. Introduction to the uses concepts techniques and terminology of computing. Places the possibilities and problems of computer use in historical economic and social contexts. Shows how computers can assist in a wide range of personal commercial and organizational activities. Typical computer applications including word processing spreadsheets and databases. (Available for General Education Lifelong Learning.) (IC)\n',
+                u 'title': u 'Computers: Their Impact and Use',
+                u 'meetings': [{
+                    u 'start_time': u '1230h',
+                    u 'location': u 'JD1105',
+                    u 'days': u 'TR',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1345h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Spradlin',
+                    'first_name': u 'Zenaida',
+                    u 'instructor': u 'zenaida.spradlin@csun.edu'
+                }],
+                u 'section_number': u '06',
+                u 'course_id': u '10080',
+                u 'units': u '3',
+                u 'catalog_number': u '100',
+                u 'class_number': u '15521',
+                u 'subject': u 'COMP'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Not open to Computer Science majors. Introduction to the uses concepts techniques and terminology of computing. Places the possibilities and problems of computer use in historical economic and social contexts. Shows how computers can assist in a wide range of personal commercial and organizational activities. Typical computer applications including word processing spreadsheets and databases. (Available for General Education Lifelong Learning.) (IC)\n',
+                u 'title': u 'Computers: Their Impact and Use',
+                u 'meetings': [{
+                    u 'start_time': u '0930h',
+                    u 'location': u 'JD1105',
+                    u 'days': u 'TR',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1045h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Parker',
+                    'first_name': u 'Lucy',
+                    u 'instructor': u 'lucy.parker@csun.edu'
+                }],
+                u 'section_number': u '01',
+                u 'course_id': u '10080',
+                u 'units': u '3',
+                u 'catalog_number': u '100',
+                u 'class_number': u '15522',
+                u 'subject': u 'COMP'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Not open to Computer Science majors. Introduction to the uses concepts techniques and terminology of computing. Places the possibilities and problems of computer use in historical economic and social contexts. Shows how computers can assist in a wide range of personal commercial and organizational activities. Typical computer applications including word processing spreadsheets and databases. (Available for General Education Lifelong Learning.) (IC)\n',
+                u 'title': u 'Computers: Their Impact and Use',
+                u 'meetings': [{
+                    u 'start_time': u '0930h',
+                    u 'location': u 'JD2215',
+                    u 'days': u 'TR',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1045h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Sales',
+                    'first_name': u 'Chris',
+                    u 'instructor': u 'chris.sales@csun.edu'
+                }],
+                u 'section_number': u '03',
+                u 'course_id': u '10080',
+                u 'units': u '3',
+                u 'catalog_number': u '100',
+                u 'class_number': u '15523',
+                u 'subject': u 'COMP'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Not open to Computer Science majors. Introduction to the uses concepts techniques and terminology of computing. Places the possibilities and problems of computer use in historical economic and social contexts. Shows how computers can assist in a wide range of personal commercial and organizational activities. Typical computer applications including word processing spreadsheets and databases. (Available for General Education Lifelong Learning.) (IC)\n',
+                u 'title': u 'Computers: Their Impact and Use',
+                u 'meetings': [{
+                    u 'start_time': u '1530h',
+                    u 'location': u 'JD1105',
+                    u 'days': u 'TR',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1645h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Parker',
+                    'first_name': u 'Lucy',
+                    u 'instructor': u 'lucy.parker@csun.edu'
+                }],
+                u 'section_number': u '08',
+                u 'course_id': u '10080',
+                u 'units': u '3',
+                u 'catalog_number': u '100',
+                u 'class_number': u '15524',
+                u 'subject': u 'COMP'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Not open to Computer Science majors. Introduction to the uses concepts techniques and terminology of computing. Places the possibilities and problems of computer use in historical economic and social contexts. Shows how computers can assist in a wide range of personal commercial and organizational activities. Typical computer applications including word processing spreadsheets and databases. (Available for General Education Lifelong Learning.) (IC)\n',
+                u 'title': u 'Computers: Their Impact and Use',
+                u 'meetings': [{
+                    u 'start_time': u '1230h',
+                    u 'location': u 'JD1107',
+                    u 'days': u 'TR',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1345h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Macias',
+                    'first_name': u 'Miguel',
+                    u 'instructor': u 'miguel.macias@csun.edu'
+                }],
+                u 'section_number': u '09',
+                u 'course_id': u '10080',
+                u 'units': u '3',
+                u 'catalog_number': u '100',
+                u 'class_number': u '15525',
+                u 'subject': u 'COMP'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Not open to Computer Science majors. Introduction to the uses concepts techniques and terminology of computing. Places the possibilities and problems of computer use in historical economic and social contexts. Shows how computers can assist in a wide range of personal commercial and organizational activities. Typical computer applications including word processing spreadsheets and databases. (Available for General Education Lifelong Learning.) (IC)\n',
+                u 'title': u 'Computers: Their Impact and Use',
+                u 'meetings': [{
+                    u 'start_time': u '1230h',
+                    u 'location': u 'JD1107',
+                    u 'days': u 'MW',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1345h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Bendavid',
+                    'first_name': u 'Cecile',
+                    u 'instructor': u 'cecile.bendavid@csun.edu'
+                }],
+                u 'section_number': u '13',
+                u 'course_id': u '10080',
+                u 'units': u '3',
+                u 'catalog_number': u '100',
+                u 'class_number': u '15526',
+                u 'subject': u 'COMP'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Not open to Computer Science majors. Introduction to the uses concepts techniques and terminology of computing. Places the possibilities and problems of computer use in historical economic and social contexts. Shows how computers can assist in a wide range of personal commercial and organizational activities. Typical computer applications including word processing spreadsheets and databases. (Available for General Education Lifelong Learning.) (IC)\n',
+                u 'title': u 'Computers: Their Impact and Use',
+                u 'meetings': [{
+                    u 'start_time': u '0930h',
+                    u 'location': u 'JD1107',
+                    u 'days': u 'MW',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1045h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Bendavid',
+                    'first_name': u 'Cecile',
+                    u 'instructor': u 'cecile.bendavid@csun.edu'
+                }],
+                u 'section_number': u '10',
+                u 'course_id': u '10080',
+                u 'units': u '3',
+                u 'catalog_number': u '100',
+                u 'class_number': u '15527',
+                u 'subject': u 'COMP'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Not open to Computer Science majors. Introduction to the uses concepts techniques and terminology of computing. Places the possibilities and problems of computer use in historical economic and social contexts. Shows how computers can assist in a wide range of personal commercial and organizational activities. Typical computer applications including word processing spreadsheets and databases. (Available for General Education Lifelong Learning.) (IC)\n',
+                u 'title': u 'Computers: Their Impact and Use',
+                u 'meetings': [{
+                    u 'start_time': u '1400h',
+                    u 'location': u 'JD1105',
+                    u 'days': u 'TR',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1515h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Parker',
+                    'first_name': u 'Lucy',
+                    u 'instructor': u 'lucy.parker@csun.edu'
+                }],
+                u 'section_number': u '07',
+                u 'course_id': u '10080',
+                u 'units': u '3',
+                u 'catalog_number': u '100',
+                u 'class_number': u '15528',
+                u 'subject': u 'COMP'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Not open to Computer Science majors. Introduction to the uses concepts techniques and terminology of computing. Places the possibilities and problems of computer use in historical economic and social contexts. Shows how computers can assist in a wide range of personal commercial and organizational activities. Typical computer applications including word processing spreadsheets and databases. (Available for General Education Lifelong Learning.) (IC)\n',
+                u 'title': u 'Computers: Their Impact and Use',
+                u 'meetings': [{
+                    u 'start_time': u '1100h',
+                    u 'location': u 'JD1107',
+                    u 'days': u 'TR',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1215h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Bendavid',
+                    'first_name': u 'Cecile',
+                    u 'instructor': u 'cecile.bendavid@csun.edu'
+                }],
+                u 'section_number': u '05',
+                u 'course_id': u '10080',
+                u 'units': u '3',
+                u 'catalog_number': u '100',
+                u 'class_number': u '15529',
+                u 'subject': u 'COMP'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Not open to Computer Science majors. Introduction to the uses concepts techniques and terminology of computing. Places the possibilities and problems of computer use in historical economic and social contexts. Shows how computers can assist in a wide range of personal commercial and organizational activities. Typical computer applications including word processing spreadsheets and databases. (Available for General Education Lifelong Learning.) (IC)\n',
+                u 'title': u 'Computers: Their Impact and Use',
+                u 'meetings': [{
+                    u 'start_time': u '1100h',
+                    u 'location': u 'JD1107',
+                    u 'days': u 'MW',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1215h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Bendavid',
+                    'first_name': u 'Cecile',
+                    u 'instructor': u 'cecile.bendavid@csun.edu'
+                }],
+                u 'section_number': u '11',
+                u 'course_id': u '10080',
+                u 'units': u '3',
+                u 'catalog_number': u '100',
+                u 'class_number': u '15530',
+                u 'subject': u 'COMP'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Not open to Computer Science majors. Introduction to the uses concepts techniques and terminology of computing. Places the possibilities and problems of computer use in historical economic and social contexts. Shows how computers can assist in a wide range of personal commercial and organizational activities. Typical computer applications including word processing spreadsheets and databases. (Available for General Education Lifelong Learning.) (IC)\n',
+                u 'title': u 'Computers: Their Impact and Use',
+                u 'meetings': [{
+                    u 'start_time': u '1100h',
+                    u 'location': u 'JD1105',
+                    u 'days': u 'MW',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1215h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Dan',
+                    'first_name': u 'Steve',
+                    u 'instructor': u 'steve.dan@csun.edu'
+                }],
+                u 'section_number': u '12',
+                u 'course_id': u '10080',
+                u 'units': u '3',
+                u 'catalog_number': u '100',
+                u 'class_number': u '15531',
+                u 'subject': u 'COMP'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Not open to Computer Science majors. Introduction to the uses concepts techniques and terminology of computing. Places the possibilities and problems of computer use in historical economic and social contexts. Shows how computers can assist in a wide range of personal commercial and organizational activities. Typical computer applications including word processing spreadsheets and databases. (Available for General Education Lifelong Learning.) (IC)\n',
+                u 'title': u 'Computers: Their Impact and Use',
+                u 'meetings': [{
+                    u 'start_time': u '1100h',
+                    u 'location': u 'JD1105',
+                    u 'days': u 'TR',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1215h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Parker',
+                    'first_name': u 'Lucy',
+                    u 'instructor': u 'lucy.parker@csun.edu'
+                }],
+                u 'section_number': u '04',
+                u 'course_id': u '10080',
+                u 'units': u '3',
+                u 'catalog_number': u '100',
+                u 'class_number': u '15630',
+                u 'subject': u 'COMP'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Not open to Computer Science majors. Introduction to the uses concepts techniques and terminology of computing. Places the possibilities and problems of computer use in historical economic and social contexts. Shows how computers can assist in a wide range of personal commercial and organizational activities. Typical computer applications including word processing spreadsheets and databases. (Available for General Education Lifelong Learning.) (IC)\n',
+                u 'title': u 'Computers: Their Impact and Use',
+                u 'meetings': [{
+                    u 'start_time': u '0930h',
+                    u 'location': u 'JD1107',
+                    u 'days': u 'TR',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1045h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Bendavid',
+                    'first_name': u 'Cecile',
+                    u 'instructor': u 'cecile.bendavid@csun.edu'
+                }],
+                u 'section_number': u '02',
+                u 'course_id': u '10080',
+                u 'units': u '3',
+                u 'catalog_number': u '100',
+                u 'class_number': u '15848',
+                u 'subject': u 'COMP'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Not open to Computer Science majors. Introduction to the uses concepts techniques and terminology of computing. Places the possibilities and problems of computer use in historical economic and social contexts. Shows how computers can assist in a wide range of personal commercial and organizational activities. Typical computer applications including word processing spreadsheets and databases. (Available for General Education Lifelong Learning.) (IC)\n',
+                u 'title': u 'Computers: Their Impact and Use',
+                u 'meetings': [{
+                    u 'start_time': u '0800h',
+                    u 'location': u 'JD1105',
+                    u 'days': u 'F',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1045h'
+                }],
+                u 'instructors': [{
+                    'last_name': '',
+                    'first_name': u 'Mhagoo',
+                    u 'instructor': u 'mhagoo@csun.edu'
+                }],
+                u 'section_number': u '15',
+                u 'course_id': u '10080',
+                u 'units': u '3',
+                u 'catalog_number': u '100',
+                u 'class_number': u '15917',
+                u 'subject': u 'COMP'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Not open to Computer Science majors. Introduction to the uses concepts techniques and terminology of computing. Places the possibilities and problems of computer use in historical economic and social contexts. Shows how computers can assist in a wide range of personal commercial and organizational activities. Typical computer applications including word processing spreadsheets and databases. (Available for General Education Lifelong Learning.) (IC)\n',
+                u 'title': u 'Computers: Their Impact and Use',
+                u 'meetings': [{
+                    u 'start_time': u '0800h',
+                    u 'location': u 'JD1107',
+                    u 'days': u 'F',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1045h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Spradlin',
+                    'first_name': u 'Zenaida',
+                    u 'instructor': u 'zenaida.spradlin@csun.edu'
+                }],
+                u 'section_number': u '16',
+                u 'course_id': u '10080',
+                u 'units': u '3',
+                u 'catalog_number': u '100',
+                u 'class_number': u '15918',
+                u 'subject': u 'COMP'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Not open to Computer Science majors. Introduction to the uses concepts techniques and terminology of computing. Places the possibilities and problems of computer use in historical economic and social contexts. Shows how computers can assist in a wide range of personal commercial and organizational activities. Typical computer applications including word processing spreadsheets and databases. (Available for General Education Lifelong Learning.) (IC)\n',
+                u 'title': u 'Computers: Their Impact and Use',
+                u 'meetings': [{
+                    u 'start_time': u '1230h',
+                    u 'location': u 'JD1105',
+                    u 'days': u 'MW',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1345h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Spradlin',
+                    'first_name': u 'Zenaida',
+                    u 'instructor': u 'zenaida.spradlin@csun.edu'
+                }],
+                u 'section_number': u '17',
+                u 'course_id': u '10080',
+                u 'units': u '3',
+                u 'catalog_number': u '100',
+                u 'class_number': u '15919',
+                u 'subject': u 'COMP'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Not open to Computer Science majors. Introduction to the uses concepts techniques and terminology of computing. Places the possibilities and problems of computer use in historical economic and social contexts. Shows how computers can assist in a wide range of personal commercial and organizational activities. Typical computer applications including word processing spreadsheets and databases. (Available for General Education Lifelong Learning.) (IC)\n',
+                u 'title': u 'Computers: Their Impact and Use',
+                u 'meetings': [{
+                    u 'start_time': u '1100h',
+                    u 'location': u 'JD1105',
+                    u 'days': u 'F',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1345h'
+                }],
+                u 'instructors': [{
+                    'last_name': '',
+                    'first_name': u 'Mhagoo',
+                    u 'instructor': u 'mhagoo@csun.edu'
+                }],
+                u 'section_number': u '18',
+                u 'course_id': u '10080',
+                u 'units': u '3',
+                u 'catalog_number': u '100',
+                u 'class_number': u '15920',
+                u 'subject': u 'COMP'
+            }, {
+                u 'term': u 'Spring-2017',
+                u 'description': u 'Not open to Computer Science majors. Introduction to the uses concepts techniques and terminology of computing. Places the possibilities and problems of computer use in historical economic and social contexts. Shows how computers can assist in a wide range of personal commercial and organizational activities. Typical computer applications including word processing spreadsheets and databases. (Available for General Education Lifelong Learning.) (IC)\n',
+                u 'title': u 'Computers: Their Impact and Use',
+                u 'meetings': [{
+                    u 'start_time': u '1100h',
+                    u 'location': u 'JD1107',
+                    u 'days': u 'F',
+                    u 'meeting_number': u '1',
+                    u 'end_time': u '1345h'
+                }],
+                u 'instructors': [{
+                    'last_name': u 'Spradlin',
+                    'first_name': u 'Zenaida',
+                    u 'instructor': u 'zenaida.spradlin@csun.edu'
+                }],
+                u 'section_number': u '19',
+                u 'course_id': u '10080',
+                u 'units': u '3',
+                u 'catalog_number': u '100',
+                u 'class_number': u '15921',
+                u 'subject': u 'COMP'
+            }],
+            u 'end_time': [u '1:45 PM', u '10:45 AM', u '10:45 AM', u '4:45 PM', u '1:45 PM', u '1:45 PM', u '10:45 AM', u '3:15 PM', u '12:15 PM', u '12:15 PM', u '12:15 PM', u '12:15 PM', u '10:45 AM', u '10:45 AM', u '10:45 AM', u '1:45 PM', u '1:45 PM', u '1:45 PM']
+        }
+    }, {
+        u 'dept': u 'GE',
+        u 'prereqs': [],
+        u 'link': u '',
+        u 'number': u 'Natural Science ',
+        u 'details': u ''
+    }, {
+        u 'dept': u 'GE',
+        u 'prereqs': [],
+        u 'link': u '',
+        u 'number': u 'Arts and Humanities',
+        u 'details': u ''
+    }]
+}

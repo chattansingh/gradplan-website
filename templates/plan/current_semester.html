@@ -56,6 +56,11 @@
                         </tbody>
                     </table>
                 </div>
+                <form method="POST">
+                    {% csrf_token %}
+                    <h3>Remove Current Semester and Choose a New One</h3>
+                    <input type="submit" value="Go" class="btn-save">
+                </form>
                 <p><a href="{% url 'index' %}">Home</a></p>
                 <p><a href="{% url 'logout' %}">Logout</a></p>
                 <p><a href="{% url 'login' %}">Login</a></p>

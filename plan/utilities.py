@@ -25,21 +25,25 @@ def get_major_list():
 
 def update_detail_sem(detail_sem):
     for sem in detail_sem['classes']:
-        for detail in sem['details']:
-            for prof in detail['instructors']:
-                prof_email = prof['instructor']
-                first_last = get_prof_email_name(prof_email)
-                if len(first_last) > 1:
-                    first_last = {'first_name': first_last[0], 'last_name': first_last[1]}
-                else:
-                    first_last = {'first_name': first_last[0], 'last_name': ''}
-                prof.update(first_last)
+        if sem['details'] != '':
+            for detail in sem['details']['details']:
+                for prof in detail['instructors']:
+                    prof_email = prof['instructor']
+                    first_last = get_prof_email_name(prof_email)
+                    if len(first_last) > 1:
+                        first_last = {'first_name': first_last[0], 'last_name': first_last[1]}
+                    else:
+                        first_last = {'first_name': first_last[0], 'last_name': ''}
+                    prof.update(first_last)
     return detail_sem
 
 def get_semester(road_map):
 
     # list of classes
-    road_map = json.loads(road_map)
+    try:
+        road_map = json.loads(road_map)
+    except TypeError or ValueError:
+        pass
     detail_sem = road_map[0]
     remaining_sem = road_map[1:]
     remaining_sem = [sem['classes'] for sem in remaining_sem]
@@ -52,9 +56,16 @@ def get_common_classes(majors_chosen):
         majors = []
 
         for major in majors_chosen:
-            semester = json.loads(major)[0]
+            try:
+                semester = json.loads(major)[0]
+            except TypeError or ValueError:
+                semester = major[0]
             majors.append([c['dept'] + c['number'] for c in semester['classes']])
 
         result = list(set.intersection(*map(set, majors)))
-        detail_sem =  {'classes' : [item  for item in json.loads(majors_chosen[0])[0]['classes'] if item['dept']+item['number'] in result]}
+        try:
+            detail_sem =  {'classes' : [item  for item in json.loads(majors_chosen[0])[0]['classes'] if item['dept']+item['number'] in result]}
+        except TypeError or ValueError:
+            detail_sem = {'classes': [item for item in majors_chosen[0][0]['classes'] if
+                                      item['dept'] + item['number'] in result]}
         return update_detail_sem(detail_sem)

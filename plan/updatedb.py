@@ -72,7 +72,7 @@ def update_database(**kwars):
         print "Argument supplied...\nSkiping the url scrapping..."
         for p in plans:
             major = p['major'].encode('utf-8')
-            road_map = p['plan']
+            road_map = json.loads(p['plan'])
             major_road_map, created = MajorRoadMaps.objects.get_or_create(major=major, road_map=road_map)
             output_status(major, created)
             if not created:
@@ -84,13 +84,18 @@ def update_database(**kwars):
         plans = getbaseplans()
         for p in plans:
             major = p['major'].encode('utf-8')
-            road_map = json.loads(p['plan'])
+            road_map = p['plan']
             major_road_map, created = MajorRoadMaps.objects.get_or_create(major=major, road_map=road_map)
             output_status(major, created)
             if not created:
                 major_road_map.major = major
                 major_road_map.road_map = road_map
             major_road_map.save()
+
+def clear_major_database():
+    query = MajorRoadMaps.objects.filter()
+    for major in query:
+        major.delete()
 
 def output_status(major, created):
     if created:
