@@ -303,15 +303,16 @@ def filter(cl):
   return result
 
 def suggested(data, schedule):
-  s = {'course_id': [], 'start_time': [], 'end_time': [], 'days': [], 'location': [], 'details': data}
+  s = {'course_id': [], 'start_time': [], 'end_time': [], 'days': [], 'location': [], 'details': []}#data}
   for c in data:
     temp = filter(c)
     if compatible(temp, schedule):
-      s['start_time'].append(temp['start_time'])
+      s['details'].append(c)
+      """s['start_time'].append(temp['start_time'])
       s['end_time'].append(temp['end_time'])
       s['course_id'].append(temp['course_id'])
       s['location'].append(temp['location'])
-      s['days'].append(temp['days'])
+      s['days'].append(temp['days'])"""
   return s
 
 def getSem():
