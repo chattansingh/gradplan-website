@@ -69,3 +69,18 @@ def get_common_classes(majors_chosen):
             detail_sem = {'classes': [item for item in majors_chosen[0][0]['classes'] if
                                       item['dept'] + item['number'] in result]}
         return update_detail_sem(detail_sem)
+
+
+def fill_semesters(road_map):
+    temp_list = [classes for sem in road_map for classes in sem['classes']]
+    temp_list = map(None, *(iter(temp_list),) * 4)
+    for c in temp_list:
+        for e in c:
+            if e == None:
+                c.remove(None)
+    for sem in road_map:
+        try:
+            sem['classes'] = list(temp_list.pop())
+        except IndexError:
+            pass
+    return road_map

@@ -7,7 +7,7 @@ from gradplan import getroadmap, get_major_url, format_gradplan, filtered_time
 from accounts.models import Profile
 from forms import ChooseMajorForm, ChooseJobSalaries, ClassFilter, TimeFilter, SemesterClass, ChooseMultipleMajors
 from plan.models import MajorRoadMaps
-from plan.utilities import get_semester, get_common_classes
+from plan.utilities import get_semester, get_common_classes, fill_semesters
 from plan.gradplan import changeplan, filtertimes
 import json
 
@@ -196,7 +196,10 @@ def modify_gradplan(request):
             c = [ cl[:-2] for cl in c]
             c += [cl[:-2] for cl in current_user.classes_taken]
 
-            current_user.current_graduation_plan = changeplan(filter_input, c)
+
+            changed_plan = changeplan(filter_input, c)
+            current_user.current_graduation_plan = changed_plan
+            # current_user.current_graduation_plan = fill_semesters(changed_plan)
             current_user.save()
             return redirect('/roadmap/')
         else:
@@ -228,11 +231,10 @@ def current_semester(request):
         return redirect('/roadmap/choosesemester')
     else:
         if current_semester:
-
             context = {'classes': current_semester}
             template = 'plan/current_semester.html'
         else:
-            return redirect('/plan/choosesemester')
+            return redirect('/roadmap/choosesemester')
 
         return render(request, template, context)
 
