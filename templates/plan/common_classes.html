@@ -59,9 +59,7 @@
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="60">
 
 <div class="container-fluid" id="GraduationPlan">
-    <h1 class="text-center">Graduation Plan </h1>
-    <h3 class="text-center">Your {{ major }} Roadmap for the coming years</h3>
-    <h4 class="text-center">Here are your classes!</h4>
+    <h1 class="text-center">Common Classes for the Upcoming Semester </h1>
 
 </div>
 
@@ -71,12 +69,8 @@
         <div class="row">
 
             <div class="col-md-6 col-md-offset-3" id="SemesterView">
-                <h2 class="text-center"><a href={% url 'modify_grad_plan' %}>Taken some of these already? Click to
-                    Remove Them</a></h2>
                 <h2 class="text-center"><a href={% url 'choose_semester' %}>Choose your Semester Classes or View your
                     chosen Semester Classes</a></h2>
-                <h2 class="text-center"><a href="{% url 'common_classes' %}">Still interested in switching? See if you
-                    can choose classes to fit the majors you are interested in.</a></h2>
                 <p><a href="{% url 'index' %}">Home</a></p>
                 <p><a href="{% url 'user_profile' %}">Profile</a></p>
                 <p><a href="{% url 'login' %}">Login</a></p>

@@ -279,7 +279,6 @@ def choose_semester(request):
                 current_user.current_semester = classes
                 current_user.save()
 
-        # return render(request, 'plan/current_semester.html', {'classes': classes})
                 return redirect('/roadmap/currentsemester')
     else:
 
@@ -289,14 +288,6 @@ def choose_semester(request):
             filter_time = True
             choose_classes = False
             time_filter_form = TimeFilter()
-
-            # create a form for each class
-            # forms = {}
-            # count = 0
-            # for sem in semester:
-            #     count += 1
-            #     key = 'class_form_' + count
-            #     forms.update({key : SemesterClass(sem_class=sem)})
 
             template = 'plan/choose_semester.html'
 
@@ -308,12 +299,14 @@ def common_classes(request):
     current_user = get_object_or_404(Profile, user=request.user)
 
     if request.method == 'POST':
+
         form = ChooseMultipleMajors(request.POST)
         if form.is_valid():
             majors_chosen = form.cleaned_data['choose_multiple_majors']
             road_maps = [MajorRoadMaps.objects.get(major=major).road_map for major in majors_chosen]
+
             context = {'detail_sem': get_common_classes(road_maps)}
-            return render(request, 'plan/Plans.html', context)
+            return render(request, 'plan/common_classes.html', context)
         else:
             return redirect('roadmap/commonclasses/')
     else:
