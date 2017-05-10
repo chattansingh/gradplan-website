@@ -56,19 +56,19 @@ class ClassFilter(forms.Form):
 
 class TimeFilter(forms.Form):
     TIMES_DAYS = [
-        ('8:00 AM', '8:00am - 9:00am'),
-        ('9:00 AM', '9:00am - 10:00am'),
-        ('10:00 AM', '10:00am - 11:00am'),
-        ('11:00 AM', '11:00am - 12:00pm'),
-        ('12:00 PM', '12:00pm - 1:00pm'),
-        ('1:00 PM', '1:00pm - 2:00pm'),
-        ('2:00 PM', '2:00pm - 3:00pm'),
-        ('3:00 PM', '3:00pm - 4:00pm'),
-        ('4:00 PM', '4:00pm - 5:00pm'),
-        ('5:00 PM', '5:00pm - 6:00pm'),
-        ('6:00 PM', '6:00pm - 7:00pm'),
-        ('7:00 PM', '7:00pm - 8:00pm'),
-        ('8:00 PM', '8:00pm - 9:00pm'),
+        ('0800h', '8:00am - 9:00am'),
+        ('0900h', '9:00am - 10:00am'),
+        ('1000h', '10:00am - 11:00am'),
+        ('1100h', '11:00am - 12:00pm'),
+        ('1200h', '12:00pm - 1:00pm'),
+        ('1300h', '1:00pm - 2:00pm'),
+        ('1400h', '2:00pm - 3:00pm'),
+        ('1500h', '3:00pm - 4:00pm'),
+        ('1600h', '4:00pm - 5:00pm'),
+        ('1700h', '5:00pm - 6:00pm'),
+        ('1800h', '6:00pm - 7:00pm'),
+        ('1900h', '7:00pm - 8:00pm'),
+        ('2000h', '8:00pm - 9:00pm'),
     ]
 
     monday = forms.MultipleChoiceField(choices=TIMES_DAYS, widget=forms.CheckboxSelectMultiple, required=False)
