@@ -103,11 +103,13 @@ def choose_a_major(request):
             # update it with split up semesters to more easily display it
             # keys are 'detail_sem' and 'remaining_sem'
             print 'processing web page....'
-            if current_user.classes_taken:
-                c = [cl[:-2] for cl in current_user.classes_taken]
-                road_map = changeplan(filter_input, c)
-                current_user.current_graduation_plan = road_map
-                current_user.save()
+            if user.is_authenticated():
+                current_user = get_object_or_404(Profile, user=user)
+                if current_user.classes_taken:
+                    c = [cl[:-2] for cl in current_user.classes_taken]
+                    road_map = changeplan(filter_input, c)
+                    current_user.current_graduation_plan = road_map
+                    current_user.save()
             context.update(get_semester(road_map))
             return render(request, template, context)
         else:
