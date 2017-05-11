@@ -32,7 +32,7 @@
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
 
-
+ <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <script>
 
 
@@ -50,7 +50,7 @@
     </script>
 
 
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
 
 
 </head>
@@ -58,12 +58,12 @@
 
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="60">
 
-<div class="container-fluid" id="GraduationPlan">
+<div class="jumbotron csunSyle">
     <h1 class="text-center">Common Classes for the Upcoming Semester </h1>
 
 </div>
 
-<Section id="Classes">
+
 
     <div class="container-fluid">
         <div class="row">
@@ -154,9 +154,11 @@
                         {% endfor %}
                     {% endfor %}
 
-</Section>
-
+            </div>
+        </div>
+    </div>
 </body>
+</html>
 
 </html>
 		
