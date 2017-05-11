@@ -122,8 +122,7 @@
                                             <tr>
                                                 {% for instructor in class_details.instructors %}
                                                     <th>Instructors: <a
-                                                            href="/ratings/{{ instructor.last_name }}/{{ instructor.first_name }}/
-                                                                    {{ sem.dept }}{{ sem.number }}">{{ instructor.first_name }} {{ instructor.last_name }}</a>
+                                                            href="/ratings/{{ instructor.last_name }}/{{ instructor.first_name }}/{{ sem.dept }}{{ sem.number }}">{{ instructor.first_name }} {{ instructor.last_name }}</a>
                                                         Email:{{ instructor.instructor }}</td>
                                                 {% endfor %}
                                             </tr>
