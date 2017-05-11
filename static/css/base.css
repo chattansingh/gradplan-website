@@ -818,3 +818,8 @@ img#gold
 {
     visibility: hidden;
 }
+
+textarea#id_rating
+{
+    color:#d22030;
+}
