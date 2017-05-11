@@ -76,7 +76,10 @@ window.onload=copyStar;
 
 
 
-
+<p><a href="{% url 'index' %}">Home</a></p>
+                <p><a href="{% url 'user_profile' %}">Profile</a></p>
+                <p><a href="{% url 'logout' %}">Logout</a></p>
+                <p><a href="{% url 'login' %}">Login</a></p>
 <h3 class=text-center">Leave your own experience</h3>
 <form action="{% url 'rate_professor' last_name=professor.last_name first_name=professor.first_name class_name=class_name %}" method="post">
     {% csrf_token %}
