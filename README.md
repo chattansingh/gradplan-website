@@ -39,7 +39,7 @@ Backend
   Framework - Django 1.10 
   Python 2.7
   PostgreSQL
-  
+  \n
 Frontend
   HTML 5
   Javascript
