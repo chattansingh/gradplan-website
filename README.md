@@ -20,7 +20,7 @@ intersecting classes to help find a generic plan for students unsure
 of a specific degree.
 
 See sprint schedule and software proposal in Team2_Software_Proposal.pdf
-Automated Server Maintanence and Setup:
+Automated Server Maintenance and Setup:
   backup.sh
   build.sh
   restore.sh
@@ -31,14 +31,15 @@ Hosting Service - Digital Ocean
 Prod Server
   Linux - Ubuntu 16.04 LTS
   Apache Web Server
+  
 Dev Server
   Django Framework Dev Server
-
+  
 Backend 
   Framework - Django 1.10 
   Python 2.7
   PostgreSQL
-
+  
 Frontend
   HTML 5
   Javascript
