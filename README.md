@@ -1,10 +1,13 @@
 # Gradplan Website
 Comp 680 Advanced Software Engineering Topics Project
-I was the Project Owner and did a large majority of the work
+
+I was the project owner, scrum master, lead architect, and lead programmer.
 
 Work of other student collaborators should also be noted
-Daniel Hunt- Algorithm Design
-Jesus Moran Perez - Visual Design
+
+    Daniel Hunt- Algorithm Design
+    
+    Jesus Moran Perez - Visual Design
 
 Business solutiont he project was trying to solve:
 
@@ -20,10 +23,14 @@ intersecting classes to help find a generic plan for students unsure
 of a specific degree.
 
 See sprint schedule and software proposal in Team2_Software_Proposal.pdf
+
 Automated Server Maintenance and Setup:
-  backup.sh
-  build.sh
-  restore.sh
+
+    backup.sh
+    
+    build.sh
+    
+    restore.sh
 
 Tech Stack:
 
