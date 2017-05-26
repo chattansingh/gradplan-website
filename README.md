@@ -5,7 +5,7 @@ I was the project owner, scrum master, lead architect, and lead programmer.
 
 Work of other student collaborators should also be noted
 
-    Daniel Hunt- Algorithm Design
+    Daniel Hunt - Algorithm Design
     
     Jesus Moran Perez - Visual Design
 
