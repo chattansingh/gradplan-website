@@ -1,4 +1,4 @@
-# gradplan-website
+# Gradplan Website
 Comp 680 Advanced Software Engineering Topics Project
 I was the Project Owner and did a large majority of the work
 
