@@ -26,30 +26,50 @@ Automated Server Maintenance and Setup:
   restore.sh
 
 Tech Stack:
-Hosting Service - Digital Ocean
 
-Prod Server
-  Linux - Ubuntu 16.04 LTS
-  Apache Web Server
+Hosting Service - 
+    
+    Digital Ocean
+
+Prod Server -
+
+    Linux Ubuntu 16.04 LTS
+
+    Apache Web Server
   
-Dev Server
-  Django Framework Dev Server
+Dev Server - 
+
+    Django Framework Dev Server
   
-Backend 
-  Framework - Django 1.10 
-  Python 2.7
-  PostgreSQL
-  \n
-Frontend
-  HTML 5
-  Javascript
-  CSS3
-Version Control
-  Git
-  Github
-IDE
-  Jetbrains PyCharm
-  VIM
-Team Management
-  Slack
+Backend - 
+
+    Framework - Django 1.10 
+  
+    Python 2.7 
+  
+    PostgreSQL
+
+Frontend -
+  
+    HTML 5
+  
+    Javascript
+  
+    CSS3
+  
+Version Control - 
+  
+    Git
+  
+    Github
+  
+IDE - 
+  
+    Jetbrains PyCharm
+  
+    VIM
+  
+Team Management -
+  
+    Slack
 
